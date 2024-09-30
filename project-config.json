@@ -1,0 +1,13 @@
+{
+    "name": "raster",
+    "description": "Project raster",
+    "toolkit": "kick",
+    "sources": [
+        "src/main.asm"
+    ],
+    "build": "debug",
+    "definitions": [],
+    "includes": [],
+    "args": [],
+    "compiler": ""
+}
