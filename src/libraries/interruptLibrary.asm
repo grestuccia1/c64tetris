@@ -54,6 +54,10 @@ INTERRUPT:
 
 		jsr TETRIMINO.remove
 
+		jsr TETRIMINO.handle
+
+		ClearTetriminoDirection(ALL_DIRECTIONS_NO_FIRE)
+
 		jsr TETRIMINO.change
 
 		jsr TETRIMINO.draw

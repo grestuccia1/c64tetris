@@ -14,15 +14,7 @@ tetriminoPY: .byte 0
 
 Tetrimino_Flags: .byte %00000000
 
-Tetrimino_Direction:
-.byte 0
-.byte 0
-.byte 0
-.byte 0
-.byte 0
-.byte 0
-.byte 0
-.byte 0
+Tetrimino_Direction: .byte 0
 
 Tetrimino_H_Speed_Timer: .byte 0
 

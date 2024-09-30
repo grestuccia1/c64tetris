@@ -18,6 +18,8 @@ INPUT:
 		lda JOYSTICK_2
 		cmp #JOY_2_IDLE
 		bne joy2notIdle
+			ClearTetriminoDirection(FIRE)
+			SetTetriminoDirection(FIRE_RELEASE)
 			jmp doneReadJoystick_2
 		joy2notIdle:
 
@@ -74,12 +76,14 @@ INPUT:
 				and #JOY_FIRE
 				beq joy2fire
 					ClearTetriminoDirection(FIRE)
+					SetTetriminoDirection(FIRE_RELEASE)
 					jmp doneReadJoystick_2
 				joy2fire:
 					SetTetriminoDirection(FIRE)
+						jmp doneReadJoystick_2
 
 					lda #81
-					sta SCREEN_RAM + 52
+					sta SCREEN_RAM + 52	
 
 		doneReadJoystick_2:
 			lda #65

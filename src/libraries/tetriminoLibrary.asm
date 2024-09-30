@@ -60,6 +60,74 @@ TETRIMINO:
 		jsr TETRIMINO.paint
 		rts
 
+	handle:
+		txa
+		pha
+		tya
+		pha
+
+		checkUpDirection:
+			lda Tetrimino_Direction
+			and #UP
+			bne moveSpriteUp
+				jmp checkDownDirection
+			moveSpriteUp:
+				//dec tetriminoRow
+				jmp checkDownDirection
+
+		checkDownDirection:
+			lda Tetrimino_Direction
+			and #DOWN
+			bne moveSpriteDown
+				jmp checkLeftDirection
+			moveSpriteDown:
+				inc tetriminoRow
+				jmp checkLeftDirection
+		
+		checkLeftDirection:
+			lda Tetrimino_Direction
+			and #LEFT
+			bne moveSpriteLeft
+				jmp checkRightDirection
+			moveSpriteLeft:
+				dec tetriminoCol
+				jmp checkRightDirection
+
+		checkRightDirection:
+			lda Tetrimino_Direction
+			and #RIGHT
+			bne moveSpriteRight
+				jmp checkRotate
+			moveSpriteRight:
+				inc tetriminoCol
+				jmp checkRotate
+
+		checkRotate:
+			lda Tetrimino_Direction
+			and #FIRE_AND_RELEASE
+			cmp #FIRE_AND_RELEASE
+			beq rotateTetrimino
+				jmp endCheckDirection
+			rotateTetrimino:
+				ClearTetriminoDirection(FIRE_RELEASE)		
+				inc tetriminoRot
+				lda tetriminoRot
+				cmp #MAX_ROTATION
+				beq resetRotateTetrimino
+				jmp endCheckDirection
+			resetRotateTetrimino:			
+				lda #0
+				sta tetriminoRot
+				jmp endCheckDirection	
+
+		endCheckDirection:
+
+		pla
+		tay
+		pla
+		tax
+		rts
+
 	change:
 		txa
 		pha
