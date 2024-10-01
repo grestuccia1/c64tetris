@@ -16,3 +16,6 @@ BasicUpstart2(main)
 
 *=GAME_CODE "Game Code"
 #import "includes/gameCode.asm"
+
+*=CHARSET_ADDRESS "Charset"
+.import binary "charset/charset2.bin"

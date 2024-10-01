@@ -47,14 +47,14 @@ TETRIMINO:
 				rts
 
 	draw:
-		lda #160
+		lda #BLOCK
 		sta tileNr
 
 		jsr TETRIMINO.paint
 		rts
 
 	remove:
-		lda #32
+		lda #SPACE
 		sta tileNr
 
 		jsr TETRIMINO.paint
@@ -72,7 +72,14 @@ TETRIMINO:
 			bne moveSpriteUp
 				jmp checkDownDirection
 			moveSpriteUp:
-				//dec tetriminoRow
+				//TODO INIT Comment
+				dec tetriminoRow
+
+				jsr MATH.generate_random
+				lda RANDOM_NUMBER
+				sta tetriminoNr
+				
+				//TODO END Comment
 				jmp checkDownDirection
 
 		checkDownDirection:

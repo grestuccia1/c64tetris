@@ -48,6 +48,8 @@ next_bit:
     dex                  // Decrement X (loop counter)
     bne read_bits_msb 
 
+	Delay(10, 10)
+
 	// lda JOYSTICK_2
 	//sta SCREEN_RAM + 1
 
