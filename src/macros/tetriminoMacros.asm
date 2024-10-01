@@ -27,3 +27,12 @@
 	lda #>py          
 	sta ZP_PY_HI       
 }
+
+.macro SelectTetrimino(row, col, rot) {
+	lda #row
+	sta tetriminoRow
+	lda #col
+	sta tetriminoCol
+	lda #rot
+	sta tetriminoRot
+}
