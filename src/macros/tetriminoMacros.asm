@@ -36,3 +36,17 @@
 	lda #rot
 	sta tetriminoRot
 }
+
+.macro NewTetrimino() {
+	ClearTetriminoDirection(ALL_DIRECTIONS)
+	lda #0
+	sta tetriminoRow
+	lda #4
+	sta tetriminoCol
+	lda #0
+	sta tetriminoRot
+	jsr MATH.generate_random
+	lda RANDOM_NUMBER
+	sta tetriminoNr
+	jsr TETRIMINO.change
+}

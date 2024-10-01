@@ -66,39 +66,23 @@ TETRIMINO:
 		tya
 		pha
 
+		jsr COLLITION.init	
+
+		lda #0
+		sta tetriminoMustFall
+
 		checkTetriminoFallSpeedTimer:
 		lda Tetrimino_Fall_Speed_Timer
 		cmp Tetrimino_Fall_Speed
 			beq tetriminoFallSpeedTimerReached
 			inc Tetrimino_Fall_Speed_Timer
-			jmp handleInit
+			jmp checkDownDirection
 		tetriminoFallSpeedTimerReached:
-			inc tetriminoRow
+			lda #1
+			sta tetriminoMustFall
 			lda #0
 			sta Tetrimino_Fall_Speed_Timer
-
-		handleInit:
-
-		jsr COLLITION.init	
-
-		checkUpDirection:
-			lda Tetrimino_Direction
-			and #UP
-			bne moveSpriteUp
-				jmp checkDownDirection
-			moveSpriteUp:
-				//TODO INIT Comment
-				dec collitionRow
-
-				jsr COLLITION.check
-				lda charCollision
-				cmp	#SPACE
-				beq checkDownDirection
-
-				inc collitionRow
-
-				//TODO END Comment
-				jmp checkDownDirection
+			jmp moveSpriteDown
 
 		checkDownDirection:
 			lda Tetrimino_Direction
@@ -113,6 +97,21 @@ TETRIMINO:
 				cmp	#SPACE
 				beq checkLeftDirection
 
+				lda tetriminoMustFall
+				cmp #1
+				bne cancelDownDirection
+
+				jsr TETRIMINO.draw
+
+				NewTetrimino()
+
+				pla
+				tay
+				pla
+				tax
+				rts
+
+		cancelDownDirection:		
 				dec collitionRow
 				
 				jmp checkLeftDirection
