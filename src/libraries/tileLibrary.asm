@@ -33,6 +33,32 @@ TILE:
 		tax
 		rts
 
+	getChar:
+		txa
+		pha
+		tya
+		pha
+
+		ldx tileRow
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+		lda Row_Color_LO,x
+		sta ZP_ROW_COLOR_LO
+		lda Row_Color_HI,x
+		sta ZP_ROW_COLOR_HI
+
+		ldy tileCol
+
+		lda (ZP_ROW_LO),y
+		sta charCollision
+
+		pla
+		tay
+		pla
+		tax
+		rts
 
 	drawTile:
 		txa

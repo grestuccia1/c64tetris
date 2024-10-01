@@ -1,0 +1,372 @@
+Opening monitor command playback file: /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.vs
+ 
+*** VICE Version 3.8 ***
+ 
+Welcome to x64sc, the free portable C64 Emulator.
+ 
+Current VICE team members:
+Pottendo, Marco van den Heuvel, Fabrizio Gennari, Groepaz, Errol Smith, 
+Ingo Korb, Olaf Seibert, Marcus Sutton, Kajtar Zsolt, AreaScout, Bas Wassink, 
+Michael C. Martin, Christopher Phillips, David Hogan, Empathic Qubit, 
+Roberto Muscedere, June Tate-Gans, Pablo Roldan.
+ 
+This is free software with ABSOLUTELY NO WARRANTY.
+See the "About VICE" command for more info.
+ 
+random seed was: 0x66fc35c8
+command line was: /Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/x64sc -logfile /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main_ViceLog.txt -moncommands /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.vs /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.prg
+VICE system file directory: /Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/C64/kernal-901227-03.bin'.
+C64MEM: Kernal rev #3 ($03) Sum: 50954 ($C70A) SHA1: 1d503e56df85a62fee696e7618dc5b4e781df1bb.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/C64/basic-901226-01.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/C64/chargen-901225-01.bin'.
+Palette: Loading palette `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/PRINTER/mps803.vpl'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/PRINTER/nl10.bin'.
+Palette: Loading palette `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/PRINTER/nl10.vpl'.
+NL10: Printer driver initialized.
+Palette: Loading palette `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/PRINTER/1520.vpl'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos1540-325302+3-01.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos1541-325302-01+901229-05.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos1541ii-251968-03.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos1570-315090-01.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos1571-310654-05.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos1581-318045-02.bin'.
+DriveROM: Error - 2000 ROM image not found. Hardware-level 2000 emulation is not available.
+DriveROM: Error - 4000 ROM image not found. Hardware-level 4000 emulation is not available.
+DriveROM: Error - CMDHD ROM image not found. Hardware-level CMDHD emulation is not available.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos2031-901484-03+05.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos2040-901468-06+07.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos3040-901468-11-13.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos4040-901468-14-16.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos1001-901887+8-01.bin'.
+Loading system file `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/DRIVES/dos9000-300516+7-revC.bin'.
+Drive: Finished loading ROM images.
+VIC-II: Initializing chip model "MOS8565" (63 cycles per line, 312 raster lines).
+using GTK3 backend: OpenGL
+chip_name: VICII
+ screen_size: 384 x 312
+ first/lastline: 0 x 0
+ gfx_size: 320 x 200
+ gfx_position: 32 x 51
+ first/last displayed line: 16 x 287
+ extra offscreen border left/right: 0 x 0
+ screen_display_wh: 0.000000 x 0.000000
+ canvas_physical_wh: 0 x 0
+ scalexy: 2 x 2
+ sizexy: 1 x 1
+ rmode: 1
+ aspect ratio: 0.936508
+ hstretch: 0
+ vstretch: 0
+ initializing with width, height: 704 x 507
+Loading vertex shader: /Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/GLSL/viewport.vert
+Loading fragment shader: /Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/GLSL/builtin.frag
+Loading vertex shader: /Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/GLSL/viewport.vert
+Loading fragment shader: /Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/GLSL/builtin-interlaced.frag
+Loading vertex shader: /Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/GLSL/viewport.vert
+Loading fragment shader: /Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/GLSL/bicubic.frag
+Loading vertex shader: /Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/GLSL/viewport.vert
+Loading fragment shader: /Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/GLSL/bicubic-interlaced.frag
+Created render thread 0
+Render thread initialised
+Sound: Available sound devices: coreaudio dummy fs dump wav voc iff aiff mp3 flac ogg soundmovie
+Loading keymap `/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/C64/gtk3_sym.vkm'.
+Hotkeys: Initializing hotkeys.
+Hotkeys: parsing default file '/Applications/vice-arm64-gtk3-3.8/VICE.app/Contents/Resources/bin/../share/vice/hotkeys/hotkeys.vhk' for machine C64
+Hotkeys: OK.
+Main CPU: starting at ($FFFC).
+Main CPU: RESET.
+AUTOSTART: Autodetecting image type of `/Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.prg'.
+Filesystem Image Probe: Error - Import GCR: Unknown GCR image version 48.
+Filesystem Image: Unknown disk image `/Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.prg'.
+Tape: Error - Cannot open file `/Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.prg'
+Error - no CRT header found.
+CART: '/Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.prg' is not a valid CRT file.
+AUTOSTART: Loading PRG file `/Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.prg' with direct RAM injection.
+AUTOSTART: Resetting the machine to autostart '*'
+VIC-II: VSP Bug: safe channels are: 056. Emulation of memory corruption is disabled.
+AUTOSTART: Turning Warp mode on.
+AUTOSTART: `/Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.prg' recognized as program/p00 file.
+Monitor playback command: al C:d022 .SCREEN_EXTRA_COLOR_1
+Monitor playback command: al C:ea81 .INTERRUPT_RETURN
+Monitor playback command: al C:ff .JOY_1_IDLE
+Monitor playback command: al C:d023 .SCREEN_EXTRA_COLOR_2
+Monitor playback command: al C:512b .paint
+Monitor playback command: al C:c2a .collitionInit
+Monitor playback command: al C:5039 .disableRasterInterrupt
+Monitor playback command: al C:5061 .drawChar
+Monitor playback command: al C:19 .SCREEN_HEIGHT
+Monitor playback command: al C:10 .FIRE
+Monitor playback command: al C:4124 .P6_X
+Monitor playback command: al C:c13 .tempYpos
+Monitor playback command: al C:c1f .Tetrimino_H_Speed
+Monitor playback command: al C:c1c .Tetrimino_Flags
+Monitor playback command: al C:4 .LEFT
+Monitor playback command: al C:548b .pass
+Monitor playback command: al C:c15 .tetriminoRow
+Monitor playback command: al C:c17 .tetriminoRot
+Monitor playback command: al C:dc01 .JOYSTICK_1
+Monitor playback command: al C:dc00 .JOYSTICK_2
+Monitor playback command: al C:20 .JOY_FIRE_RELEASE
+Monitor playback command: al C:5327 .delay
+Monitor playback command: al C:e00 .TILESET_ADDRESS
+Monitor playback command: al C:28 .RANDOM_NUMBER
+Monitor playback command: al C:49 .BUTTON_RELEASE
+Monitor playback command: al C:52b5 .change_to_p3
+Monitor playback command: al C:52c8 .change_to_p4
+Monitor playback command: al C:c16 .tetriminoCol
+Monitor playback command: al C:52db .change_to_p5
+Monitor playback command: al C:52ee .change_to_p6
+Monitor playback command: al C:d019 .INTERRUPT_STATUS
+Monitor playback command: al C:c23 .playMusic
+Monitor playback command: al C:c0d .temp2
+Monitor playback command: al C:c0e .temp3
+Monitor playback command: al C:527c .change_to_p0
+Monitor playback command: al C:ff .ALL_DIRECTIONS
+Monitor playback command: al C:528f .change_to_p1
+Monitor playback command: al C:c0c .temp1
+Monitor playback command: al C:52a2 .change_to_p2
+Monitor playback command: al C:20 .SPACE
+Monitor playback command: al C:5000 .INTERRUPT
+Monitor playback command: al C:c03 .tileCol
+Monitor playback command: al C:c0a .charCollision
+Monitor playback command: al C:0 .DEFAULT_SCREEN_BORDER_COLOR
+Monitor playback command: al C:4114 .P5_Y
+Monitor playback command: al C:4104 .P5_X
+Monitor playback command: al C:cf .ALL_DIRECTIONS_NO_FIRE
+Monitor playback command: al C:4134 .P6_Y
+Monitor playback command: al C:4000 .Row_LO
+Monitor playback command: al C:5042 .irq
+Monitor playback command: al C:53d8 .joy2right
+Monitor playback command: al C:c29 .collitionEnd
+Monitor playback command: al C:5414 .joy2fire
+Monitor playback command: al C:3e8 .SCREEN_SIZE
+Monitor playback command: al C:c0f .temp4
+Monitor playback command: al C:c22 .frameCounter
+Monitor playback command: al C:2000 .HUD_CHAR_RIGHT_MAP_ADDRESS
+Monitor playback command: al C:314 .INTERRUPT_SERVICE_LO
+Monitor playback command: al C:5354 .wait_for_cooldown
+Monitor playback command: al C:5306 .SYSTEM
+Monitor playback command: al C:2 .DOWN
+Monitor playback command: al C:532d .delayLoop1
+Monitor playback command: al C:21 .ZP_ROW_HI
+Monitor playback command: al C:532f .delayLoop2
+Monitor playback command: al C:54bd .checkPiece
+Monitor playback command: al C:1f4 .cooldown_duration
+Monitor playback command: al C:5061 .TILE
+Monitor playback command: al C:d020 .SCREEN_BORDER_COLOR
+Monitor playback command: al C:40e4 .P4_X
+Monitor playback command: al C:1 .UP
+Monitor playback command: al C:40f4 .P4_Y
+Monitor playback command: al C:29 .ZP_HUD_LO
+Monitor playback command: al C:c07 .charMapHeight
+Monitor playback command: al C:519b .checkDownDirection
+Monitor playback command: al C:8 .JOY_RIGHT
+Monitor playback command: al C:50b6 .drawTile
+Monitor playback command: al C:e544 .SCREEN_CLEAR
+Monitor playback command: al C:541f .doneReadJoystick_2
+Monitor playback command: al C:549e .check
+Monitor playback command: al C:d01a .INTERRUPT_CONTROL
+Monitor playback command: al C:508e .getChar
+Monitor playback command: al C:5145 .piece
+Monitor playback command: al C:48 .ARROW_DOWN
+Monitor playback command: al C:c18 .tetriminoInit
+Monitor playback command: al C:10 .JOY_FIRE
+Monitor playback command: al C:20 .FIRE_RELEASE
+Monitor playback command: al C:53f2 .joy2up
+Monitor playback command: al C:0 .NO_DIRECTION
+Monitor playback command: al C:516e .remove
+Monitor playback command: al C:4 .JOY_LEFT
+Monitor playback command: al C:ffe4 .GETIN
+Monitor playback command: al C:5420 .HUD
+Monitor playback command: al C:0 .HUD_START_POS_X_LEFT
+Monitor playback command: al C:40d4 .P3_Y
+Monitor playback command: al C:40c4 .P3_X
+Monitor playback command: al C:5188 .moveSpriteUp
+Monitor playback command: al C:23 .ZP_ROW_COLOR_HI
+Monitor playback command: al C:c1e .Tetrimino_H_Speed_Timer
+Monitor playback command: al C:c00 .printX
+Monitor playback command: al C:dd0d .INTERRUPT_CONTROL_AND_STATUS_CIA_2
+Monitor playback command: al C:dc0d .INTERRUPT_CONTROL_AND_STATUS_CIA_1
+Monitor playback command: al C:19 .HUD_HEIGHT
+Monitor playback command: al C:c04 .tileColor
+Monitor playback command: al C:53c6 .checkJoy2right
+Monitor playback command: al C:47 .ARROW_UP
+Monitor playback command: al C:51b8 .checkLeftDirection
+Monitor playback command: al C:521b .endCheckDirection
+Monitor playback command: al C:6 .HUD_START_POS_X_RIGHT
+Monitor playback command: al C:5340 .start_cooldown
+Monitor playback command: al C:d016 .SCREEN_CONTROL_2
+Monitor playback command: al C:d011 .SCREEN_CONTROL_1
+Monitor playback command: al C:315 .INTERRUPT_SERVICE_HI
+Monitor playback command: al C:ff9f .SCNKEY
+Monitor playback command: al C:26 .ZP_PY_LO
+Monitor playback command: al C:5306 .setup
+Monitor playback command: al C:53a4 .joy2down
+Monitor playback command: al C:5000 .LIBRARIES_ADDRESS
+Monitor playback command: al C:c01 .tileNr
+Monitor playback command: al C:45 .ARROW_LEFT
+Monitor playback command: al C:c1b .tetriminoPY
+Monitor playback command: al C:6 .HUD_WIDTH
+Monitor playback command: al C:2 .JOY_DOWN
+Monitor playback command: al C:512b .TETRIMINO
+Monitor playback command: al C:54df .checkDone
+Monitor playback command: al C:53e0 .checkJoy2up
+Monitor playback command: al C:5392 .joy2notIdle
+Monitor playback command: al C:24 .ZP_PX_LO
+Monitor playback command: al C:40b4 .P2_Y
+Monitor playback command: al C:2a .ZP_HUD_HI
+Monitor playback command: al C:4032 .Row_Color_LO
+Monitor playback command: al C:5420 .loadCharMap
+Monitor playback command: al C:d021 .SCREEN_BACKGROUND_COLOR
+Monitor playback command: al C:20 .ZP_ROW_LO
+Monitor playback command: al C:40a4 .P2_X
+Monitor playback command: al C:5478 .init
+Monitor playback command: al C:51d5 .checkRightDirection
+Monitor playback command: al C:46 .ARROW_RIGHT
+Monitor playback command: al C:5177 .handle
+Monitor playback command: al C:536c .MATH
+Monitor playback command: al C:d018 .SCREEN_MEMORY_SETUP
+Monitor playback command: al C:c19 .tetriminoEnd
+Monitor playback command: al C:20 .HUD_BLANK_CHAR
+Monitor playback command: al C:876 .gameLoop
+Monitor playback command: al C:8b .KEY_F7
+Monitor playback command: al C:4a .BUTTON_PRESS
+Monitor playback command: al C:288 .SCREEN_RAM_HIGH_BYTE
+Monitor playback command: al C:5213 .resetRotateTetrimino
+Monitor playback command: al C:51df .moveSpriteRight
+Monitor playback command: al C:80b .upstartEnd
+Monitor playback command: al C:c20 .delayTimer1
+Monitor playback command: al C:4000 .TABLES_ADDRESS
+Monitor playback command: al C:c21 .delayTimer2
+Monitor playback command: al C:51f2 .checkRotate
+Monitor playback command: al C:c14 .tetriminoNr
+Monitor playback command: al C:28 .SCREEN_WIDTH
+Monitor playback command: al C:8 .RIGHT
+Monitor playback command: al C:85 .KEY_F1
+Monitor playback command: al C:53fa .checkJoy2fire
+Monitor playback command: al C:87 .KEY_F3
+Monitor playback command: al C:22 .ZP_ROW_COLOR_LO
+Monitor playback command: al C:89 .KEY_F5
+Monitor playback command: al C:4094 .P1_Y
+Monitor playback command: al C:4084 .P1_X
+Monitor playback command: al C:30 .FIRE_AND_RELEASE
+Monitor playback command: al C:1 .PROCESSOR_PORT
+Monitor playback command: al C:810 .GAME_CODE
+Monitor playback command: al C:27 .ZP_PY_HI
+Monitor playback command: al C:c28 .collitionRot
+Monitor playback command: al C:5233 .change
+Monitor playback command: al C:53ac .checkJoy2left
+Monitor playback command: al C:c26 .collitionRow
+Monitor playback command: al C:51c2 .moveSpriteLeft
+Monitor playback command: al C:c00 .VARIABLES_ADDRESS
+Monitor playback command: al C:5165 .draw
+Monitor playback command: al C:7f .JOY_2_IDLE
+Monitor playback command: al C:522b .endCheckFinal
+Monitor playback command: al C:0 .HUD_START_POS_Y
+Monitor playback command: al C:c1a .tetriminoPX
+Monitor playback command: al C:4 .MAX_ROTATION
+Monitor playback command: al C:536b .cooldown_active
+Monitor playback command: al C:5378 .INPUT
+Monitor playback command: al C:25 .ZP_PX_HI
+Monitor playback command: al C:810 .main
+Monitor playback command: al C:d012 .CURRENT_RASTER_LINE
+Monitor playback command: al C:5443 .loadCharMapRow
+Monitor playback command: al C:3800 .CHARSET_ADDRESS
+Monitor playback command: al C:c10 .tempX
+Monitor playback command: al C:51fe .rotateTetrimino
+Monitor playback command: al C:c11 .tempY
+Monitor playback command: al C:c1d .Tetrimino_Direction
+Monitor playback command: al C:53be .joy2left
+Monitor playback command: al C:404b .Row_Color_HI
+Monitor playback command: al C:4064 .P0_X
+Monitor playback command: al C:4074 .P0_Y
+Monitor playback command: al C:d00 .CHARSET_ATTRIB_ADDRESS
+Monitor playback command: al C:4c .BLOCK
+Monitor playback command: al C:c05 .tileCounter
+Monitor playback command: al C:5000 .setupRasterInterrupt
+Monitor playback command: al C:400 .SCREEN_RAM
+Monitor playback command: al C:c06 .charMapWidth
+Monitor playback command: al C:f00 .HUD_CHAR_LEFT_MAP_ADDRESS
+Monitor playback command: al C:5301 .done_change
+Monitor playback command: al C:c24 .cooldown_duration_value
+Monitor playback command: al C:51a5 .moveSpriteDown
+Monitor playback command: al C:d800 .SCREEN_COLOR_RAM
+Monitor playback command: al C:c27 .collitionCol
+Monitor playback command: al C:1 .JOY_UP
+Monitor playback command: al C:5392 .checkJoy2down
+Monitor playback command: al C:5362 .check_cooldown
+Monitor playback command: al C:5449 .loadCharMapCol
+Monitor playback command: al C:0 .DEFAULT_SCREEN_BACKGROUND_COLOR
+Monitor playback command: al C:c12 .tempXpos
+Monitor playback command: al C:5378 .readJoystick_2
+Monitor playback command: al C:20 .ZERO_PAGE_ADDRESS
+Monitor playback command: al C:4b .WALL
+Monitor playback command: al C:c0b .temp
+Monitor playback command: al C:4019 .Row_HI
+Monitor playback command: al C:517e .checkUpDirection
+Monitor playback command: al C:5030 .enableRasterInterrupt
+Monitor playback command: al C:5478 .COLLITION
+Monitor playback command: al C:c02 .tileRow
+Monitor playback command: al C:4d .IDLE
+Monitor playback command: al C:c08 .charMapStartX
+Monitor playback command: al C:c09 .charMapStartY
+Monitor playback command: al C:536c .generate_random
+Closed monitor command playback file: /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.vs
+Main CPU: RESET.
+sound (coreaudio_init): Found output audio device: 23MP55
+sound (coreaudio_init): Found audio device with no outputs: AirPods Pro - Rex
+sound (coreaudio_init): Found output audio device: AirPods Pro - Rex (Default)
+sound (coreaudio_init): Found audio device with no outputs: Micrófono de MacBook Pro
+sound (coreaudio_init): Found output audio device: Bocinas de MacBook Pro
+sound (coreaudio_init): Using output audio device: AirPods Pro - Rex
+sound (coreaudio_init): audio frame buffer size in samples min: 15.000000 max: 960.000000 fragment size: 32, chosen: 32
+sound (coreaudio_start): Started
+Sound: Opened device `coreaudio', speed 48000Hz, fragment size 0.67ms, buffer size 20.00ms
+Copybuffer increase to 64 bytes
+reSID: MOS8580, filter on, sampling rate 48000Hz - resampling, pass to 21600Hz
+Sync reset
+Unit 8: RESET.
+AUTOSTART: Injecting program data at $0801 (size $4ce3)
+AUTOSTART: Ready
+AUTOSTART: Turning Warp mode off.
+AUTOSTART: Starting program.
+AUTOSTART: Restoring FileSystemDevice8 to 1.
+AUTOSTART: Restoring FSDevice8ConvertP00 to 1.
+AUTOSTART: Restoring FSDeviceLongNames to 0.
+AUTOSTART: Done.
+Sync reset
+Initiating render thread 0 shutdown
+Joining render thread 0 ...
+Render thread shutdown
+Joined render thread 0.
+
+Configure Flags:
+--enable-gtk3ui --enable-option-checking --disable-arch --disable-html-docs --enable-cpuhistory --enable-ethernet --enable-midi --enable-parsid --enable-pdf-docs --with-fastsid --with-flac --with-gif --with-lame --with-libcurl --with-png --with-resid --with-vorbis --enable-macos-minimum-version=12.0
+
+Resources with non default values:
+LogFileName="/Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main_ViceLog.txt"
+Window0Height=635
+Window0Width=720
+Window0Xpos=512
+Window0Ypos=183
+KeySet2North=65362
+KeySet2East=65363
+KeySet2South=65364
+KeySet2West=65361
+KeySet2Fire=32
+JoyDevice1=1
+JoyDevice2=3
+AutostartPrgMode=1
+BinaryMonitorServer=1
+
+reconstructed commandline options (might be incomplete):
+-default -logfile "/Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main_ViceLog.txt" -windowxpos "512" -windowypos "183" -windowwidth "720" -windowheight "635" -joydev1 "1" -joydev2 "3" -autostartprgmode "1" -binarymonitor
+
+VICE thread initiating shutdown
+VICE thread is exiting
+VICE thread has been joined.
+VIC-II: VSP Bug: safe channels are: 123456. Emulation of memory corruption is disabled.
+Sound: Closing device `coreaudio'
+AudioComponentInstanceDispose
+Hotkeys: shutting down.

@@ -6,3 +6,4 @@
 #import "../variables/tempVariables.asm"
 #import "../variables/tetriminoVariables.asm"
 #import "../variables/systemVariables.asm"
+#import "../variables/collitionVariables.asm"

@@ -4,17 +4,6 @@
 INPUT:
 {
 	readJoystick_2:
-
-		
-		lda #SPACE
-		sta SCREEN_RAM + 85
-		sta SCREEN_RAM + 44
-		sta SCREEN_RAM + 46
-		sta SCREEN_RAM + 5
-		sta SCREEN_RAM + 52
-		sta SCREEN_RAM + 45
-	
-
 		lda JOYSTICK_2
 		cmp #JOY_2_IDLE
 		bne joy2notIdle
@@ -32,9 +21,6 @@ INPUT:
 				joy2down:
 					SetTetriminoDirection(DOWN)
 
-					lda #ARROW_DOWN
-					sta SCREEN_RAM + 85
-
 			checkJoy2left:
 				lda JOYSTICK_2
 				and #JOY_LEFT
@@ -43,9 +29,6 @@ INPUT:
 					jmp checkJoy2right
 				joy2left:
 					SetTetriminoDirection(LEFT)
-
-					lda #ARROW_LEFT
-					sta SCREEN_RAM + 44
 
 			checkJoy2right:
 				lda JOYSTICK_2
@@ -56,9 +39,6 @@ INPUT:
 				joy2right:
 					SetTetriminoDirection(RIGHT)
 
-					lda #ARROW_RIGHT
-					sta SCREEN_RAM + 46
-
 			checkJoy2up:
 				lda JOYSTICK_2
 				and #JOY_UP
@@ -67,9 +47,6 @@ INPUT:
 					jmp checkJoy2fire
 				joy2up:
 					SetTetriminoDirection(UP)
-
-					lda #ARROW_UP
-					sta SCREEN_RAM + 5
 
 			checkJoy2fire:
 				lda JOYSTICK_2
@@ -82,11 +59,6 @@ INPUT:
 					SetTetriminoDirection(FIRE)
 						jmp doneReadJoystick_2
 
-					lda #BUTTON_PRESS
-					sta SCREEN_RAM + 52	
-
 		doneReadJoystick_2:
-			lda #BUTTON_RELEASE
-			sta SCREEN_RAM + 45
 			rts
 }

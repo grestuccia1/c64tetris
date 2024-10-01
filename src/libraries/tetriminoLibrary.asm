@@ -66,6 +66,8 @@ TETRIMINO:
 		tya
 		pha
 
+		jsr COLLITION.init	
+
 		checkUpDirection:
 			lda Tetrimino_Direction
 			and #UP
@@ -73,12 +75,15 @@ TETRIMINO:
 				jmp checkDownDirection
 			moveSpriteUp:
 				//TODO INIT Comment
-				dec tetriminoRow
+				dec collitionRow
 
-				jsr MATH.generate_random
-				lda RANDOM_NUMBER
-				sta tetriminoNr
-				
+				jsr COLLITION.check
+				lda charCollision
+				cmp	#SPACE
+				beq checkDownDirection
+
+				inc collitionRow
+
 				//TODO END Comment
 				jmp checkDownDirection
 
@@ -88,7 +93,15 @@ TETRIMINO:
 			bne moveSpriteDown
 				jmp checkLeftDirection
 			moveSpriteDown:
-				inc tetriminoRow
+				inc collitionRow
+
+				jsr COLLITION.check
+				lda charCollision
+				cmp	#SPACE
+				beq checkLeftDirection
+
+				dec collitionRow
+				
 				jmp checkLeftDirection
 		
 		checkLeftDirection:
@@ -97,7 +110,15 @@ TETRIMINO:
 			bne moveSpriteLeft
 				jmp checkRightDirection
 			moveSpriteLeft:
-				dec tetriminoCol
+				dec collitionCol
+
+				jsr COLLITION.check
+				lda charCollision
+				cmp	#SPACE
+				beq checkRightDirection
+
+				inc collitionCol
+
 				jmp checkRightDirection
 
 		checkRightDirection:
@@ -106,7 +127,15 @@ TETRIMINO:
 			bne moveSpriteRight
 				jmp checkRotate
 			moveSpriteRight:
-				inc tetriminoCol
+				inc collitionCol
+
+				jsr COLLITION.check
+				lda charCollision
+				cmp	#SPACE
+				beq checkRotate
+
+				dec collitionCol
+
 				jmp checkRotate
 
 		checkRotate:
@@ -117,17 +146,29 @@ TETRIMINO:
 				jmp endCheckDirection
 			rotateTetrimino:
 				ClearTetriminoDirection(FIRE_RELEASE)		
-				inc tetriminoRot
-				lda tetriminoRot
+				inc collitionRot
+				lda collitionRot
 				cmp #MAX_ROTATION
 				beq resetRotateTetrimino
 				jmp endCheckDirection
 			resetRotateTetrimino:			
 				lda #0
-				sta tetriminoRot
+				sta collitionRot
 				jmp endCheckDirection	
 
 		endCheckDirection:
+
+			jsr COLLITION.check
+			lda charCollision
+			cmp	#SPACE
+			beq endCheckFinal
+
+			lda tetriminoRot
+			sta collitionRot
+
+		endCheckFinal:
+
+			jsr COLLITION.pass
 
 		pla
 		tay

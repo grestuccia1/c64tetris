@@ -1,7 +1,7 @@
 
 // ----------------------------------- CHARSET CONSTANTS -----------------------------------
 
-.label SPACE = 0
+.label SPACE = 32
 .label BLOCK = 76
 .label WALL = 75
 .label ARROW_LEFT = 69
