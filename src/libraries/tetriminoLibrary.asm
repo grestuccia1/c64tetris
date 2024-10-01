@@ -103,6 +103,8 @@ TETRIMINO:
 
 				jsr TETRIMINO.draw
 
+				jsr TETRIMINO.checkCompleteLines
+
 				NewTetrimino()
 
 				pla
@@ -299,4 +301,63 @@ TETRIMINO:
 				pla
 				tax
 				rts
+
+	checkCompleteLines:
+
+		lda #23
+		sta tileRow
+		ldy tileRow
+		
+		lda #1
+		sta tileCol
+
+		movePreviosLine:
+			lda #BLOCK
+			sta charCollision
+
+			ldx #0
+
+			moveNextPosition:		
+				inx
+				stx tileCol
+				cpx #11
+				beq removeLine
+
+				jsr TILE.getChar
+
+				lda charCollision
+				cmp	#SPACE
+				bne moveNextPosition 
+				
+				jmp previewsLine
+
+			removeLine:
+
+				tya 
+				sta tileRow
+
+				lda #SPACE
+				sta tileNr
+
+				lda #1
+
+				removeLineChar:
+					sta tileCol
+
+					jsr TILE.drawChar
+				
+					lda tileCol
+					clc
+					adc #1
+					cmp #11
+					bne removeLineChar
+
+			previewsLine:
+				ldy tileRow
+				dey
+				sty tileRow
+				cpy tetriminoRow
+				bne movePreviosLine
+
+		rts
 }
