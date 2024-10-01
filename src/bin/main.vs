@@ -10,7 +10,7 @@ al C:19 .SCREEN_HEIGHT
 al C:10 .FIRE
 al C:4124 .P6_X
 al C:c13 .tempYpos
-al C:c1f .Tetrimino_H_Speed
+al C:c1f .tetriminoHSpeed
 al C:c1c .Tetrimino_Flags
 al C:4 .LEFT
 al C:548b .pass
@@ -95,7 +95,7 @@ al C:40d4 .P3_Y
 al C:40c4 .P3_X
 al C:5188 .moveSpriteUp
 al C:23 .ZP_ROW_COLOR_HI
-al C:c1e .Tetrimino_H_Speed_Timer
+al C:c1e .tetriminoHSpeedTimer
 al C:c00 .printX
 al C:dd0d .INTERRUPT_CONTROL_AND_STATUS_CIA_2
 al C:dc0d .INTERRUPT_CONTROL_AND_STATUS_CIA_1
@@ -187,7 +187,7 @@ al C:3800 .CHARSET_ADDRESS
 al C:c10 .tempX
 al C:51fe .rotateTetrimino
 al C:c11 .tempY
-al C:c1d .Tetrimino_Direction
+al C:c1d .tetriminoDirection
 al C:53be .joy2left
 al C:404b .Row_Color_HI
 al C:4064 .P0_X
@@ -200,7 +200,7 @@ al C:400 .SCREEN_RAM
 al C:c06 .charMapWidth
 al C:f00 .HUD_CHAR_LEFT_MAP_ADDRESS
 al C:5301 .done_change
-al C:c24 .cooldown_duration_value
+al C:c24 .cooldownDurationValue
 al C:51a5 .moveSpriteDown
 al C:d800 .SCREEN_COLOR_RAM
 al C:c27 .collitionCol

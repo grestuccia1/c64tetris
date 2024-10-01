@@ -12,16 +12,18 @@ tetriminoEnd: .byte 4
 tetriminoPX: .byte 0
 tetriminoPY: .byte 0
 
-Tetrimino_Flags: .byte %00000000
+tetriminoDirection: .byte 0
 
-Tetrimino_Direction: .byte 0
+tetriminoHSpeedTimer: .byte 0
 
-Tetrimino_H_Speed_Timer: .byte 0
+tetriminoHSpeed: .byte 2
 
-Tetrimino_H_Speed: .byte 2
+tetriminoRotateCooldownTimer: .byte 0
 
-Tetrimino_Fall_Speed_Timer: .byte 0
+tetriminoRotateCooldown: .byte 6
 
-Tetrimino_Fall_Speed: .byte 40
+tetriminoFallSpeedTimer: .byte 0
+
+tetriminoFallSpeed: .byte 40
 
 tetriminoMustFall: .byte 0

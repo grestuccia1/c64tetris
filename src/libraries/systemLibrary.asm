@@ -56,9 +56,9 @@ SYSTEM:
 		lda #$00                            // Disable the timer control register
 		sta $DC0E                           
 
-		lda #<cooldown_duration_value       // Load the low byte of the timer duration
+		lda #<cooldownDurationValue       // Load the low byte of the timer duration
 		sta $DC04                           // Set low byte of timer A
-		lda #>cooldown_duration_value       // Load the high byte of the timer duration
+		lda #>cooldownDurationValue       // Load the high byte of the timer duration
 		sta $DC05                           // Set high byte of timer A
 
 		lda #%00010001                      // Start Timer A in one-shot mode

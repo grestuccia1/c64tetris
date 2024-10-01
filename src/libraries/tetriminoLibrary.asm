@@ -72,20 +72,20 @@ TETRIMINO:
 		sta tetriminoMustFall
 
 		checkTetriminoFallSpeedTimer:
-		lda Tetrimino_Fall_Speed_Timer
-		cmp Tetrimino_Fall_Speed
+		lda tetriminoFallSpeedTimer
+		cmp tetriminoFallSpeed
 			beq tetriminoFallSpeedTimerReached
-			inc Tetrimino_Fall_Speed_Timer
+			inc tetriminoFallSpeedTimer
 			jmp checkDownDirection
 		tetriminoFallSpeedTimerReached:
 			lda #1
 			sta tetriminoMustFall
 			lda #0
-			sta Tetrimino_Fall_Speed_Timer
+			sta tetriminoFallSpeedTimer
 			jmp moveSpriteDown
 
 		checkDownDirection:
-			lda Tetrimino_Direction
+			lda tetriminoDirection
 			and #DOWN
 			bne moveSpriteDown
 				jmp checkLeftDirection
@@ -119,16 +119,16 @@ TETRIMINO:
 		checkLeftDirection:
 
 			checkTetriminoHSpeedTimer:
-			lda Tetrimino_H_Speed_Timer
-			cmp Tetrimino_H_Speed
+			lda tetriminoHSpeedTimer
+			cmp tetriminoHSpeed
 				beq tetriminoHSpeedTimerReached
-				inc Tetrimino_H_Speed_Timer
+				inc tetriminoHSpeedTimer
 				jmp checkRotate
 			tetriminoHSpeedTimerReached:
 				lda #0
-				sta Tetrimino_H_Speed_Timer
+				sta tetriminoHSpeedTimer
 
-			lda Tetrimino_Direction
+			lda tetriminoDirection
 			and #LEFT
 			bne moveSpriteLeft
 				jmp checkRightDirection
@@ -145,7 +145,7 @@ TETRIMINO:
 				jmp checkRightDirection
 
 		checkRightDirection:
-			lda Tetrimino_Direction
+			lda tetriminoDirection
 			and #RIGHT
 			bne moveSpriteRight
 				jmp checkRotate
@@ -162,13 +162,27 @@ TETRIMINO:
 				jmp checkRotate
 
 		checkRotate:
-			lda Tetrimino_Direction
+
+			checkTetriminoRotateCooldownTimer:
+			lda tetriminoRotateCooldownTimer
+			cmp #0
+				beq handleRotate
+				dec tetriminoRotateCooldownTimer
+				jmp endCheckDirection
+
+		handleRotate:
+
+			lda tetriminoDirection
 			and #FIRE_AND_RELEASE
 			cmp #FIRE_AND_RELEASE
 			beq rotateTetrimino
 				jmp endCheckDirection
 			rotateTetrimino:
 				ClearTetriminoDirection(FIRE_RELEASE)		
+
+				lda tetriminoRotateCooldown
+				sta tetriminoRotateCooldownTimer
+
 				inc collitionRot
 				lda collitionRot
 				cmp #MAX_ROTATION

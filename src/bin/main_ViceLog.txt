@@ -99,7 +99,7 @@ Monitor playback command: al C:19 .SCREEN_HEIGHT
 Monitor playback command: al C:10 .FIRE
 Monitor playback command: al C:4124 .P6_X
 Monitor playback command: al C:c13 .tempYpos
-Monitor playback command: al C:c1f .Tetrimino_H_Speed
+Monitor playback command: al C:c1f .tetriminoHSpeed
 Monitor playback command: al C:c1c .Tetrimino_Flags
 Monitor playback command: al C:4 .LEFT
 Monitor playback command: al C:548b .pass
@@ -184,7 +184,7 @@ Monitor playback command: al C:40d4 .P3_Y
 Monitor playback command: al C:40c4 .P3_X
 Monitor playback command: al C:5188 .moveSpriteUp
 Monitor playback command: al C:23 .ZP_ROW_COLOR_HI
-Monitor playback command: al C:c1e .Tetrimino_H_Speed_Timer
+Monitor playback command: al C:c1e .tetriminoHSpeedTimer
 Monitor playback command: al C:c00 .printX
 Monitor playback command: al C:dd0d .INTERRUPT_CONTROL_AND_STATUS_CIA_2
 Monitor playback command: al C:dc0d .INTERRUPT_CONTROL_AND_STATUS_CIA_1
@@ -276,7 +276,7 @@ Monitor playback command: al C:3800 .CHARSET_ADDRESS
 Monitor playback command: al C:c10 .tempX
 Monitor playback command: al C:51fe .rotateTetrimino
 Monitor playback command: al C:c11 .tempY
-Monitor playback command: al C:c1d .Tetrimino_Direction
+Monitor playback command: al C:c1d .tetriminoDirection
 Monitor playback command: al C:53be .joy2left
 Monitor playback command: al C:404b .Row_Color_HI
 Monitor playback command: al C:4064 .P0_X
@@ -289,7 +289,7 @@ Monitor playback command: al C:400 .SCREEN_RAM
 Monitor playback command: al C:c06 .charMapWidth
 Monitor playback command: al C:f00 .HUD_CHAR_LEFT_MAP_ADDRESS
 Monitor playback command: al C:5301 .done_change
-Monitor playback command: al C:c24 .cooldown_duration_value
+Monitor playback command: al C:c24 .cooldownDurationValue
 Monitor playback command: al C:51a5 .moveSpriteDown
 Monitor playback command: al C:d800 .SCREEN_COLOR_RAM
 Monitor playback command: al C:c27 .collitionCol

@@ -54,7 +54,7 @@
 .label SCREEN_BACKGROUND_COLOR=$d021
 .label ZP_ROW_LO=$20
 .label tempYpos=$c13
-.label Tetrimino_H_Speed=$c1f
+.label tetriminoHSpeed=$c1f
 .label P2_X=$40a4
 .label Tetrimino_Flags=$c1c
 .label LEFT=$4
@@ -173,7 +173,7 @@
 .label SCREEN_BORDER_COLOR=$d020
 .label tempX=$c10
 .label tempY=$c11
-.label Tetrimino_Direction=$c1d
+.label tetriminoDirection=$c1d
 .label P4_X=$40e4
 .label Row_Color_HI=$404b
 .label UP=$1
@@ -195,7 +195,7 @@
 .label HUD_CHAR_LEFT_MAP_ADDRESS=$f00
 .label JOY_FIRE=$10
 .label FIRE_RELEASE=$20
-.label cooldown_duration_value=$c24
+.label cooldownDurationValue=$c24
 .label SCREEN_COLOR_RAM=$d800
 .label NO_DIRECTION=$0
 .label collitionCol=$c27
@@ -212,7 +212,7 @@
 .label P3_Y=$40d4
 .label P3_X=$40c4
 .label ZP_ROW_COLOR_HI=$23
-.label Tetrimino_H_Speed_Timer=$c1e
+.label tetriminoHSpeedTimer=$c1e
 .label printX=$c00
 .label INTERRUPT_CONTROL_AND_STATUS_CIA_2=$dd0d
 .label INTERRUPT_CONTROL_AND_STATUS_CIA_1=$dc0d

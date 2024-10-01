@@ -2,16 +2,16 @@
 
 .macro ClearTetriminoDirection(direction)
 {
-	lda Tetrimino_Direction
+	lda tetriminoDirection
 	and #%11111111 - direction
-	sta Tetrimino_Direction
+	sta tetriminoDirection
 }
 
 .macro SetTetriminoDirection(direction)
 {
-	lda Tetrimino_Direction
+	lda tetriminoDirection
 	ora #direction
-	sta Tetrimino_Direction
+	sta tetriminoDirection
 }
 
 .macro ChangeTetrimino(px,py) {
