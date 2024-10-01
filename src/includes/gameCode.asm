@@ -22,32 +22,12 @@ main:
 
 	jsr SYSTEM.setup
 	
+	LoadCharMap(HUD_CHAR_LEFT_MAP_ADDRESS,HUD_START_POS_X_LEFT,HUD_START_POS_Y,HUD_WIDTH,HUD_HEIGHT)
+	LoadCharMap(HUD_CHAR_RIGHT_MAP_ADDRESS,HUD_START_POS_X_RIGHT,HUD_START_POS_Y,HUD_WIDTH,HUD_HEIGHT)
+
 gameLoop:
 	jsr INPUT.readJoystick_2
 	
-	lda Tetrimino_Direction
-	ldx #8
-	
-read_bits_msb:
-    asl              
-    bcs bit_is_1     
-    
-	tay
-    lda #'0'            
-    sta SCREEN_RAM + 160, x
-	tya
-    jmp next_bit
-
-bit_is_1:
-	tay
-    lda #'1'         
-    sta SCREEN_RAM + 160, x
-	tya
-
-next_bit:
-    dex                  // Decrement X (loop counter)
-    bne read_bits_msb 
-
 	Delay(10, 10)
 
 	// lda JOYSTICK_2

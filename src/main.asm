@@ -18,4 +18,10 @@ BasicUpstart2(main)
 #import "includes/gameCode.asm"
 
 *=CHARSET_ADDRESS "Charset"
-.import binary "charset/charset2.bin"
+.import binary "charset/charset.bin"
+
+*=HUD_CHAR_LEFT_MAP_ADDRESS "HUD left"
+.import binary "hud/hudleft.bin"
+
+*=HUD_CHAR_RIGHT_MAP_ADDRESS "HUD right"
+.import binary "hud/hudright.bin"
