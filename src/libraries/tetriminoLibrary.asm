@@ -66,6 +66,19 @@ TETRIMINO:
 		tya
 		pha
 
+		checkTetriminoFallSpeedTimer:
+		lda Tetrimino_Fall_Speed_Timer
+		cmp Tetrimino_Fall_Speed
+			beq tetriminoFallSpeedTimerReached
+			inc Tetrimino_Fall_Speed_Timer
+			jmp handleInit
+		tetriminoFallSpeedTimerReached:
+			inc tetriminoRow
+			lda #0
+			sta Tetrimino_Fall_Speed_Timer
+
+		handleInit:
+
 		jsr COLLITION.init	
 
 		checkUpDirection:
@@ -105,6 +118,17 @@ TETRIMINO:
 				jmp checkLeftDirection
 		
 		checkLeftDirection:
+
+			checkTetriminoHSpeedTimer:
+			lda Tetrimino_H_Speed_Timer
+			cmp Tetrimino_H_Speed
+				beq tetriminoHSpeedTimerReached
+				inc Tetrimino_H_Speed_Timer
+				jmp checkRotate
+			tetriminoHSpeedTimerReached:
+				lda #0
+				sta Tetrimino_H_Speed_Timer
+
 			lda Tetrimino_Direction
 			and #LEFT
 			bne moveSpriteLeft

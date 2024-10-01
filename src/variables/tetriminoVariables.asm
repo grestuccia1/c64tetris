@@ -18,4 +18,8 @@ Tetrimino_Direction: .byte 0
 
 Tetrimino_H_Speed_Timer: .byte 0
 
-Tetrimino_H_Speed: .byte 0
+Tetrimino_H_Speed: .byte 2
+
+Tetrimino_Fall_Speed_Timer: .byte 0
+
+Tetrimino_Fall_Speed: .byte 40

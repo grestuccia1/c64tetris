@@ -29,11 +29,7 @@ main:
 	SelectTetrimino(0, 4, 0)
 	cli
 
-
-
 gameLoop:
 	jsr INPUT.readJoystick_2
 	
-	Delay(10, 10)
-
  	jmp gameLoop
