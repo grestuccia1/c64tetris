@@ -321,16 +321,16 @@ TETRIMINO:
 			lda #BLOCK
 			sta charCollision
 
-			ldy #0
+			ldy #TETRIMINO_COL_FIRST
 
 			moveNextPosition:		
-				iny
 				sty tileCol
 				cpy #TETRIMINO_COL_LAST
 				beq removeLine
 
 				jsr TILE.getChar
 
+				iny
 				lda charCollision
 				cmp	#SPACE
 				bne moveNextPosition 
