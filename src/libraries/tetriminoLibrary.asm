@@ -305,9 +305,14 @@ TETRIMINO:
 
 	checkCompleteLines:
 
+		txa
+		pha
+		tya
+		pha
+
 		lda #TETRIMINO_ROW_LAST
 		sta tileRow
-		ldy tileRow
+		ldx tileRow
 		
 		lda #TETRIMINO_COL_FIRST
 		sta tileCol
@@ -316,12 +321,12 @@ TETRIMINO:
 			lda #BLOCK
 			sta charCollision
 
-			ldx #0
+			ldy #0
 
 			moveNextPosition:		
-				inx
-				stx tileCol
-				cpx #TETRIMINO_COL_LAST
+				iny
+				sty tileCol
+				cpy #TETRIMINO_COL_LAST
 				beq removeLine
 
 				jsr TILE.getChar
@@ -333,25 +338,19 @@ TETRIMINO:
 				jmp previewsLine
 
 			removeLine:
-
-				tya 
-				sta tileRow
-
 				jsr TETRIMINO.moveLines
-
-				//TODO: Fix this
-				ldy tileRow
-				iny
-				sty tileRow
-
+				jmp keepInSameLine
 			previewsLine:
-				//TODO: Fix this
-				ldy tileRow
-				dey
-				sty tileRow
-				cpy tetriminoRow
+				dex
+			keepInSameLine:	
+				stx tileRow
+				cpx tetriminoRow
 				bne movePreviousLine
 
+		pla
+		tay
+		pla
+		tax
 		rts
 
 	moveLines:
