@@ -15,15 +15,13 @@ tetriminoPY: .byte 0
 tetriminoDirection: .byte 0
 
 tetriminoHSpeedTimer: .byte 0
-
 tetriminoHSpeed: .byte 2
 
 tetriminoRotateCooldownTimer: .byte 0
-
 tetriminoRotateCooldown: .byte 6
 
 tetriminoFallSpeedTimer: .byte 0
-
 tetriminoFallSpeed: .byte 40
-
 tetriminoMustFall: .byte 0
+
+tetriminoRowToDelete: .byte 0

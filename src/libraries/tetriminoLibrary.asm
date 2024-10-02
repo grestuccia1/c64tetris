@@ -46,6 +46,7 @@ TETRIMINO:
 				tax
 				rts
 
+	
 	draw:
 		lda #BLOCK
 		sta tileNr
@@ -304,14 +305,14 @@ TETRIMINO:
 
 	checkCompleteLines:
 
-		lda #23
+		lda #TETRIMINO_ROW_LAST
 		sta tileRow
 		ldy tileRow
 		
-		lda #1
+		lda #TETRIMINO_COL_FIRST
 		sta tileCol
 
-		movePreviosLine:
+		movePreviousLine:
 			lda #BLOCK
 			sta charCollision
 
@@ -320,7 +321,7 @@ TETRIMINO:
 			moveNextPosition:		
 				inx
 				stx tileCol
-				cpx #11
+				cpx #TETRIMINO_COL_LAST
 				beq removeLine
 
 				jsr TILE.getChar
@@ -336,28 +337,70 @@ TETRIMINO:
 				tya 
 				sta tileRow
 
-				lda #SPACE
-				sta tileNr
+				jsr TETRIMINO.moveLines
 
-				lda #1
-
-				removeLineChar:
-					sta tileCol
-
-					jsr TILE.drawChar
-				
-					lda tileCol
-					clc
-					adc #1
-					cmp #11
-					bne removeLineChar
+				//TODO: Fix this
+				ldy tileRow
+				iny
+				sty tileRow
 
 			previewsLine:
+				//TODO: Fix this
 				ldy tileRow
 				dey
 				sty tileRow
 				cpy tetriminoRow
-				bne movePreviosLine
+				bne movePreviousLine
 
 		rts
+
+	moveLines:
+		txa
+		pha
+		tya
+		pha
+
+		ldx tileRow
+
+		moveLinePrevious:
+			lda Row_LO,x
+			sta ZP_ROW_LO
+			lda Row_HI,x
+			sta ZP_ROW_HI
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_HI
+
+			dex
+			lda Row_LO,x
+			sta ZP_ROW_PREVIOUS_LO
+			lda Row_HI,x
+			sta ZP_ROW_PREVIOUS_HI
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_PREVIOUS_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_PREVIOUS_HI
+
+			ldy #TETRIMINO_COL_FIRST
+
+			moveNextChar:
+				lda (ZP_ROW_PREVIOUS_LO),y
+				sta (ZP_ROW_LO), y
+
+				lda (ZP_ROW_COLOR_PREVIOUS_LO), y
+				sta (ZP_ROW_COLOR_LO), y
+
+				iny
+				cpy #TETRIMINO_COL_LAST
+				bne moveNextChar
+
+			cpx #TETRIMINO_ROW_FIRST //TODO: OPTIMIZE
+	 		bcs moveLinePrevious
+
+		pla
+		tay
+		pla
+		tax
+		rts	
 }

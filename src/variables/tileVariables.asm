@@ -12,5 +12,3 @@ charMapHeight: .byte 0
 charMapStartX: .byte 0
 charMapStartY: .byte 0
 
-charCollision: .byte 0
-

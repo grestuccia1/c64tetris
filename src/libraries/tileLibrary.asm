@@ -54,6 +54,9 @@ TILE:
 		lda (ZP_ROW_LO),y
 		sta charCollision
 
+		lda (ZP_ROW_COLOR_LO), y
+		sta colorCollision
+
 		pla
 		tay
 		pla
