@@ -24,4 +24,4 @@ tetriminoFallSpeedTimer: .byte 0
 tetriminoFallSpeed: .byte 40
 tetriminoMustFall: .byte 0
 
-tetriminoRowToDelete: .byte 0
+tetriminoNext: .byte 0

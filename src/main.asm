@@ -25,3 +25,6 @@ BasicUpstart2(main)
 
 *=HUD_CHAR_RIGHT_MAP_ADDRESS "HUD right"
 .import binary "hud/hudright.bin"
+
+*=HUD_CHAR_CENTRAL_MAP_ADDRESS "HUD central"
+.import binary "hud/hudcentral.bin"
