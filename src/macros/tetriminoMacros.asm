@@ -63,7 +63,7 @@
 		bne clearNextTetriminoRow		
 
 	//Draw next tetrimino
-	lda #0
+	lda #RESET_ROTATION
 	sta tetriminoRot
 	
 	lda #HUD_CENTRAL_NEXT_POS_X
@@ -79,9 +79,9 @@
 	jsr TETRIMINO.draw
 
 	//Draw current tetrimino
-	lda #0
+	lda #TETRIMINO_ROW_START
 	sta tetriminoRow
-	lda #4
+	lda #TETRIMINO_COL_START
 	sta tetriminoCol
 
 	lda tetriminoNext

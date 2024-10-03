@@ -39,8 +39,8 @@ HUD:
 				lda (ZP_HUD_LO),y
 				sta tileNr
 				tay
-				//lda CHARSET_ATTRIB_ADDRESS,y
-				lda #12
+			
+				lda #FONT_COLOR
 				sta tileColor
 				
 				pla

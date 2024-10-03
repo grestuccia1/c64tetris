@@ -8,4 +8,3 @@ frameCounter: .byte 0
 
 playMusic: .byte 0
 
-cooldownDurationValue: .word (cooldown_duration * 1000 / 1024)  

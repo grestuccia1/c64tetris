@@ -69,7 +69,7 @@ TETRIMINO:
 
 		jsr COLLITION.init	
 
-		lda #0
+		lda #TETRIMINO_NOT_FALL
 		sta tetriminoMustFall
 
 		checkTetriminoFallSpeedTimer:
@@ -79,9 +79,9 @@ TETRIMINO:
 			inc tetriminoFallSpeedTimer
 			jmp checkDownDirection
 		tetriminoFallSpeedTimerReached:
-			lda #1
+			lda #TETRIMINO_MUST_FALL
 			sta tetriminoMustFall
-			lda #0
+			lda #TETRIMINO_NOT_FALL
 			sta tetriminoFallSpeedTimer
 			jmp moveSpriteDown
 
@@ -128,7 +128,7 @@ TETRIMINO:
 				inc tetriminoHSpeedTimer
 				jmp checkRotate
 			tetriminoHSpeedTimerReached:
-				lda #0
+				lda #RESET_SPEED
 				sta tetriminoHSpeedTimer
 
 			lda tetriminoDirection
@@ -192,7 +192,7 @@ TETRIMINO:
 				beq resetRotateTetrimino
 				jmp endCheckDirection
 			resetRotateTetrimino:			
-				lda #0
+				lda #RESET_ROTATION
 				sta collitionRot
 				jmp endCheckDirection	
 
@@ -222,86 +222,26 @@ TETRIMINO:
 		tya
 		pha
 
-		ldy #2
-		sty tileColor
+		ldx tetriminoNr
+		lda tetriminoColors,x
+		sta tileColor
 
-		lda tetriminoNr
-		cmp #0
-		beq change_to_p0
+		lda tetriminoPositionsX_LO,x  
+		ldy tetriminoPositionsX_HI,x  
+		sta ZP_PX_LO                  
+		sty ZP_PX_HI                  
 
-		ldy #7
-		sty tileColor
+		lda tetriminoPositionsY_LO,x  
+		ldy tetriminoPositionsY_HI,x  
+		sta ZP_PY_LO                  
+		sty ZP_PY_HI                  
 
-		cmp #1
-		beq change_to_p1
-
-		ldy #4
-		sty tileColor
-
-		cmp #2
-		beq change_to_p2
-
-		ldy #6
-		sty tileColor
-
-		cmp #3
-		beq change_to_p3
-
-		ldy #3
-		sty tileColor
-
-		cmp #4
-		beq change_to_p4
-
-		ldy #13
-		sty tileColor
-
-		cmp #5
-		beq change_to_p5
-
-		ldy #8
-		sty tileColor
-
-		cmp #6
-		beq change_to_p6
-
-		jmp done_change
-
-		change_to_p0:
-			ChangeTetrimino(P0_X, P0_Y)
-			jmp done_change
-
-		change_to_p1:
-			ChangeTetrimino(P1_X, P1_Y)
-			jmp done_change
-
-		change_to_p2:
-			ChangeTetrimino(P2_X, P2_Y)
-			jmp done_change
-
-		change_to_p3:
-			ChangeTetrimino(P3_X, P3_Y)
-			jmp done_change
-
-		change_to_p4:
-			ChangeTetrimino(P4_X, P4_Y)
-			jmp done_change
-		
-		change_to_p5:
-			ChangeTetrimino(P5_X, P5_Y)
-			jmp done_change
-
-		change_to_p6:
-			ChangeTetrimino(P6_X, P6_Y)
-			jmp done_change
-			
-		done_change:
-
-				pla
-				tay
-				pla
-				tax
-				rts
+		pla
+		tay
+		pla
+		tax
+		rts
+     
 
 	checkCompleteLines:
 

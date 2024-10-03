@@ -5,11 +5,11 @@ SYSTEM:
 {
 	setup:
 		sei
-		lda #%00110110 // Disable BASIC
+		lda #DISABLED_BASIC
 		sta PROCESSOR_PORT
 		cli
 
-		lda #%00011110 // Screen RAM: $0400   Charset: $3800
+		lda #SCREEN_0400_CHARSET_3800
 		sta SCREEN_MEMORY_SETUP
 		
 		lda #DEFAULT_SCREEN_BORDER_COLOR
@@ -51,35 +51,4 @@ SYSTEM:
 		tax
 		rts
 
-
-	start_cooldown:
-		lda #$00                            // Disable the timer control register
-		sta $DC0E                           
-
-		lda #<cooldownDurationValue       // Load the low byte of the timer duration
-		sta $DC04                           // Set low byte of timer A
-		lda #>cooldownDurationValue       // Load the high byte of the timer duration
-		sta $DC05                           // Set high byte of timer A
-
-		lda #%00010001                      // Start Timer A in one-shot mode
-		sta $DC0E                           // Write control register to start countdown
-
-	wait_for_cooldown:
-		lda $DC04                           // Read the low byte of timer A
-		ora $DC05                           // Combine with the high byte of timer A
-		bne wait_for_cooldown               // If timer not zero, continue waiting
-
-		lda #$00                            // Clear control register to stop the timer
-		sta $DC0E
-		rts                                 // Return when cooldown is over
-
-	check_cooldown:
-		lda $DC04                			 // Load the low byte of Timer A
-		ora $DC05                 			 // OR with the high byte of Timer A
-		bne cooldown_active       			 // If result is non-zero, cooldown is still active
-		rts                       			 // If zero, cooldown has finished
-
-	cooldown_active:
-		//CODE HERE
-		rts
 }
