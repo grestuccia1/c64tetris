@@ -9,7 +9,7 @@
 .label ZP_PX_HI			        = ZERO_PAGE_ADDRESS + 5
 .label ZP_PY_LO			        = ZERO_PAGE_ADDRESS + 6
 .label ZP_PY_HI			        = ZERO_PAGE_ADDRESS + 7
-.label RANDOM_NUMBER            = ZERO_PAGE_ADDRESS + 8
+.label ZP_RANDOM_NUMBER         = ZERO_PAGE_ADDRESS + 8
 .label ZP_HUD_LO			    = ZERO_PAGE_ADDRESS + 9
 .label ZP_HUD_HI			    = ZERO_PAGE_ADDRESS + 10
 .label ZP_ROW_PREVIOUS_LO		= ZERO_PAGE_ADDRESS + 11

@@ -106,6 +106,8 @@ TETRIMINO:
 
 				jsr TETRIMINO.checkCompleteLines
 
+				jsr STATS.increaseTetrimino
+
 				NewTetrimino()
 
 				pla

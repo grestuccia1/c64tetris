@@ -63,6 +63,29 @@ TILE:
 		tax
 		rts
 
+	changeColor:
+		txa
+		pha
+		tya
+		pha
+
+		ldx tileRow
+		lda Row_Color_LO,x
+		sta ZP_ROW_COLOR_LO
+		lda Row_Color_HI,x
+		sta ZP_ROW_COLOR_HI
+
+		ldy tileCol
+
+		lda tileColor
+		sta (ZP_ROW_COLOR_LO),y
+
+		pla
+		tay
+		pla
+		tax
+		rts
+
 	drawTile:
 		txa
 		pha

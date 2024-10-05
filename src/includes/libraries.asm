@@ -9,3 +9,4 @@
 #import "../libraries/inputLibrary.asm"
 #import "../libraries/hudLibrary.asm"
 #import "../libraries/collitionLibrary.asm"
+#import "../libraries/statsLibrary.asm"

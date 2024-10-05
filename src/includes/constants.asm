@@ -9,3 +9,4 @@
 #import "../constants/directionsConstants.asm"
 #import "../constants/tetriminoConstants.asm"
 #import "../constants/charsetConstants.asm"
+#import "../constants/statsConstants.asm"

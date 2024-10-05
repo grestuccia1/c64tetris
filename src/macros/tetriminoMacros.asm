@@ -73,7 +73,7 @@
 	sta tetriminoRow
 
 	jsr MATH.generate_random
-	lda RANDOM_NUMBER
+	lda ZP_RANDOM_NUMBER
 	sta tetriminoNr
 	jsr TETRIMINO.change
 	jsr TETRIMINO.draw
@@ -88,7 +88,7 @@
 	sta tetriminoNr
 	jsr TETRIMINO.change
 
-	lda RANDOM_NUMBER
+	lda ZP_RANDOM_NUMBER
 	sta tetriminoNext
 
 }

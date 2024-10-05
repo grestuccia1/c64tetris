@@ -3,7 +3,7 @@
 .macro DrawTetrimino(row, col)
 {
     jsr MATH.generate_random
-	lda RANDOM_NUMBER
+	lda ZP_RANDOM_NUMBER
 	sta tetriminoNr
 	SelectTetrimino(row, col, 0)
 	jsr TETRIMINO.change

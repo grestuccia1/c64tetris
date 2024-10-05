@@ -7,6 +7,6 @@ MATH:
         and #$07                  
         cmp #7                    
         beq generate_random       
-        sta RANDOM_NUMBER  
+        sta ZP_RANDOM_NUMBER  
         rts
 }

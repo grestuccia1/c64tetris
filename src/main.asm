@@ -28,3 +28,6 @@ BasicUpstart2(main)
 
 *=HUD_CHAR_CENTRAL_MAP_ADDRESS "HUD central"
 .import binary "hud/hudcentral.bin"
+
+*=HUD_STATS_ADDRESS "HUD stats"
+.import binary "hud/hudstats.bin"
