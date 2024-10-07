@@ -12,3 +12,6 @@ charMapHeight: .byte 0
 charMapStartX: .byte 0
 charMapStartY: .byte 0
 
+tileCounterHigh: .byte 0
+
+tileCounterLow: .byte 0

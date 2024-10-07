@@ -4,22 +4,6 @@ flex pass 1
 flex pass 2
 flex pass 3
 Output pass
-Writing prg file: /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.prg
 
-Memory Map
-----------
-Default-segment:
-  $0801-$080c Basic
-  $080e-$080d Basic End
-  $0810-$094e Game Code
-  $0c00-$0c2e Variables
-  $3800-$3ad7 Charset
-  $4000-$4182 Tables
-  $5000-$5600 Libraries
-  $7000-$7095 HUD left
-  $7500-$7595 HUD right
-  $8000-$80f9 HUD central
-  $8500-$850c HUD stats
+Error: In segment 'Default' the memoryblock 'Game Code' ($0810-$2042) overlaps 'Variables' ($0c00-$0c36)
 
-Writing Vice symbol file: /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.vs
-Writing Symbol file: main.sym

@@ -1,20 +1,33 @@
 // ----------------------------------- HUD MACROS -----------------------------------
 
-.macro LoadCharMap(charMap,startX,startY,width,height)
-{
-	lda #<charMap
-	sta ZP_HUD_LO
-	lda #>charMap
-	sta ZP_HUD_HI
+.macro LoadFullScreen(source, target, color_target) {
+    lda #<source
+    sta ZP_SOURCE_LO
+    lda #>source
+    sta ZP_SOURCE_HI
+    
+    lda #<target
+    sta ZP_TARGET_LO
+    lda #>target
+    sta ZP_TARGET_HI
 
-	lda #startX
-	sta charMapStartX
-	lda #startY
-	sta charMapStartY
-	lda #width
-	sta charMapWidth
-	lda #height
-	sta charMapHeight
+    lda #<color_target
+    sta ZP_COLOR_TARGET_LO
+    lda #>color_target
+    sta ZP_COLOR_TARGET_HI
 
-	jsr HUD.loadCharMap
+    ldx #4
+    ldy #0
+    loopLoadFullScreen:
+    lda (ZP_SOURCE_LO),y
+    sta (ZP_TARGET_LO),y
+    lda #FONT_COLOR
+    sta (ZP_COLOR_TARGET_LO),y
+    iny
+    bne loopLoadFullScreen        
+    inc ZP_SOURCE_HI
+    inc ZP_TARGET_HI
+    inc ZP_COLOR_TARGET_HI
+    dex                 
+    bne loopLoadFullScreen 
 }

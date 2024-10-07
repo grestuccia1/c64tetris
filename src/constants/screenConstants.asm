@@ -16,3 +16,5 @@
 .label SCREEN_CLEAR = $e544
 
 .label SCREEN_RAM_HIGH_BYTE = $0288
+
+.const NUM_BYTES = 1000

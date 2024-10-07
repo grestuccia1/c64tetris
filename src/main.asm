@@ -20,14 +20,6 @@ BasicUpstart2(main)
 *=CHARSET_ADDRESS "Charset"
 .import binary "charset/charset.bin"
 
-*=HUD_CHAR_LEFT_MAP_ADDRESS "HUD left"
-.import binary "hud/hudleft.bin"
+*=HUD_GAMEPLAY_ADDRESS "HUD gameplay"
+.import binary "hud/hudgameplay.bin"
 
-*=HUD_CHAR_RIGHT_MAP_ADDRESS "HUD right"
-.import binary "hud/hudright.bin"
-
-*=HUD_CHAR_CENTRAL_MAP_ADDRESS "HUD central"
-.import binary "hud/hudcentral.bin"
-
-*=HUD_STATS_ADDRESS "HUD stats"
-.import binary "hud/hudstats.bin"
