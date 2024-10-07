@@ -102,13 +102,7 @@ TETRIMINO:
 				cmp #1
 				bne cancelDownDirection
 
-				jsr TETRIMINO.draw
-
-				jsr TETRIMINO.checkCompleteLines
-
-				jsr STATS.increaseTetrimino
-
-				NewTetrimino()
+				jsr GAME.createNewTestTetrimino
 
 				pla
 				tay

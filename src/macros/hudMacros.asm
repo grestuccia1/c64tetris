@@ -1,19 +1,22 @@
 // ----------------------------------- HUD MACROS -----------------------------------
 
-.macro LoadFullScreen(source, target, color_target) {
+.macro LoadFullScreen(source) {
+    
+    jsr SCREEN_CLEAR
+
     lda #<source
     sta ZP_SOURCE_LO
     lda #>source
     sta ZP_SOURCE_HI
     
-    lda #<target
+    lda #<SCREEN_RAM
     sta ZP_TARGET_LO
-    lda #>target
+    lda #>SCREEN_RAM
     sta ZP_TARGET_HI
 
-    lda #<color_target
+    lda #<SCREEN_COLOR_RAM
     sta ZP_COLOR_TARGET_LO
-    lda #>color_target
+    lda #>SCREEN_COLOR_RAM
     sta ZP_COLOR_TARGET_HI
 
     ldx #4

@@ -7,3 +7,4 @@
 #import "../variables/tetriminoVariables.asm"
 #import "../variables/systemVariables.asm"
 #import "../variables/collitionVariables.asm"
+#import "../variables/gameVariables.asm"

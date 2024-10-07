@@ -10,3 +10,4 @@
 #import "../constants/tetriminoConstants.asm"
 #import "../constants/charsetConstants.asm"
 #import "../constants/statsConstants.asm"
+#import "../constants/gameConstants.asm"

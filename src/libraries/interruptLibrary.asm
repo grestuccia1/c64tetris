@@ -52,15 +52,8 @@ INTERRUPT:
 		ora #%00000001 							// Acknowledge raster interrupt
 		sta INTERRUPT_STATUS
 
-		jsr TETRIMINO.remove
-
-		jsr TETRIMINO.handle
-
-		ClearTetriminoDirection(ALL_DIRECTIONS_NO_FIRE)
-
-		jsr TETRIMINO.change
-
-		jsr TETRIMINO.draw
-
+		jsr COORDINATOR.gamePlay
+		
 		jmp INTERRUPT_RETURN					// KERNAL interrupt return routine
+
 }

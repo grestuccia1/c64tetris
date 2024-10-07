@@ -10,3 +10,5 @@
 #import "../libraries/hudLibrary.asm"
 #import "../libraries/collitionLibrary.asm"
 #import "../libraries/statsLibrary.asm"
+#import "../libraries/gameLibrary.asm"
+#import "../libraries/coordinatorLibrary.asm"

@@ -23,3 +23,8 @@ BasicUpstart2(main)
 *=HUD_GAMEPLAY_ADDRESS "HUD gameplay"
 .import binary "hud/hudgameplay.bin"
 
+*=HUD_MENU_ADDRESS "HUD menu"
+.import binary "hud/hudmenu.bin"
+
+*=HUD_GAME_OVER_ADDRESS "HUD gameover"
+.import binary "hud/hudgameover.bin"
