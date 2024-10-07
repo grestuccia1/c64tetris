@@ -246,7 +246,6 @@ TETRIMINO:
      
 
 	checkCompleteLines:
-
 		txa
 		pha
 		tya

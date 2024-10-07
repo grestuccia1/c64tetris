@@ -10,6 +10,9 @@ TILE:
 		pha
 
 		ldx tileRow
+		cpx #TETRIMINO_ROW_OOR
+		bcs drawCharOOR
+
 		lda Row_LO,x
 		sta ZP_ROW_LO
 		lda Row_HI,x
@@ -27,11 +30,12 @@ TILE:
 		lda tileColor
 		sta (ZP_ROW_COLOR_LO),y
 
-		pla
-		tay
-		pla
-		tax
-		rts
+		drawCharOOR:
+			pla
+			tay
+			pla
+			tax
+			rts
 
 	getChar:
 		txa
@@ -40,6 +44,9 @@ TILE:
 		pha
 
 		ldx tileRow
+		cpx #TETRIMINO_ROW_OOR
+		bcs getCharOOR
+
 		lda Row_LO,x
 		sta ZP_ROW_LO
 		lda Row_HI,x
@@ -57,11 +64,13 @@ TILE:
 		lda (ZP_ROW_COLOR_LO), y
 		sta colorCollision
 
-		pla
-		tay
-		pla
-		tax
-		rts
+		getCharOOR:
+
+			pla
+			tay
+			pla
+			tax
+			rts
 
 	changeColor:
 		txa
@@ -70,6 +79,9 @@ TILE:
 		pha
 
 		ldx tileRow
+		cpx #TETRIMINO_ROW_OOR
+		bcs changeColorOOR
+
 		lda Row_Color_LO,x
 		sta ZP_ROW_COLOR_LO
 		lda Row_Color_HI,x
@@ -80,11 +92,12 @@ TILE:
 		lda tileColor
 		sta (ZP_ROW_COLOR_LO),y
 
-		pla
-		tay
-		pla
-		tax
-		rts
+		changeColorOOR:
+			pla
+			tay
+			pla
+			tax
+			rts
 
 	drawTile:
 		txa
@@ -95,6 +108,8 @@ TILE:
 		lda tileRow
 		asl
 		tax
+		cpx #TETRIMINO_ROW_OOR
+		bcs drawTileOOR
 
 		lda Row_LO,x
 		sta ZP_ROW_LO
@@ -156,9 +171,10 @@ TILE:
 		lda CHARSET_ATTRIB_ADDRESS,x
 		sta (ZP_ROW_COLOR_LO),y
 
-		pla
-		tay
-		pla
-		tax
-		rts
+		drawTileOOR:
+			pla
+			tay
+			pla
+			tax
+			rts
 }
