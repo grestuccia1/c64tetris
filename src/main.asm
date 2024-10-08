@@ -29,5 +29,8 @@ BasicUpstart2(main)
 *=HUD_TETRIS_TITLE_COLORS_ADDRESS "HUD Tetris Title Colors"
 .import binary "hud/tetrisTitleColors.bin"
 
-*=HUD_GAME_OVER_ADDRESS "HUD gameover"
-.import binary "hud/hudgameover.bin"
+*=HUD_GAME_OVER_TITLE_ADDRESS "HUD Game Over"
+.import binary "hud/gameOverTitle.bin"
+
+*=HUD_GAME_OVER_TITLE_COLORS_ADDRESS "HUD Game Over Title Colors"
+.import binary "hud/gameOverTitleColors.bin"

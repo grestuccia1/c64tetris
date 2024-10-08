@@ -15,12 +15,11 @@ GAME:
 
         lda #GAME_MODE_MENU_READY
         sta gameMode
+
         jsr SCREEN_CLEAR
-
         LoadCharColorMap(HUD_TETRIS_TITLE_ADDRESS, HUD_TETRIS_TITLE_COLORS_ADDRESS, 3, 1, 35, 7)
-
         WriteText(START_MESSAGE, 9, 21, 1)
-
+        
         pla
         tay
         pla
@@ -97,7 +96,11 @@ GAME:
 
         lda #GAME_MODE_GAME_OVER_READY
         sta gameMode
-        LoadFullScreen(HUD_GAME_OVER_ADDRESS)
+        
+        jsr SCREEN_CLEAR
+        LoadCharColorMap(HUD_GAME_OVER_TITLE_ADDRESS, HUD_GAME_OVER_TITLE_COLORS_ADDRESS, 1, 3, 39, 5)
+        WriteText(GAME_OVER_MESSAGE, 9, 20, 1)
+
         pla
         tay
         pla
