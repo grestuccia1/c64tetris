@@ -12,3 +12,4 @@
 #import "../libraries/statsLibrary.asm"
 #import "../libraries/gameLibrary.asm"
 #import "../libraries/coordinatorLibrary.asm"
+#import "../libraries/outputLibrary.asm"

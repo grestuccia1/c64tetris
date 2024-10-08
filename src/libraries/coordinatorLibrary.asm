@@ -8,47 +8,44 @@ COORDINATOR: {
 		bne noGameModeMenu
 
 		jsr GAME.goToMenu
-		jmp noGameModePlayingReady
+		jmp noGameModeEnd
 
 		noGameModeMenu:
-            lda gameMode
 			cmp #GAME_MODE_MENU_READY
 			bne noGameModeMenuReady
 
 			jsr GAME.inMenuMode
-
-			jmp noGameModePlayingReady
+			jmp noGameModeEnd
 			
 		noGameModeMenuReady:
-            lda gameMode
 			cmp #GAME_MODE_PLAYING
 			bne noGameModePlaying
 
 			jsr GAME.goToPlaying
-
-			jmp noGameModePlayingReady
+			jmp noGameModeEnd
 			
 		noGameModePlaying:
-            lda gameMode
 			cmp #GAME_MODE_PLAYING_READY
 			bne noGameModePlayingReady
 
 			jsr GAME.inPlayingMode
+			jmp noGameModeEnd
 
 		noGameModePlayingReady:
-            lda gameMode
             cmp #GAME_MODE_GAME_OVER
 			bne noGameModeGameOver
 
 			jsr GAME.goToGameOver
+			jmp noGameModeEnd
 
         noGameModeGameOver:
-            lda gameMode
             cmp #GAME_MODE_GAME_OVER_READY
             bne noGameModeGameOverReady
 
             jsr GAME.inGameOverMode
+			jmp noGameModeEnd
 
-        noGameModeGameOverReady: 
+		noGameModeGameOverReady:
+        noGameModeEnd: 
         rts
 }

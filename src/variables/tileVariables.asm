@@ -15,3 +15,5 @@ charMapStartY: .byte 0
 tileCounterHigh: .byte 0
 
 tileCounterLow: .byte 0
+
+colorCycle: .byte 0, 11, 15, 1, 15, 11, 1

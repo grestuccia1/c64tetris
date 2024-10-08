@@ -8,3 +8,4 @@
 #import "../variables/systemVariables.asm"
 #import "../variables/collitionVariables.asm"
 #import "../variables/gameVariables.asm"
+#import "../variables/textVariables.asm"

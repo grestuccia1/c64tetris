@@ -34,3 +34,46 @@
     dex                 
     bne loopLoadFullScreen 
 }
+
+.macro LoadCharMap(charMap,startX,startY,width,height)
+{
+	lda #<charMap
+	sta ZP_HUD_LO
+	lda #>charMap
+	sta ZP_HUD_HI
+
+	lda #startX
+	sta charMapStartX
+	lda #startY
+	sta charMapStartY
+	lda #width
+	sta charMapWidth
+	lda #height
+	sta charMapHeight
+
+	jsr HUD.loadCharMap
+}
+
+.macro LoadCharColorMap(charMap, charColorMap, startX,startY,width,height)
+{
+	lda #<charMap
+	sta ZP_HUD_LO
+	lda #>charMap
+	sta ZP_HUD_HI
+
+	lda #<charColorMap
+	sta ZP_HUD_COLOR_LO
+	lda #>charColorMap
+	sta ZP_HUD_COLOR_HI
+
+	lda #startX
+	sta charMapStartX
+	lda #startY
+	sta charMapStartY
+	lda #width
+	sta charMapWidth
+	lda #height
+	sta charMapHeight
+
+	jsr HUD.loadCharMapColor
+}

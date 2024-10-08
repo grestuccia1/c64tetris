@@ -11,3 +11,5 @@
 #import "../constants/charsetConstants.asm"
 #import "../constants/statsConstants.asm"
 #import "../constants/gameConstants.asm"
+#import "../constants/tileConstants.asm"
+#import "../constants/outputConstants.asm"

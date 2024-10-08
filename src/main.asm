@@ -23,8 +23,11 @@ BasicUpstart2(main)
 *=HUD_GAMEPLAY_ADDRESS "HUD gameplay"
 .import binary "hud/hudgameplay.bin"
 
-*=HUD_MENU_ADDRESS "HUD menu"
-.import binary "hud/hudmenu.bin"
+*=HUD_TETRIS_TITLE_ADDRESS "HUD Tetris Title"
+.import binary "hud/tetrisTitle.bin"
+
+*=HUD_TETRIS_TITLE_COLORS_ADDRESS "HUD Tetris Title Colors"
+.import binary "hud/tetrisTitleColors.bin"
 
 *=HUD_GAME_OVER_ADDRESS "HUD gameover"
 .import binary "hud/hudgameover.bin"

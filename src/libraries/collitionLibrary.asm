@@ -24,7 +24,7 @@ COLLITION:
         sta tetriminoCol
 
         lda collitionRot
-        sta  tetriminoRot
+        sta tetriminoRot
 
         rts
 
@@ -79,7 +79,4 @@ COLLITION:
 				tax
 				rts
 
-
-
-	
 }
