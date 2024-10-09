@@ -156,4 +156,45 @@ updateScore:
 		
 		PopFromStack()
 		rts
+
+	updateLinesCounter:
+		PushToStack()	
+
+		ldx #HUD_LINES_Y_POS
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+
+		ldy #HUD_LINES_X_POS
+
+		ldx #0
+		updateLinesCounterLoop:
+			lda lines100000,x
+			clc
+			adc #$30 // Screen code for the 0 char
+			sta (ZP_ROW_LO),y
+			iny
+
+			inx
+			cpx #HUD_LINES_DIGITS
+			bne updateLinesCounterLoop
+
+		PopFromStack()	
+		rts
+
+
+	resetLinesCounter:
+		PushToStack()
+
+		lda #0
+		tax
+		resetLinesCounterLoop:
+			sta lines100000,x
+			inx
+			cpx #HUD_LINES_DIGITS
+			bne resetLinesCounterLoop
+		
+		PopFromStack()
+		rts
 }

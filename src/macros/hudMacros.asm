@@ -117,3 +117,36 @@
 			pla
 			tax
 }
+
+
+.macro AddLineCounter()
+{
+	txa
+	pha
+
+	ldx #5
+
+	lda lines100000,x
+	clc
+	adc #1
+	sta lines100000,x
+
+	verifyNextLinesValue:
+		lda lines100000,x
+		cmp #10
+		bcs incNextLinesValue
+			jmp updateHUDLines
+		incNextLinesValue:
+			sec
+			sbc	#10
+			sta lines100000,x
+			dex
+			inc lines100000,x
+			jmp verifyNextLinesValue
+
+		updateHUDLines:
+			jsr HUD.updateLinesCounter
+
+			pla
+			tax
+}

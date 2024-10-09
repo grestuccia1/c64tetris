@@ -249,15 +249,22 @@ TETRIMINO:
 				jmp previewsLine
 
 			removeLine:
+				AddToScore(1,3)
 				jsr OUTPUT.moveLines
-				jmp keepInSameLine
+				jmp addLineCounter
 			previewsLine:
 				dex
 			keepInSameLine:	
 				stx tileRow
 				cpx tetriminoRow
 				bne movePreviousLine
+				jmp endCheckCompleteLines
 
+		addLineCounter:
+			AddLineCounter()
+			jmp keepInSameLine
+
+		endCheckCompleteLines:
 		PopFromStack()
 		rts
 
