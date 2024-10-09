@@ -3,10 +3,7 @@
 TETRIMINO:
 {
 	paint:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		lda tetriminoRot 
 		asl
@@ -40,10 +37,7 @@ TETRIMINO:
 				cpy tetriminoEnd
 				bne piece
 
-				pla
-				tay
-				pla
-				tax
+				PopFromStack()
 				rts
 
 	
@@ -62,10 +56,7 @@ TETRIMINO:
 		rts
 
 	handle:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		jsr COLLITION.init	
 
@@ -104,10 +95,7 @@ TETRIMINO:
 
 				jsr GAME.createNewTestTetrimino
 
-				pla
-				tay
-				pla
-				tax
+				PopFromStack()
 				rts
 
 		cancelDownDirection:		
@@ -206,17 +194,11 @@ TETRIMINO:
 
 			jsr COLLITION.pass
 
-		pla
-		tay
-		pla
-		tax
+		PopFromStack()
 		rts
 
 	change:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		ldx tetriminoNr
 		lda tetriminoColors,x
@@ -232,18 +214,12 @@ TETRIMINO:
 		sta ZP_PY_LO                  
 		sty ZP_PY_HI                  
 
-		pla
-		tay
-		pla
-		tax
+		PopFromStack()
 		rts
      
 
 	checkCompleteLines:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		lda #TETRIMINO_ROW_LAST
 		sta tileRow
@@ -273,7 +249,7 @@ TETRIMINO:
 				jmp previewsLine
 
 			removeLine:
-				jsr TETRIMINO.moveLines
+				jsr OUTPUT.moveLines
 				jmp keepInSameLine
 			previewsLine:
 				dex
@@ -282,59 +258,7 @@ TETRIMINO:
 				cpx tetriminoRow
 				bne movePreviousLine
 
-		pla
-		tay
-		pla
-		tax
+		PopFromStack()
 		rts
 
-	moveLines:
-		txa
-		pha
-		tya
-		pha
-
-		ldx tileRow
-
-		moveLinePrevious:
-			lda Row_LO,x
-			sta ZP_ROW_LO
-			lda Row_HI,x
-			sta ZP_ROW_HI
-			lda Row_Color_LO,x
-			sta ZP_ROW_COLOR_LO
-			lda Row_Color_HI,x
-			sta ZP_ROW_COLOR_HI
-
-			dex
-			lda Row_LO,x
-			sta ZP_ROW_PREVIOUS_LO
-			lda Row_HI,x
-			sta ZP_ROW_PREVIOUS_HI
-			lda Row_Color_LO,x
-			sta ZP_ROW_COLOR_PREVIOUS_LO
-			lda Row_Color_HI,x
-			sta ZP_ROW_COLOR_PREVIOUS_HI
-
-			ldy #TETRIMINO_COL_FIRST
-
-			moveNextChar:
-				lda (ZP_ROW_PREVIOUS_LO),y
-				sta (ZP_ROW_LO), y
-
-				lda (ZP_ROW_COLOR_PREVIOUS_LO), y
-				sta (ZP_ROW_COLOR_LO), y
-
-				iny
-				cpy #TETRIMINO_COL_LAST
-				bne moveNextChar
-
-			cpx #TETRIMINO_ROW_FIRST //TODO: OPTIMIZE
-	 		bcs moveLinePrevious
-
-		pla
-		tay
-		pla
-		tax
-		rts	
 }

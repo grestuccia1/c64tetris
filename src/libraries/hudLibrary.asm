@@ -5,10 +5,7 @@ HUD:
 {
 	
 	loadCharMap:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		lda #0
 		sta tileCounter
@@ -59,17 +56,11 @@ HUD:
 			cpx charMapHeight
 			bne loadCharMapRow
 
-		pla
-		tay
-		pla
-		tax
+		PopFromStack()
 		rts
 
 	loadCharMapColor:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		lda #0
 		sta tileCounter
@@ -121,9 +112,6 @@ HUD:
 			cpx charMapHeight
 			bne loadCharMapRowColor
 
-		pla
-		tay
-		pla
-		tax
+		PopFromStack()
 		rts
 }

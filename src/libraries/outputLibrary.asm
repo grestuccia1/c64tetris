@@ -4,10 +4,7 @@
 OUTPUT:
 {
 	writeText:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		lda textColor
 		sta TEXT_COLOR
@@ -45,17 +42,11 @@ OUTPUT:
 
 		doneWriteText:
 		
-		pla
-		tay
-		pla
-		tax
+		PopFromStack()
 		rts
 
 	setTextColor:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		lda tileRow
 		clc 
@@ -89,9 +80,50 @@ OUTPUT:
 			cpx textHeight
 			bne textColorRowLoop
 
-		pla
-		tay
-		pla
-		tax
+		PopFromStack()
 		rts
+	
+	moveLines:
+		PushToStack()
+
+		ldx tileRow
+
+		moveLinePrevious:
+			lda Row_LO,x
+			sta ZP_ROW_LO
+			lda Row_HI,x
+			sta ZP_ROW_HI
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_HI
+
+			dex
+			lda Row_LO,x
+			sta ZP_ROW_PREVIOUS_LO
+			lda Row_HI,x
+			sta ZP_ROW_PREVIOUS_HI
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_PREVIOUS_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_PREVIOUS_HI
+
+			ldy #TETRIMINO_COL_FIRST
+
+			moveNextChar:
+				lda (ZP_ROW_PREVIOUS_LO),y
+				sta (ZP_ROW_LO), y
+
+				lda (ZP_ROW_COLOR_PREVIOUS_LO), y
+				sta (ZP_ROW_COLOR_LO), y
+
+				iny
+				cpy #TETRIMINO_COL_LAST
+				bne moveNextChar
+
+			cpx #TETRIMINO_ROW_FIRST //TODO: OPTIMIZE
+	 		bcs moveLinePrevious
+
+		PopFromStack()
+		rts		
 }

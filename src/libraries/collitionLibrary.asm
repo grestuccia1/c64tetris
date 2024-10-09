@@ -29,10 +29,7 @@ COLLITION:
         rts
 
 	check:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		lda #SPACE
 		sta charCollision
@@ -73,10 +70,7 @@ COLLITION:
 				cpy collitionEnd
 				bne checkPiece
 		checkDone:
-				pla
-				tay
-				pla
-				tax
+				PopFromStack()
 				rts
 
 }

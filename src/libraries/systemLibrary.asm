@@ -26,10 +26,7 @@ SYSTEM:
 		rts
 
 	delay:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		ldx #0
 
@@ -45,10 +42,7 @@ SYSTEM:
 			cpx delayTimer1
 			bne delayLoop1
 			
-		pla
-		tay
-		pla
-		tax
+		PopFromStack()
 		rts
 
 }

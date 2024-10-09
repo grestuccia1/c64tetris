@@ -4,10 +4,7 @@
 TILE:
 {
 	drawChar:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		ldx tileRow
 		cpx #TETRIMINO_ROW_OOR
@@ -31,17 +28,11 @@ TILE:
 		sta (ZP_ROW_COLOR_LO),y
 
 		drawCharOOR:
-			pla
-			tay
-			pla
-			tax
+			PopFromStack()
 			rts
 
 	getChar:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		ldx tileRow
 		cpx #TETRIMINO_ROW_OOR
@@ -66,17 +57,11 @@ TILE:
 
 		getCharOOR:
 
-			pla
-			tay
-			pla
-			tax
+			PopFromStack()
 			rts
 
 	changeColor:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		ldx tileRow
 		cpx #TETRIMINO_ROW_OOR
@@ -93,17 +78,11 @@ TILE:
 		sta (ZP_ROW_COLOR_LO),y
 
 		changeColorOOR:
-			pla
-			tay
-			pla
-			tax
+			PopFromStack()
 			rts
 
 	drawTile:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		lda tileRow
 		asl
@@ -172,10 +151,7 @@ TILE:
 		sta (ZP_ROW_COLOR_LO),y
 
 		drawTileOOR:
-			pla
-			tay
-			pla
-			tax
+			PopFromStack()
 			rts
 
 }

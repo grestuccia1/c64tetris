@@ -2,10 +2,7 @@
 STATS:
 {
 	init:
-		txa
-		pha
-		tya
-		pha
+		PushToStack()
 
 		ldy #0
 
@@ -20,17 +17,11 @@ STATS:
             cpy #TETRIMINO_MAX
             bne initStatsLoop
 			
-		pla
-		tay
-		pla
-		tax
+		PopFromStack()
 		rts
         
     increaseTetrimino:
-        txa
-        pha
-        tya
-        pha
+        PushToStack()
 
         ldy tetriminoNr
         lda statsTetriminoTotal, y
@@ -59,17 +50,11 @@ STATS:
 
     increaseTetriminoEnd:
 
-        pla
-        tay
-        pla
-        tax
+        PopFromStack()
         rts
 
     applyColors:
-        txa
-        pha
-        tya
-        pha
+        PushToStack()
 
         ldy #0
 
@@ -96,17 +81,11 @@ STATS:
             cpy #TETRIMINO_MAX
             bne applyColorsRow
 
-        pla
-        tay
-        pla
-        tax
+        PopFromStack()
         rts
 
     draw:
-        txa
-        pha
-        tya
-        pha
+        PushToStack()
 
         ldy tetriminoNr
         
@@ -123,9 +102,6 @@ STATS:
 
         jsr TILE.drawChar
 
-        pla
-        tay
-        pla
-        tax
+        PopFromStack()
         rts    
 }

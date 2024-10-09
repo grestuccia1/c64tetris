@@ -8,10 +8,7 @@ GAME:
     rts
 
     goToMenu:
-        txa
-        pha
-        tya
-        pha
+        PushToStack()
 
         lda #GAME_MODE_MENU_READY
         sta gameMode
@@ -19,18 +16,12 @@ GAME:
         jsr SCREEN_CLEAR
         LoadCharColorMap(HUD_TETRIS_TITLE_ADDRESS, HUD_TETRIS_TITLE_COLORS_ADDRESS, 3, 1, 35, 7)
         WriteText(START_MESSAGE, 9, 21, 1)
-        
-        pla
-        tay
-        pla
-        tax
+
+        PopFromStack()
         rts
 
     inMenuMode:
-        txa
-        pha
-        tya
-        pha
+        PushToStack()
 
         jsr SCNKEY
         jsr GETIN
@@ -42,34 +33,23 @@ GAME:
 
         inMenuNoF1:
 
-        pla
-        tay
-        pla
-        tax
+        PopFromStack()
         rts
 
     goToPlaying:
-        txa
-        pha
-        tya
-        pha
+        PushToStack()
 
         lda #GAME_MODE_PLAYING_READY
         sta gameMode
         LoadFullScreen(HUD_GAMEPLAY_ADDRESS)
         jsr STATS.applyColors
         NewTetrimino()
-        pla
-        tay
-        pla
-        tax
+        
+        PopFromStack()
         rts
 
     inPlayingMode:
-        txa
-        pha
-        tya
-        pha
+        PushToStack()
 
         jsr TETRIMINO.remove
         jsr TETRIMINO.handle
@@ -82,17 +62,12 @@ GAME:
         jsr TETRIMINO.draw
 
         justGameOver:
-        pla
-        tay
-        pla
-        tax
+        
+        PopFromStack()
         rts
 
     goToGameOver:
-        txa
-        pha
-        tya
-        pha
+        PushToStack()
 
         lda #GAME_MODE_GAME_OVER_READY
         sta gameMode
@@ -101,17 +76,11 @@ GAME:
         LoadCharColorMap(HUD_GAME_OVER_TITLE_ADDRESS, HUD_GAME_OVER_TITLE_COLORS_ADDRESS, 1, 3, 39, 5)
         WriteText(GAME_OVER_MESSAGE, 9, 20, 1)
 
-        pla
-        tay
-        pla
-        tax
+        PopFromStack()
         rts
 
     inGameOverMode:
-        txa
-        pha
-        tya
-        pha
+        PushToStack()
 
         jsr SCNKEY
         jsr GETIN
@@ -122,18 +91,13 @@ GAME:
         sta gameMode
 
         inGameOverNoF1:
-        pla
-        tay
-        pla
-        tax
+        
+        PopFromStack()
         rts
 
 
     createNewTestTetrimino:
-        txa
-        pha
-        tya
-        pha
+        PushToStack()
 
         lda tetriminoRow
         cmp #TETRIMINO_ROW_START
@@ -152,9 +116,7 @@ GAME:
             NewTetrimino()
 
         createNewTestTetriminoDone:
-            pla
-            tay
-            pla
-            tax
+            
+            PopFromStack()
             rts
 }
