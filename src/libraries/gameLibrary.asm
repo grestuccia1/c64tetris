@@ -113,6 +113,10 @@ GAME:
 
             jsr STATS.increaseTetrimino
 
+            jsr MATH.generateRandomBelow10
+            sta tempScore
+            UpdateScore(5)
+
             NewTetrimino()
 
         createNewTestTetriminoDone:

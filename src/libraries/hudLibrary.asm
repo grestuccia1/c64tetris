@@ -114,4 +114,46 @@ HUD:
 
 		PopFromStack()
 		rts
+
+
+updateScore:
+		PushToStack()	
+
+		ldx #HUD_SCORE_Y_POS
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+
+		ldy #HUD_SCORE_X_POS
+
+		ldx #0
+		updateScoreLoop:
+			lda score100000,x
+			clc
+			adc #$30 // Screen code for the 0 char
+			sta (ZP_ROW_LO),y
+			iny
+
+			inx
+			cpx #HUD_SCORE_DIGITS
+			bne updateScoreLoop
+
+		PopFromStack()	
+		rts
+
+
+	resetScore:
+		PushToStack()
+
+		lda #0
+		tax
+		resetScoreLoop:
+			sta score100000,x
+			inx
+			cpx #HUD_SCORE_DIGITS
+			bne resetScoreLoop
+		
+		PopFromStack()
+		rts
 }

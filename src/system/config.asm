@@ -28,3 +28,7 @@
 .label HUD_CENTRAL_NEXT_POS_Y_END = 7
 
 .label HUD_BLANK_CHAR = 32
+
+.label HUD_SCORE_X_POS = 17
+.label HUD_SCORE_Y_POS = 14
+.label HUD_SCORE_DIGITS = 6

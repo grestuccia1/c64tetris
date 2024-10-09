@@ -72,7 +72,7 @@
 	lda #HUD_CENTRAL_NEXT_POS_Y
 	sta tetriminoRow
 
-	jsr MATH.generate_random
+	jsr MATH.generateRandomBelow7
 	lda ZP_RANDOM_NUMBER
 	sta tetriminoNr
 	jsr TETRIMINO.change

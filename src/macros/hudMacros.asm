@@ -77,3 +77,43 @@
 
 	jsr HUD.loadCharMapColor
 }
+
+.macro AddToScore(value,place)
+{
+	lda #value
+	sta tempScore
+
+	UpdateScore(place)	
+}
+
+.macro UpdateScore(place)
+{
+	txa
+	pha
+
+	ldx #place
+
+	lda score100000,x
+	clc
+	adc tempScore
+	sta score100000,x
+
+	verifyNextScoreValue:
+		lda score100000,x
+		cmp #10
+		bcs incNextScoreValue
+			jmp updateHUDscore
+		incNextScoreValue:
+			sec
+			sbc	#10
+			sta score100000,x
+			dex
+			inc score100000,x
+			jmp verifyNextScoreValue
+
+		updateHUDscore:
+			jsr HUD.updateScore
+
+			pla
+			tax
+}
