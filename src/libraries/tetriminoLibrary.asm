@@ -63,17 +63,17 @@ TETRIMINO:
 		lda #TETRIMINO_NOT_FALL
 		sta tetriminoMustFall
 
-		checkTetriminoFallSpeedTimer:
-		lda tetriminoFallSpeedTimer
-		cmp tetriminoFallSpeed
-			beq tetriminoFallSpeedTimerReached
-			inc tetriminoFallSpeedTimer
+		checktetriminoFallDelayTimer:
+		lda tetriminoFallDelayTimer
+		cmp tetriminoFallDelay
+			beq tetriminoFallDelayTimerReached
+			inc tetriminoFallDelayTimer
 			jmp checkDownDirection
-		tetriminoFallSpeedTimerReached:
+		tetriminoFallDelayTimerReached:
 			lda #TETRIMINO_MUST_FALL
 			sta tetriminoMustFall
 			lda #TETRIMINO_NOT_FALL
-			sta tetriminoFallSpeedTimer
+			sta tetriminoFallDelayTimer
 			jmp moveSpriteDown
 
 		checkDownDirection:
@@ -267,8 +267,33 @@ TETRIMINO:
 		endCheckCompleteLines:
 			jsr LEVELS.checkCompleteLevel
 			jsr HUD.updateLinesLeftCounter
-			
+
 			PopFromStack()
 			rts
 
+	speedUp:
+		PushToStack()
+
+		inc tetriminoPerLevel
+
+		ldx currentLevel
+		lda tetriminoCountPerLevelToSpeedUp, x
+		cmp tetriminoPerLevel
+		beq speedUpTetrimino
+		jmp speedUpTetriminoDone
+
+		speedUpTetrimino:
+			lda #0
+			sta tetriminoPerLevel
+			
+			lda tetriminoFallDelay
+			sec
+			sbc #1
+			cmp #1
+			beq speedUpTetriminoDone
+			sta tetriminoFallDelay
+
+		speedUpTetriminoDone:
+			PopFromStack()
+			rts
 }

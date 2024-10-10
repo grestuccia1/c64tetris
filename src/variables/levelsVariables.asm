@@ -4,3 +4,5 @@ currentLevel: .byte 0
 
 linesForLevel: .byte 0
 linesNeededForNextLevel: .byte 0
+
+tetriminoPerLevel: .byte 0

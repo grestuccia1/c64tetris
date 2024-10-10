@@ -157,6 +157,8 @@ GAME:
             sta tempScore
             UpdateScore(5)
 
+            jsr TETRIMINO.speedUp
+
             NewTetrimino()
 
         createNewTestTetriminoDone:

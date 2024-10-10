@@ -21,14 +21,18 @@ LEVELS: {
         PushToStack()
 
         ldx currentLevel
+
         lda linesGoalPerLevel, x
         sta linesNeededForNextLevel
+
+        lda tetriminoFallDelayPerLevel, x
+        sta tetriminoFallDelay
+
         lda #0
         sta linesForLevel
 
         PopFromStack()
         rts
-
 
     checkCompleteLevel:
         PushToStack()
