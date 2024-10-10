@@ -33,3 +33,20 @@
 	
 	jsr OUTPUT.setTextColor
 }
+
+.macro FillRectangle(col,row,height,length,char) {
+
+	lda #row
+	sta tileRow
+	lda #col
+	sta tileCol
+	lda #length
+	sta textLength
+	lda #height
+	sta textHeight
+	lda #char
+	sta textChar
+
+	jsr OUTPUT.fillText
+
+}

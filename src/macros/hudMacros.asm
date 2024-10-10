@@ -121,9 +121,10 @@
 
 .macro AddLineCounter()
 {
-	txa
-	pha
+	PushToStack()
 
+	inc linesForLevel
+		
 	ldx #5
 
 	lda lines100000,x
@@ -147,6 +148,5 @@
 		updateHUDLines:
 			jsr HUD.updateLinesCounter
 
-			pla
-			tax
+			PopFromStack()
 }

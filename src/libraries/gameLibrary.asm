@@ -17,6 +17,9 @@ GAME:
         LoadCharColorMap(HUD_TETRIS_TITLE_ADDRESS, HUD_TETRIS_TITLE_COLORS_ADDRESS, 3, 1, 35, 7)
         WriteText(START_MESSAGE, 9, 21, 1)
 
+        jsr LEVELS.init
+        jsr STATS.init
+
         PopFromStack()
         rts
 
@@ -43,6 +46,9 @@ GAME:
         sta gameMode
         LoadFullScreen(HUD_GAMEPLAY_ADDRESS)
         jsr STATS.applyColors
+        jsr HUD.updateLevelCounter
+        jsr HUD.updateLinesLeftCounter
+
         NewTetrimino()
         
         PopFromStack()
@@ -78,6 +84,40 @@ GAME:
 
         PopFromStack()
         rts
+
+    changeLevel:
+        PushToStack() 
+
+        jsr LEVELS.increaseLevel
+        jsr HUD.updateLevelCounter
+        jsr HUD.updateLinesLeftCounter
+
+        lda #GAME_MODE_CHANGE_LEVEL_READY
+        sta gameMode
+
+        PopFromStack()
+        rts
+
+    inChangeLevelMode:
+        PushToStack()
+
+        jsr GAME.clearContainer
+        //TODO: reset stats? (by level or by game over)
+
+        //Resume game
+        lda #GAME_MODE_PLAYING_READY
+        sta gameMode
+
+        PopFromStack()
+        rts    
+
+    clearContainer:
+        PushToStack()
+
+        FillRectangle(1, 0, 24, 10, SPACE)
+
+        PopFromStack()
+        rts    
 
     inGameOverMode:
         PushToStack()

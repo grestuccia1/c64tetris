@@ -19,4 +19,16 @@ MATH:
         beq generateRandomBelow10
         sta ZP_RANDOM_NUMBER_SCORE  
         rts
+
+    divideBy10:
+        //; Return with the quotient in A and the remainder in X.
+        ldx #0         
+    divideLoopBy10:
+        cmp #10        
+        bcc doneDivideBy10
+        sbc #10        
+        inx            
+        jmp divideLoopBy10 
+    doneDivideBy10:
+    rts            
 }

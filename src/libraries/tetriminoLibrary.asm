@@ -265,7 +265,10 @@ TETRIMINO:
 			jmp keepInSameLine
 
 		endCheckCompleteLines:
-		PopFromStack()
-		rts
+			jsr LEVELS.checkCompleteLevel
+			jsr HUD.updateLinesLeftCounter
+			
+			PopFromStack()
+			rts
 
 }

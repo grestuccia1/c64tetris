@@ -116,7 +116,7 @@ HUD:
 		rts
 
 
-updateScore:
+	updateScore:
 		PushToStack()	
 
 		ldx #HUD_SCORE_Y_POS
@@ -196,5 +196,73 @@ updateScore:
 			bne resetLinesCounterLoop
 		
 		PopFromStack()
+		rts
+
+	updateLevelCounter:
+		PushToStack()	
+
+		ldx #HUD_LEVEL_Y_POS
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+
+		ldy #HUD_LEVEL_X_POS
+
+		lda currentLevel
+		jsr MATH.divideBy10
+		iny
+
+		clc
+		adc #$30 
+		sta (ZP_ROW_LO),y
+
+		dey
+
+		txa
+		clc
+		adc #$30
+		sta (ZP_ROW_LO),y
+
+		PopFromStack()	
+		rts
+
+	updateLinesLeftCounter:
+		PushToStack()	
+
+		ldx #HUD_LINES_LEFT_Y_POS
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+
+		ldy #HUD_LINES_LEFT_X_POS
+
+		lda linesNeededForNextLevel
+		sec
+		sbc linesForLevel
+
+		cmp #99
+		bcc needShowLinesLeft
+		lda #0
+		ldx #0
+		jmp showLinesLeft
+	needShowLinesLeft:
+		jsr MATH.divideBy10
+	showLinesLeft:		
+		iny
+
+		clc
+		adc #$30 
+		sta (ZP_ROW_LO),y
+
+		dey
+
+		txa
+		clc
+		adc #$30
+		sta (ZP_ROW_LO),y
+
+		PopFromStack()	
 		rts
 }

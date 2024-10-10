@@ -32,6 +32,20 @@ COORDINATOR: {
 			jmp noGameModeEnd
 
 		noGameModePlayingReady:
+            cmp #GAME_MODE_CHANGE_LEVEL
+			bne noGameModeChangeLevel
+
+			jsr GAME.changeLevel
+			jmp noGameModeEnd
+
+        noGameModeChangeLevel:
+            cmp #GAME_MODE_CHANGE_LEVEL_READY
+            bne noGameModeChangeLevelReady
+
+            jsr GAME.inChangeLevelMode
+			jmp noGameModeEnd
+
+		noGameModeChangeLevelReady:
             cmp #GAME_MODE_GAME_OVER
 			bne noGameModeGameOver
 

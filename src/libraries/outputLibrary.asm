@@ -83,6 +83,44 @@ OUTPUT:
 		PopFromStack()
 		rts
 	
+	fillText:
+		PushToStack()
+
+		lda tileRow
+		clc 
+		adc textHeight
+		sta textHeight
+
+		lda tileCol
+		clc
+		adc textLength
+		sta textLength
+		
+		ldx tileRow
+
+		textFillRowLoop:
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+
+		ldy tileCol
+
+		lda textChar
+
+		textFillColLoop:
+			sta (ZP_ROW_LO),y
+			iny
+			cpy textLength
+			bne textFillColLoop
+
+			inx
+			cpx textHeight
+			bne textFillRowLoop
+
+		PopFromStack()
+		rts
+
 	moveLines:
 		PushToStack()
 
