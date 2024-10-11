@@ -44,3 +44,13 @@ tetriminoCountPerLevelToSpeedUp:
     .byte 10    // Level: 10    
     .byte 10    
     .byte 10
+
+level4Length:
+    .byte 16
+level4X:
+    .byte 1, 10, 1, 10, 1, 10, 1, 10, 1, 10, 1, 10, 1, 10, 1, 10
+level4Y:
+    .byte 16, 16, 17, 17, 18, 18, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23
+level4Color:
+    .byte 2, 5, 6, 7, 4, 3, 8, 2, 5, 6, 7, 4, 3, 8, 2, 5
+

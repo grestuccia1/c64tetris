@@ -51,4 +51,21 @@ LEVELS: {
         LevelNotComplete:
         PopFromStack()
         rts
+
+
+    preloadLevel:
+        PushToStack()
+        lda currentLevel
+        cmp #4
+        beq preloadLevel4
+
+    preloadLevelEnd:
+        PopFromStack()
+        rts
+    
+    preloadLevel4:
+
+        LoadLevel(level4Length, level4X, level4Y, level4Color)
+
+        jmp preloadLevelEnd    
 }

@@ -48,7 +48,8 @@ GAME:
         jsr STATS.applyColors
         jsr HUD.updateLevelCounter
         jsr HUD.updateLinesLeftCounter
-
+        jsr LEVELS.preloadLevel
+        
         NewTetrimino()
         
         PopFromStack()
@@ -104,7 +105,8 @@ GAME:
         jsr GAME.clearContainer
         //TODO: reset stats? (by level or by game over)
 
-        //Resume game
+        jsr LEVELS.preloadLevel
+        
         lda #GAME_MODE_PLAYING_READY
         sta gameMode
 
