@@ -3,6 +3,8 @@
 #import "includes/constants.asm"
 #import "includes/macros.asm"
 
+.var music = LoadSid("music/Stranger_Things.sid")
+
 BasicUpstart2(main)
 
 *=TABLES_ADDRESS "Tables"
@@ -16,6 +18,9 @@ BasicUpstart2(main)
 
 *=GAME_CODE "Game Code"
 #import "includes/gameCode.asm"
+
+*=music.location "Music"
+.fill music.size, music.getData(i)
 
 *=CHARSET_ADDRESS "Charset"
 .import binary "charset/charset.bin"

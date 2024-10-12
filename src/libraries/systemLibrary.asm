@@ -22,6 +22,11 @@ SYSTEM:
 
 		jsr SCREEN_CLEAR
 
+		lda #0
+		tay
+		tax
+		jsr MUSIC_INIT
+
 		jsr INTERRUPT.setupRasterInterrupt
 		rts
 
