@@ -73,4 +73,43 @@ COLLITION:
 				PopFromStack()
 				rts
 
+
+	lineColition:
+		PushToStack()
+
+		lda #0
+		sta tileRow
+		
+		lda #1
+		sta tileCol
+
+		lda #SPACE
+		sta charCollision
+
+nextCharInLine:
+		jsr TILE.getChar
+
+		lda charCollision
+		cmp	#SPACE
+		bne lineColitionDone
+
+		inc tileCol
+		lda tileCol
+		cmp #TETRIMINO_COL_LAST
+		bne nextCharInLine
+
+		lda #1
+		sta tileCol
+
+		inc tileRow
+		lda tileRow
+		cmp #TETRIMINO_ROW_LAST
+		bne nextCharInLine
+
+lineColitionDone:
+		lda tileRow
+		sta transitionRowMax
+
+		PopFromStack()
+		rts
 }

@@ -2,7 +2,7 @@
 
 LEVELS: {
     init:
-        lda #9
+        lda #0
         sta currentLevel
         jsr LEVELS.increaseLevel
         jsr HUD.resetScore
@@ -30,6 +30,7 @@ LEVELS: {
 
         lda #0
         sta linesForLevel
+        sta transitionRow
 
         PopFromStack()
         rts
@@ -45,10 +46,24 @@ LEVELS: {
             jmp LevelNotComplete
 
         LevelIsComplete:
-            jsr GAME.changeLevel
+            jsr COLLITION.lineColition
+
+            lda #GAME_MODE_CHANGE_LEVEL
+            sta gameMode
+
             jmp LevelNotComplete
 
         LevelNotComplete:
+        PopFromStack()
+        rts
+
+    calculareTransitionRowMax:
+        PushToStack()
+
+        ldx #0
+
+        jsr TILE.getChar
+
         PopFromStack()
         rts
 

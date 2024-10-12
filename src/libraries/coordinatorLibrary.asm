@@ -35,8 +35,41 @@ COORDINATOR: {
             cmp #GAME_MODE_CHANGE_LEVEL
 			bne noGameModeChangeLevel
 
-			jsr GAME.changeLevel
-			jmp noGameModeEnd
+			lda transitionRowDelayTimer
+			cmp transitionRowDelay
+				beq transitionRowDelayTimerReached
+				inc transitionRowDelayTimer
+				jmp noGameModeEnd
+			transitionRowDelayTimerReached:
+				lda #0
+				sta transitionRowDelayTimer
+
+				AddToScore(1,4)
+
+				inc transitionRow
+				lda transitionRow
+				cmp transitionRowMax
+				bne changeLevelTransition
+
+				jsr GAME.changeLevel
+				
+			changeLevelTransition:
+				lda transitionRow
+				sta tileRow
+				lda #TETRIMINO_COL_FIRST
+				sta tileCol
+				lda #10
+				sta textLength
+				lda #1
+				sta textHeight
+				lda #BLOCK
+				sta textChar
+				lda #15
+				sta textColor
+
+				jsr OUTPUT.fillTextColor
+
+				jmp noGameModeEnd
 
         noGameModeChangeLevel:
             cmp #GAME_MODE_CHANGE_LEVEL_READY

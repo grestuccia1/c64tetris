@@ -121,6 +121,51 @@ OUTPUT:
 		PopFromStack()
 		rts
 
+	fillTextColor:
+		PushToStack()
+
+		lda tileRow
+		clc 
+		adc textHeight
+		sta textHeight
+
+		lda tileCol
+		clc
+		adc textLength
+		sta textLength
+		
+		ldx tileRow
+
+		fillTextColorRowLoop:
+			lda Row_LO,x
+			sta ZP_ROW_LO
+			lda Row_HI,x
+			sta ZP_ROW_HI
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_HI
+
+			ldy tileCol
+
+			lda textChar
+
+			fillTextColorColLoop:
+				lda textChar
+				sta (ZP_ROW_LO),y
+				lda textColor
+				sta (ZP_ROW_COLOR_LO),y
+				iny
+				cpy textLength
+				bne fillTextColorColLoop
+
+				inx
+				cpx textHeight
+				bne fillTextColorRowLoop
+
+			PopFromStack()
+			rts
+
 	moveLines:
 		PushToStack()
 

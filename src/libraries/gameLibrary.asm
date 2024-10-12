@@ -89,6 +89,8 @@ GAME:
     changeLevel:
         PushToStack() 
 
+        Delay(250,250)
+
         jsr LEVELS.increaseLevel
         jsr HUD.updateLevelCounter
         jsr HUD.updateLinesLeftCounter

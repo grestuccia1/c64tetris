@@ -6,3 +6,8 @@ linesForLevel: .byte 0
 linesNeededForNextLevel: .byte 0
 
 tetriminoPerLevel: .byte 0
+
+transitionRow: .byte 0
+transitionRowDelayTimer: .byte 0
+transitionRowDelay: .byte 2
+transitionRowMax: .byte 23
