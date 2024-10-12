@@ -46,12 +46,12 @@ COORDINATOR: {
 
 				AddToScore(1,4)
 
-				inc transitionRow
 				lda transitionRow
 				cmp transitionRowMax
 				bne changeLevelTransition
 
-				jsr GAME.changeLevel
+				lda #GAME_MODE_CHANGE_LEVEL_DELAY
+				sta gameMode
 				
 			changeLevelTransition:
 				lda transitionRow
@@ -64,14 +64,34 @@ COORDINATOR: {
 				sta textHeight
 				lda #BLOCK
 				sta textChar
-				lda #15
+				ldx tileRow
+				lda rowTransitionColor, x
 				sta textColor
 
 				jsr OUTPUT.fillTextColor
 
+				inc transitionRow
+
 				jmp noGameModeEnd
 
-        noGameModeChangeLevel:
+		noGameModeChangeLevel:
+			cmp #GAME_MODE_CHANGE_LEVEL_DELAY
+			bne noGameModeChangeLevelDelay
+
+			lda transitionRowDelayTimer
+			cmp transitionRowFinalDelay
+				beq transitionRowDelayTimerReachedInDelay
+				inc transitionRowDelayTimer
+				jmp noGameModeEnd
+			transitionRowDelayTimerReachedInDelay:
+				lda #0
+				sta transitionRowDelayTimer
+
+			jsr GAME.changeLevel
+
+			jmp noGameModeEnd
+
+        noGameModeChangeLevelDelay:
             cmp #GAME_MODE_CHANGE_LEVEL_READY
             bne noGameModeChangeLevelReady
 

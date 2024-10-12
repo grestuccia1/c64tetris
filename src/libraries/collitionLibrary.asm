@@ -107,6 +107,7 @@ nextCharInLine:
 		bne nextCharInLine
 
 lineColitionDone:
+		dec tileRow
 		lda tileRow
 		sta transitionRowMax
 

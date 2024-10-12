@@ -45,6 +45,10 @@ GAME:
         lda #GAME_MODE_PLAYING_READY
         sta gameMode
         LoadFullScreen(HUD_GAMEPLAY_ADDRESS)
+        SetTextColor(17,12,1,6,1)
+        SetTextColor(17,16,1,6,1)
+        SetTextColor(19,20,1,2,1)
+        SetTextColor(19,24,1,2,1)
         jsr STATS.applyColors
         jsr HUD.updateLevelCounter
         jsr HUD.updateLinesLeftCounter
@@ -88,8 +92,6 @@ GAME:
 
     changeLevel:
         PushToStack() 
-
-        Delay(250,250)
 
         jsr LEVELS.increaseLevel
         jsr HUD.updateLevelCounter

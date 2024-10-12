@@ -45,6 +45,9 @@ tetriminoCountPerLevelToSpeedUp:
     .byte 10    
     .byte 10
 
+rowTransitionColor:
+    .byte 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1
+
 //Dual Rainbow Columns
 level4Length:
     .byte 16
