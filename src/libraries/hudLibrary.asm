@@ -8,7 +8,7 @@ HUD:
 		PushToStack()
 
 		lda #0
-		sta tileCounter
+		sta charCounter
 
 		lda charMapWidth
 		clc
@@ -21,38 +21,38 @@ HUD:
 		sta charMapHeight
 
 		ldx charMapStartY
-		stx tileRow
+		stx charRow
 
 		loadCharMapRow:
 
 			ldy charMapStartX
-			sty tileCol
+			sty charCol
 			
 			loadCharMapCol:
 				tya
 				pha
 
-				ldy tileCounter
+				ldy charCounter
 				lda (ZP_HUD_LO),y
-				sta tileNr
+				sta charId
 				tay
 			
 				lda #FONT_COLOR
-				sta tileColor
+				sta charColor
 				
 				pla
 				tay
 
-				jsr TILE.drawChar
-				inc tileCounter
+				jsr OUTPUT.drawChar
+				inc charCounter
 
 				iny
-				sty tileCol
+				sty charCol
 				cpy charMapWidth
 				bne loadCharMapCol
 
 			inx
-			stx tileRow
+			stx charRow
 			cpx charMapHeight
 			bne loadCharMapRow
 
@@ -63,7 +63,7 @@ HUD:
 		PushToStack()
 
 		lda #0
-		sta tileCounter
+		sta charCounter
 
 		lda charMapWidth
 		clc
@@ -76,39 +76,39 @@ HUD:
 		sta charMapHeight
 
 		ldx charMapStartY
-		stx tileRow
+		stx charRow
 
 		loadCharMapRowColor:
 
 			ldy charMapStartX
-			sty tileCol
+			sty charCol
 			
 			loadCharMapColColor:
 				tya
 				pha
 
-				ldy tileCounter
+				ldy charCounter
 				lda (ZP_HUD_LO),y
-				sta tileNr
+				sta charId
 
 				lda (ZP_HUD_COLOR_LO),y
-				sta tileColor
+				sta charColor
 
 				tay
 			
 				pla
 				tay
 
-				jsr TILE.drawChar
-				inc tileCounter
+				jsr OUTPUT.drawChar
+				inc charCounter
 
 				iny
-				sty tileCol
+				sty charCol
 				cpy charMapWidth
 				bne loadCharMapColColor
 
 			inx
-			stx tileRow
+			stx charRow
 			cpx charMapHeight
 			bne loadCharMapRowColor
 

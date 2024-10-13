@@ -4,6 +4,9 @@ LEVELS: {
     init:
         lda #0
         sta currentLevel
+        sta transitionRowDelayTimer
+        sta tempTransitionRowDelayTimer
+        sta tempTransitionRowDelayTimerInMenu
         jsr LEVELS.increaseLevel
         jsr HUD.resetScore
         jsr HUD.resetLinesCounter
@@ -62,7 +65,7 @@ LEVELS: {
 
         ldx #0
 
-        jsr TILE.getChar
+        jsr OUTPUT.getChar
 
         PopFromStack()
         rts

@@ -21,9 +21,9 @@
 .macro SetTextColor(col,row,height,length,colorVariable)
 {
 	lda #row
-	sta tileRow
+	sta charRow
 	lda #col
-	sta tileCol
+	sta charCol
 	lda #length
 	sta textLength
 	lda #height
@@ -34,12 +34,26 @@
 	jsr OUTPUT.setTextColor
 }
 
+.macro SetTextColorStored(col,row,height,length)
+{
+	lda #row
+	sta charRow
+	lda #col
+	sta charCol
+	lda #length
+	sta textLength
+	lda #height
+	sta textHeight
+	
+	jsr OUTPUT.setTextColor
+}
+
 .macro FillRectangle(col,row,height,length,char) {
 
 	lda #row
-	sta tileRow
+	sta charRow
 	lda #col
-	sta tileCol
+	sta charCol
 	lda #length
 	sta textLength
 	lda #height

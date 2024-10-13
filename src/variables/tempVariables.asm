@@ -13,3 +13,9 @@ tempY: .byte 0
 
 tempXpos: .byte 0
 tempYpos: .byte 0
+
+
+tempColorTransition: .byte 0
+
+tempTransitionRowDelayTimer: .byte 0
+tempTransitionRowDelayTimerInMenu: .byte 0

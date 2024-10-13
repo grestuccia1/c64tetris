@@ -6,18 +6,18 @@
 
     preloadLevelLoop:
         lda levelXs, x
-        sta tileCol
+        sta charCol
 
         lda levelYs, x
-        sta tileRow
+        sta charRow
 
         lda levelColors, x
-        sta tileColor
+        sta charColor
 
         lda #BLOCK
-        sta tileNr
+        sta charId
 
-        jsr TILE.drawChar
+        jsr OUTPUT.drawChar
 
         inx
         cpx levelLength

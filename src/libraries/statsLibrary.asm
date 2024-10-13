@@ -61,19 +61,19 @@ STATS:
         applyColorsRow:
 
             ldx statsTetriminoCol, y
-            stx tileCol
+            stx charCol
 
             ldx #0
-            stx tileRow
+            stx charRow
 
             applyColorsColumn:
 
                 lda tetriminoColors, y
-                sta tileColor
-                jsr TILE.changeColor
+                sta charColor
+                jsr OUTPUT.changeColor
 
                 inx
-                stx tileRow
+                stx charRow
                 cpx #HUD_STATS_POS_Y + 1
                 bne applyColorsColumn
 
@@ -90,17 +90,17 @@ STATS:
         ldy tetriminoNr
         
         lda statsTetriminoRow, y
-        sta tileRow
+        sta charRow
 
         lda statsTetriminoCol, y
-        sta tileCol
+        sta charCol
 
         lda statsTetriminoSubTotal,y 
         clc
         adc #STATS_CHARSET
-        sta tileNr
+        sta charId
 
-        jsr TILE.drawChar
+        jsr OUTPUT.drawChar
 
         PopFromStack()
         rts    

@@ -28,13 +28,17 @@
 	sta ZP_PY_HI       
 }
 
-.macro SelectTetrimino(row, col, rot) {
+.macro DrawTetrimino(nro, row, col, rot) {
 	lda #row
 	sta tetriminoRow
 	lda #col
 	sta tetriminoCol
 	lda #rot
 	sta tetriminoRot
+	lda #nro
+	sta tetriminoNr
+	jsr TETRIMINO.change
+	jsr TETRIMINO.draw
 }
 
 .macro NewTetrimino() {
@@ -43,16 +47,16 @@
 	//Clear tetrimino
 	ldy #HUD_CENTRAL_NEXT_POS_Y
 	clearNextTetriminoRow:
-	sty tileRow
+	sty charRow
 
 		ldx #HUD_CENTRAL_NEXT_POS_X
 		clearNextTetriminoCol:
-			stx tileCol
+			stx charCol
 
 			lda #SPACE
-			sta tileNr
+			sta charId
 
-			jsr TILE.drawChar
+			jsr OUTPUT.drawChar
 
 			inx
 			cpx #HUD_CENTRAL_NEXT_POS_X_END

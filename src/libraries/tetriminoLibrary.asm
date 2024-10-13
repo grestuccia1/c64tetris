@@ -24,14 +24,14 @@ TETRIMINO:
 				lda (ZP_PX_LO), y
 				clc
 				adc tetriminoCol
-				sta tileCol
+				sta charCol
 
 				lda (ZP_PY_LO), y
 				clc
 				adc tetriminoRow
-				sta tileRow
+				sta charRow
 
-				jsr TILE.drawChar
+				jsr OUTPUT.drawChar
 
 				iny
 				cpy tetriminoEnd
@@ -43,14 +43,14 @@ TETRIMINO:
 	
 	draw:
 		lda #BLOCK
-		sta tileNr
+		sta charId
 
 		jsr TETRIMINO.paint
 		rts
 
 	remove:
 		lda #SPACE
-		sta tileNr
+		sta charId
 
 		jsr TETRIMINO.paint
 		rts
@@ -67,6 +67,7 @@ TETRIMINO:
 		lda tetriminoFallDelayTimer
 		cmp tetriminoFallDelay
 			beq tetriminoFallDelayTimerReached
+			bcs tetriminoFallDelayTimerReached
 			inc tetriminoFallDelayTimer
 			jmp checkDownDirection
 		tetriminoFallDelayTimerReached:
@@ -202,7 +203,7 @@ TETRIMINO:
 
 		ldx tetriminoNr
 		lda tetriminoColors,x
-		sta tileColor
+		sta charColor
 
 		lda tetriminoPositionsX_LO,x  
 		ldy tetriminoPositionsX_HI,x  
@@ -222,11 +223,11 @@ TETRIMINO:
 		PushToStack()
 
 		lda #TETRIMINO_ROW_LAST
-		sta tileRow
-		ldx tileRow
+		sta charRow
+		ldx charRow
 		
 		lda #TETRIMINO_COL_FIRST
-		sta tileCol
+		sta charCol
 
 		movePreviousLine:
 			lda #BLOCK
@@ -235,11 +236,11 @@ TETRIMINO:
 			ldy #TETRIMINO_COL_FIRST
 
 			moveNextPosition:		
-				sty tileCol
+				sty charCol
 				cpy #TETRIMINO_COL_LAST
 				beq removeLine
 
-				jsr TILE.getChar
+				jsr OUTPUT.getChar
 
 				iny
 				lda charCollision
@@ -255,7 +256,7 @@ TETRIMINO:
 			previewsLine:
 				dex
 			keepInSameLine:	
-				stx tileRow
+				stx charRow
 				cpx tetriminoRow
 				bne movePreviousLine
 				jmp endCheckCompleteLines
@@ -283,6 +284,9 @@ TETRIMINO:
 		jmp speedUpTetriminoDone
 
 		speedUpTetrimino:
+			lda tetriminoFallDelay
+			beq speedUpTetriminoDone
+
 			lda #0
 			sta tetriminoPerLevel
 			

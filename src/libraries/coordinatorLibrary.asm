@@ -35,14 +35,15 @@ COORDINATOR: {
             cmp #GAME_MODE_CHANGE_LEVEL
 			bne noGameModeChangeLevel
 
-			lda transitionRowDelayTimer
+			lda tempTransitionRowDelayTimer
 			cmp transitionRowDelay
 				beq transitionRowDelayTimerReached
-				inc transitionRowDelayTimer
+				bcs transitionRowDelayTimerReached
+				inc tempTransitionRowDelayTimer
 				jmp noGameModeEnd
 			transitionRowDelayTimerReached:
 				lda #0
-				sta transitionRowDelayTimer
+				sta tempTransitionRowDelayTimer
 
 				AddToScore(1,4)
 
@@ -55,16 +56,16 @@ COORDINATOR: {
 				
 			changeLevelTransition:
 				lda transitionRow
-				sta tileRow
+				sta charRow
 				lda #TETRIMINO_COL_FIRST
-				sta tileCol
+				sta charCol
 				lda #10
 				sta textLength
 				lda #1
 				sta textHeight
 				lda #BLOCK
 				sta textChar
-				ldx tileRow
+				ldx charRow
 				lda rowTransitionColor, x
 				sta textColor
 
@@ -81,6 +82,7 @@ COORDINATOR: {
 			lda transitionRowDelayTimer
 			cmp transitionRowFinalDelay
 				beq transitionRowDelayTimerReachedInDelay
+				bcs transitionRowDelayTimerReachedInDelay
 				inc transitionRowDelayTimer
 				jmp noGameModeEnd
 			transitionRowDelayTimerReachedInDelay:

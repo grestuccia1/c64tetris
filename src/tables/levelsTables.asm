@@ -14,6 +14,15 @@ linesGoalPerLevel:
     .byte 15    // Level: 10
     .byte 18    
     .byte 12
+    .byte 15
+    .byte 18    
+    .byte 20    // Level: 15
+    .byte 20    
+    .byte 20    
+    .byte 22    
+    .byte 24    
+    .byte 28    // Level: 20
+
 
 tetriminoFallDelayPerLevel:
     .byte 0    
@@ -29,6 +38,14 @@ tetriminoFallDelayPerLevel:
     .byte 35    // Level: 10  
     .byte 20    
     .byte 20
+    .byte 15
+    .byte 15
+    .byte 10    // Level: 10  
+    .byte 10    
+    .byte 30    
+    .byte 25    
+    .byte 20
+    .byte 10    // Level: 20       
 
 tetriminoCountPerLevelToSpeedUp:
     .byte 0    
@@ -44,9 +61,18 @@ tetriminoCountPerLevelToSpeedUp:
     .byte 10    // Level: 10    
     .byte 10    
     .byte 10
+    .byte 5
+    .byte 5
+    .byte 5     // Level: 15   
+    .byte 4  
+    .byte 3  
+    .byte 2 
+    .byte 2  
+    .byte 2     // Level: 20   
+
 
 rowTransitionColor:
-    .byte 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1
+    .byte 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12
 
 //Dual Rainbow Columns
 level4Length:

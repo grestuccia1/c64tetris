@@ -53,14 +53,14 @@ COLLITION:
 				lda (ZP_PX_LO), y
 				clc
 				adc collitionCol
-				sta tileCol
+				sta charCol
 
 				lda (ZP_PY_LO), y
 				clc
 				adc collitionRow
-				sta tileRow
+				sta charRow
 
-				jsr TILE.getChar
+				jsr OUTPUT.getChar
 
 				lda charCollision
 				cmp	#SPACE
@@ -78,37 +78,37 @@ COLLITION:
 		PushToStack()
 
 		lda #0
-		sta tileRow
+		sta charRow
 		
 		lda #1
-		sta tileCol
+		sta charCol
 
 		lda #SPACE
 		sta charCollision
 
 nextCharInLine:
-		jsr TILE.getChar
+		jsr OUTPUT.getChar
 
 		lda charCollision
 		cmp	#SPACE
 		bne lineColitionDone
 
-		inc tileCol
-		lda tileCol
+		inc charCol
+		lda charCol
 		cmp #TETRIMINO_COL_LAST
 		bne nextCharInLine
 
 		lda #1
-		sta tileCol
+		sta charCol
 
-		inc tileRow
-		lda tileRow
+		inc charRow
+		lda charRow
 		cmp #TETRIMINO_ROW_LAST
 		bne nextCharInLine
 
 lineColitionDone:
-		dec tileRow
-		lda tileRow
+		dec charRow
+		lda charRow
 		sta transitionRowMax
 
 		PopFromStack()

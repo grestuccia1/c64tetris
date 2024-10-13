@@ -3,6 +3,85 @@
 
 OUTPUT:
 {
+
+	drawChar:
+		PushToStack()
+
+		ldx charRow
+		cpx #TETRIMINO_ROW_OOR
+		bcs drawCharOOR
+
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+		lda Row_Color_LO,x
+		sta ZP_ROW_COLOR_LO
+		lda Row_Color_HI,x
+		sta ZP_ROW_COLOR_HI
+
+		ldy charCol
+
+		lda charId
+		sta (ZP_ROW_LO),y
+
+		lda charColor
+		sta (ZP_ROW_COLOR_LO),y
+
+		drawCharOOR:
+			PopFromStack()
+			rts
+
+	getChar:
+		PushToStack()
+
+		ldx charRow
+		cpx #TETRIMINO_ROW_OOR
+		bcs getCharOOR
+
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+		lda Row_Color_LO,x
+		sta ZP_ROW_COLOR_LO
+		lda Row_Color_HI,x
+		sta ZP_ROW_COLOR_HI
+
+		ldy charCol
+
+		lda (ZP_ROW_LO),y
+		sta charCollision
+
+		lda (ZP_ROW_COLOR_LO), y
+		sta colorCollision
+
+		getCharOOR:
+
+			PopFromStack()
+			rts
+
+	changeColor:
+		PushToStack()
+
+		ldx charRow
+		cpx #TETRIMINO_ROW_OOR
+		bcs changeColorOOR
+
+		lda Row_Color_LO,x
+		sta ZP_ROW_COLOR_LO
+		lda Row_Color_HI,x
+		sta ZP_ROW_COLOR_HI
+
+		ldy charCol
+
+		lda charColor
+		sta (ZP_ROW_COLOR_LO),y
+
+		changeColorOOR:
+			PopFromStack()
+			rts
+
 	writeText:
 		PushToStack()
 
@@ -48,17 +127,17 @@ OUTPUT:
 	setTextColor:
 		PushToStack()
 
-		lda tileRow
+		lda charRow
 		clc 
 		adc textHeight
 		sta textHeight
 
-		lda tileCol
+		lda charCol
 		clc
 		adc textLength
 		sta textLength
 		
-		ldx tileRow
+		ldx charRow
 
 		textColorRowLoop:
 		lda Row_Color_LO,x
@@ -66,7 +145,7 @@ OUTPUT:
 		lda Row_Color_HI,x
 		sta ZP_ROW_COLOR_HI
 
-		ldy tileCol
+		ldy charCol
 
 		lda textColor
 
@@ -86,17 +165,17 @@ OUTPUT:
 	fillText:
 		PushToStack()
 
-		lda tileRow
+		lda charRow
 		clc 
 		adc textHeight
 		sta textHeight
 
-		lda tileCol
+		lda charCol
 		clc
 		adc textLength
 		sta textLength
 		
-		ldx tileRow
+		ldx charRow
 
 		textFillRowLoop:
 		lda Row_LO,x
@@ -104,7 +183,7 @@ OUTPUT:
 		lda Row_HI,x
 		sta ZP_ROW_HI
 
-		ldy tileCol
+		ldy charCol
 
 		lda textChar
 
@@ -124,17 +203,17 @@ OUTPUT:
 	fillTextColor:
 		PushToStack()
 
-		lda tileRow
+		lda charRow
 		clc 
 		adc textHeight
 		sta textHeight
 
-		lda tileCol
+		lda charCol
 		clc
 		adc textLength
 		sta textLength
 		
-		ldx tileRow
+		ldx charRow
 
 		fillTextColorRowLoop:
 			lda Row_LO,x
@@ -146,7 +225,7 @@ OUTPUT:
 			lda Row_Color_HI,x
 			sta ZP_ROW_COLOR_HI
 
-			ldy tileCol
+			ldy charCol
 
 			lda textChar
 
@@ -169,7 +248,7 @@ OUTPUT:
 	moveLines:
 		PushToStack()
 
-		ldx tileRow
+		ldx charRow
 
 		moveLinePrevious:
 			lda Row_LO,x
