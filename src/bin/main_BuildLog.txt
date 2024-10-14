@@ -1,9 +1,0 @@
-Output dir: /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin
-parsing
-flex pass 1
-flex pass 2
-flex pass 3
-Output pass
-
-Error: In segment 'Default' the memoryblock 'Game Code' ($0810-$2042) overlaps 'Variables' ($0c00-$0c36)
-

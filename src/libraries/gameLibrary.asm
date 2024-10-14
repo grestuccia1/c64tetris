@@ -26,6 +26,9 @@ GAME:
         lda #%00000001
         sta SPRITE_ENABLE
 
+
+        lda firstSpriteAnimGraphic
+        clc
         adc #SPRITE_POINTER_INDEX
         sta SPRITE_POINTER
 
