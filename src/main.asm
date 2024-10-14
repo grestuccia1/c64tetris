@@ -3,7 +3,7 @@
 #import "includes/constants.asm"
 #import "includes/macros.asm"
 
-.var music = LoadSid("music/Stranger_Things.sid")
+.var music = LoadSid("music/tetris-95.sid")
 
 BasicUpstart2(main)
 
@@ -39,3 +39,6 @@ BasicUpstart2(main)
 
 *=HUD_GAME_OVER_TITLE_COLORS_ADDRESS "HUD Game Over Title Colors"
 .import binary "hud/gameOverTitleColors.bin"
+
+*=SPRITES_ADDRESS "Sprites"
+.import binary "sprites/dancer.bin"

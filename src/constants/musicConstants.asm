@@ -1,3 +1,3 @@
-.label MUSIC_LOAD = $1000
-.label MUSIC_INIT = $1000
-.label MUSIC_PLAY = $1003
+.label MUSIC_LOAD = $9500
+.label MUSIC_INIT = $9dc0
+.label MUSIC_PLAY = $9dc3

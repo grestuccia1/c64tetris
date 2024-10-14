@@ -10,3 +10,4 @@
 #import "../variables/gameVariables.asm"
 #import "../variables/textVariables.asm"
 #import "../variables/levelsVariables.asm"
+#import "../variables/spriteVariables.asm"

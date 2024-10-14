@@ -14,3 +14,4 @@
 #import "../constants/outputConstants.asm"
 #import "../constants/hudConstants.asm"
 #import "../constants/musicConstants.asm"
+#import "../constants/spriteConstants.asm"
