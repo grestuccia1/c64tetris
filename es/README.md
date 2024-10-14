@@ -120,3 +120,5 @@ Este proyecto se lanza bajo la Licencia MIT. Eres libre de usar, modificar y dis
 ## Importante
 
 **Todos los derechos de Tetris pertenecen a sus respectivos dueños. Este proyecto está inspirado en Tetris y es solo para fines educativos, sin intención comercial.**
+
+**Música**: Song 11 - Author [Leigh White (Racer X)](https://csdb.dk/release/?id=17674) ❤️❤️❤️

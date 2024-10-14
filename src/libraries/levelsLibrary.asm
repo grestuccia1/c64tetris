@@ -2,7 +2,7 @@
 
 LEVELS: {
     init:
-        lda #0
+        lda #9
         sta currentLevel
         sta transitionRowDelayTimer
         sta tempTransitionRowDelayTimer

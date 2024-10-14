@@ -3,7 +3,7 @@
 #import "includes/constants.asm"
 #import "includes/macros.asm"
 
-.var music = LoadSid("music/tetris-95.sid")
+.var music = LoadSid("music/racer_x.sid")
 
 BasicUpstart2(main)
 
