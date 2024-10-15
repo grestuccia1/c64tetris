@@ -17,20 +17,7 @@ GAME:
         LoadCharColorMap(HUD_TETRIS_TITLE_ADDRESS, HUD_TETRIS_TITLE_COLORS_ADDRESS, 3, 6, 35, 7)
         WriteText(START_MESSAGE, 9, 19, 1)
 
-        lda #100
-        sta SPRITE_X
-
-        lda #77
-        sta SPRITE_Y
-
-        lda #%00000001
-        sta SPRITE_ENABLE
-
-
-        lda firstSpriteAnimGraphic
-        clc
-        adc #SPRITE_POINTER_INDEX
-        sta SPRITE_POINTER
+        ShowFolkRussianDancer(77, 100)
 
         //Top left
         DrawTetrimino(1, 0, -1, 3)
@@ -67,20 +54,7 @@ GAME:
             lda #0
             sta tempTransitionRowDelayTimerInMenu
             
-            lda firstSpriteAnimGraphic
-            clc
-            adc #SPRITE_POINTER_INDEX
-            sta SPRITE_POINTER
-
-            lda firstSpriteAnimGraphic
-            cmp #28
-            beq maxFrameReached
-            bcs maxFrameReached
-            inc firstSpriteAnimGraphic
-            jmp continueColorTransition
-        maxFrameReached:
-            lda #0
-            sta firstSpriteAnimGraphic
+        AnimatesFolkRussianDancer()
 
 continueColorTransition:
         inc tempColorTransition
@@ -105,8 +79,7 @@ continueColorTransition:
         lda #GAME_MODE_PLAYING
         sta gameMode
         
-        lda #%00000000
-        sta SPRITE_ENABLE
+        HideFolkRussianDancer()
 
         inMenuNoF1:
 
