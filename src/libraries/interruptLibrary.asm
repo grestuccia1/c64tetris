@@ -52,10 +52,13 @@ INTERRUPT:
 		ora #%00000001 							// Acknowledge raster interrupt
 		sta INTERRUPT_STATUS
 
+		lda playMusic
+		beq skipMusic
 		jsr MUSIC_PLAY
-
-		jsr COORDINATOR.gamePlay
 		
-		jmp INTERRUPT_RETURN					// KERNAL interrupt return routine
+		skipMusic:
+			jsr COORDINATOR.gamePlay
+		
+			jmp INTERRUPT_RETURN					// KERNAL interrupt return routine
 
 }
