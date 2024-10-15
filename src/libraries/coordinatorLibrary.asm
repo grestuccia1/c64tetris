@@ -59,9 +59,9 @@ COORDINATOR: {
 				sta charRow
 				lda #TETRIMINO_COL_FIRST
 				sta charCol
-				lda #10
+				lda #TETRIMINO_ROW_LENGHT
 				sta textLength
-				lda #1
+				lda #TETRIMINO_COL_FIRST
 				sta textHeight
 				lda #BLOCK
 				sta textChar

@@ -284,7 +284,7 @@ OUTPUT:
 				bne moveNextChar
 
 			cpx #TETRIMINO_ROW_FIRST //TODO: OPTIMIZE
-	 		bcs moveLinePrevious
+	 		bne moveLinePrevious
 
 		PopFromStack()
 		rts		

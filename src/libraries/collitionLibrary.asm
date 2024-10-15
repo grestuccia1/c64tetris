@@ -77,10 +77,10 @@ COLLITION:
 	lineColition:
 		PushToStack()
 
-		lda #0
+		lda #TETRIMINO_ROW_FIRST
 		sta charRow
 		
-		lda #1
+		lda #TETRIMINO_COL_FIRST
 		sta charCol
 
 		lda #SPACE
@@ -98,7 +98,7 @@ nextCharInLine:
 		cmp #TETRIMINO_COL_LAST
 		bne nextCharInLine
 
-		lda #1
+		lda #TETRIMINO_COL_FIRST
 		sta charCol
 
 		inc charRow
