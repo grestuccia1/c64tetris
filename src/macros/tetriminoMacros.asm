@@ -2,7 +2,7 @@
 
 .macro ClearTetriminoDirection(direction)
 {
-	lda tetriminoDirection
+ 	lda tetriminoDirection
 	and #%11111111 - direction
 	sta tetriminoDirection
 }
@@ -45,7 +45,7 @@
 	ClearTetriminoDirection(ALL_DIRECTIONS)
 	
 	//Clear tetrimino
-	ldy #HUD_CENTRAL_NEXT_POS_Y
+ 	ldy #HUD_CENTRAL_NEXT_POS_Y
 	clearNextTetriminoRow:
 	sty charRow
 

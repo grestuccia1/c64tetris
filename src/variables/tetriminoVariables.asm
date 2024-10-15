@@ -20,7 +20,7 @@ tetriminoHSpeed: .byte 2
 tetriminoRotateCooldownTimer: .byte 0
 tetriminoRotateCooldown: .byte 6
 
-tetriminoFallDelayTimer: .byte 0
+tetriminoFallDelayTimer: .byte 40
 tetriminoFallDelay: .byte 40
 tetriminoMustFall: .byte 0
 

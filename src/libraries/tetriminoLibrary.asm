@@ -64,18 +64,16 @@ TETRIMINO:
 		sta tetriminoMustFall
 
 		checktetriminoFallDelayTimer:
-		lda tetriminoFallDelayTimer
-		cmp tetriminoFallDelay
+		
+			ldx tetriminoFallDelayTimer
 			beq tetriminoFallDelayTimerReached
-			bcs tetriminoFallDelayTimerReached
-			inc tetriminoFallDelayTimer
+			dec tetriminoFallDelayTimer
 			jmp checkDownDirection
-		tetriminoFallDelayTimerReached:
-			lda #TETRIMINO_MUST_FALL
-			sta tetriminoMustFall
-			lda #TETRIMINO_NOT_FALL
-			sta tetriminoFallDelayTimer
-			jmp moveSpriteDown
+						
+			tetriminoFallDelayTimerReached:
+	            jsr TETRIMINO.resetFall
+
+				jmp moveSpriteDown
 
 		checkDownDirection:
 			lda tetriminoDirection
@@ -300,4 +298,11 @@ TETRIMINO:
 		speedUpTetriminoDone:
 			PopFromStack()
 			rts
+
+	resetFall:
+		lda #TETRIMINO_MUST_FALL
+		sta tetriminoMustFall
+		lda tetriminoFallDelay
+		sta tetriminoFallDelayTimer
+		rts
 }

@@ -211,6 +211,8 @@ continueColorTransition:
 
             jsr TETRIMINO.speedUp
 
+            jsr TETRIMINO.resetFall
+            
             NewTetrimino()
 
         createNewTestTetriminoDone:
