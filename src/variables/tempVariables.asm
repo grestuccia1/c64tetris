@@ -17,5 +17,6 @@ tempYpos: .byte 0
 
 tempColorTransition: .byte 0
 
-tempTransitionRowDelayTimer: .byte 0
-tempTransitionRowDelayTimerInMenu: .byte 0
+tempTransitionRowDelayTimer: .byte TRANSITION_ROW_DELAY_TIMER_REACHED
+tempTransitionColorDelayTimer: .byte 0
+tempTransitionBetweenLevelsDelay: .byte TRANSITION_BETWEEN_LEVELS_DELAY_TIMER_REACHED

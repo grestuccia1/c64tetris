@@ -2,11 +2,18 @@
 
 LEVELS: {
     init:
-        lda #0
+        lda #LEVEL_RESET
         sta currentLevel
-        sta transitionRowDelayTimer
+
+        lda #TRANSITION_COLOR_DELAY
+        sta tempTransitionColorDelayTimer
+        
+        lda #TRANSITION_ROW_DELAY_TIMER_REACHED
         sta tempTransitionRowDelayTimer
-        sta tempTransitionRowDelayTimerInMenu
+        
+        lda #TRANSITION_BETWEEN_LEVELS_DELAY_TIMER_REACHED
+        sta tempTransitionBetweenLevelsDelay
+
         jsr LEVELS.increaseLevel
         jsr HUD.resetScore
         jsr HUD.resetLinesCounter
@@ -15,7 +22,7 @@ LEVELS: {
     increaseLevel:
         lda currentLevel
         clc
-        adc #1
+        adc #MOVE_NEXT_LEVEL_FACTOR
         sta currentLevel
         jsr setLinesNeededForNextLevel
         rts
@@ -31,7 +38,7 @@ LEVELS: {
         lda tetriminoFallDelayPerLevel, x
         sta tetriminoFallDelay
 
-        lda #0
+        lda #RESET_LINES_FOR_LEVEL
         sta linesForLevel
         sta transitionRow
 
@@ -57,16 +64,6 @@ LEVELS: {
             jmp LevelNotComplete
 
         LevelNotComplete:
-        PopFromStack()
-        rts
-
-    calculareTransitionRowMax:
-        PushToStack()
-
-        ldx #0
-
-        jsr OUTPUT.getChar
-
         PopFromStack()
         rts
 

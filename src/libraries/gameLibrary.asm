@@ -44,15 +44,14 @@ GAME:
     inMenuMode:
         PushToStack()
 
-        lda tempTransitionRowDelayTimerInMenu
-        cmp #COLOR_TRANSITION_DELAY
-            beq inMenuModeTransitionRowDelayTimerReached
-            bcs inMenuModeTransitionRowDelayTimerReached
-            inc tempTransitionRowDelayTimerInMenu
-            jmp noChangeColorInMenu
-        inMenuModeTransitionRowDelayTimerReached:
-            lda #0
-            sta tempTransitionRowDelayTimerInMenu
+        ldx tempTransitionColorDelayTimer
+        beq inMenuModeTransitionRowDelayTimerReached
+        dec tempTransitionColorDelayTimer
+        jmp noChangeColorInMenu
+
+            inMenuModeTransitionRowDelayTimerReached:
+                lda #TRANSITION_COLOR_DELAY
+                sta tempTransitionColorDelayTimer
             
         AnimatesFolkRussianDancer()
 

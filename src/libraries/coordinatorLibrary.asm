@@ -35,15 +35,14 @@ COORDINATOR: {
             cmp #GAME_MODE_CHANGE_LEVEL
 			bne noGameModeChangeLevel
 
-			lda tempTransitionRowDelayTimer
-			cmp transitionRowDelay
-				beq transitionRowDelayTimerReached
-				bcs transitionRowDelayTimerReached
-				inc tempTransitionRowDelayTimer
-				jmp noGameModeEnd
+			ldx tempTransitionRowDelayTimer
+			beq transitionRowDelayTimerReached 
+			dec tempTransitionRowDelayTimer    
+			jmp noGameModeEnd                  
+
 			transitionRowDelayTimerReached:
-				lda #0
-				sta tempTransitionRowDelayTimer
+				lda #TRANSITION_ROW_DELAY_TIMER_REACHED
+				sta tempTransitionRowDelayTimer 
 
 				AddToScore(1,4)
 
@@ -79,15 +78,13 @@ COORDINATOR: {
 			cmp #GAME_MODE_CHANGE_LEVEL_DELAY
 			bne noGameModeChangeLevelDelay
 
-			lda transitionRowDelayTimer
-			cmp transitionRowFinalDelay
-				beq transitionRowDelayTimerReachedInDelay
-				bcs transitionRowDelayTimerReachedInDelay
-				inc transitionRowDelayTimer
-				jmp noGameModeEnd
-			transitionRowDelayTimerReachedInDelay:
-				lda #0
-				sta transitionRowDelayTimer
+			lda tempTransitionBetweenLevelsDelay
+			beq transitionBetweenLevelsDelayTimerReached
+			dec tempTransitionBetweenLevelsDelay
+			jmp noGameModeEnd
+			transitionBetweenLevelsDelayTimerReached:
+				lda #TRANSITION_BETWEEN_LEVELS_DELAY_TIMER_REACHED
+				sta tempTransitionBetweenLevelsDelay
 
 			jsr GAME.changeLevel
 

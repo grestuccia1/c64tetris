@@ -7,7 +7,7 @@ HUD:
 	loadCharMap:
 		PushToStack()
 
-		lda #0
+		lda #HUD_RESET_COUNTER
 		sta charCounter
 
 		lda charMapWidth
@@ -62,7 +62,7 @@ HUD:
 	loadCharMapColor:
 		PushToStack()
 
-		lda #0
+		lda #HUD_RESET_COUNTER
 		sta charCounter
 
 		lda charMapWidth
@@ -131,7 +131,7 @@ HUD:
 		updateScoreLoop:
 			lda score100000,x
 			clc
-			adc #$30 // Screen code for the 0 char
+			adc #HUD_CHAR_ZERO
 			sta (ZP_ROW_LO),y
 			iny
 
@@ -146,7 +146,7 @@ HUD:
 	resetScore:
 		PushToStack()
 
-		lda #0
+		lda #HUD_RESET_COUNTER
 		tax
 		resetScoreLoop:
 			sta score100000,x
@@ -172,7 +172,7 @@ HUD:
 		updateLinesCounterLoop:
 			lda lines100000,x
 			clc
-			adc #$30 // Screen code for the 0 char
+			adc #HUD_CHAR_ZERO
 			sta (ZP_ROW_LO),y
 			iny
 
@@ -187,7 +187,7 @@ HUD:
 	resetLinesCounter:
 		PushToStack()
 
-		lda #0
+		lda #HUD_RESET_COUNTER
 		tax
 		resetLinesCounterLoop:
 			sta lines100000,x
@@ -214,14 +214,14 @@ HUD:
 		iny
 
 		clc
-		adc #$30 
+		adc #HUD_CHAR_ZERO
 		sta (ZP_ROW_LO),y
 
 		dey
 
 		txa
 		clc
-		adc #$30
+		adc #HUD_CHAR_ZERO
 		sta (ZP_ROW_LO),y
 
 		PopFromStack()	
@@ -244,8 +244,8 @@ HUD:
 
 		cmp #99
 		bcc needShowLinesLeft
-		lda #0
-		ldx #0
+		lda #HUD_RESET_COUNTER
+		ldx #HUD_RESET_COUNTER
 		jmp showLinesLeft
 	needShowLinesLeft:
 		jsr MATH.divideBy10
@@ -253,14 +253,14 @@ HUD:
 		iny
 
 		clc
-		adc #$30 
+		adc #HUD_CHAR_ZERO
 		sta (ZP_ROW_LO),y
 
 		dey
 
 		txa
 		clc
-		adc #$30
+		adc #HUD_CHAR_ZERO
 		sta (ZP_ROW_LO),y
 
 		PopFromStack()	
