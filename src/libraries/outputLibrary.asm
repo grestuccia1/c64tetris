@@ -329,7 +329,7 @@ OUTPUT:
 				cpy #TETRIMINO_COL_LAST
 				bne moveNextChar
 
-			cpx #TETRIMINO_ROW_FIRST //TODO: OPTIMIZE
+			cpx tetriminoLowRowPosition
 	 		bne moveLinePrevious
 
 		PopFromStack()

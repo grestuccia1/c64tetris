@@ -86,31 +86,31 @@ COLLITION:
 		lda #SPACE
 		sta charCollision
 
-nextCharInLine:
-		jsr OUTPUT.getChar
+		nextCharInLine:
+			jsr OUTPUT.getChar
 
-		lda charCollision
-		cmp	#SPACE
-		bne lineColitionDone
+			lda charCollision
+			cmp	#SPACE
+			bne lineColitionDone
 
-		inc charCol
-		lda charCol
-		cmp #TETRIMINO_COL_LAST
-		bne nextCharInLine
+			inc charCol
+			lda charCol
+			cmp #TETRIMINO_COL_LAST
+			bne nextCharInLine
 
-		lda #TETRIMINO_COL_FIRST
-		sta charCol
+			lda #TETRIMINO_COL_FIRST
+			sta charCol
 
-		inc charRow
-		lda charRow
-		cmp #TETRIMINO_ROW_LAST
-		bne nextCharInLine
+			inc charRow
+			lda charRow
+			cmp #TETRIMINO_ROW_LAST
+			bne nextCharInLine
 
-lineColitionDone:
-		dec charRow
-		lda charRow
-		sta transitionRowMax
+		lineColitionDone:
+			dec charRow
+			lda charRow
+			sta transitionRowMax
 
-		PopFromStack()
-		rts
+			PopFromStack()
+			rts
 }

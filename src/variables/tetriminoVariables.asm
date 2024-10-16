@@ -26,4 +26,5 @@ tetriminoMustFall: .byte 0
 
 tetriminoNext: .byte 0
 
+tetriminoLowRowPosition: .byte TETRIMINO_ROW_LAST
 

@@ -215,13 +215,19 @@ TETRIMINO:
 
 		PopFromStack()
 		rts
-     
 
 	checkCompleteLines:
 		PushToStack()
 
 		clc
 		lda tetriminoRow
+
+		cmp tetriminoLowRowPosition
+		bcs continueTetriminoLowRowPosition
+		sta tetriminoLowRowPosition
+		dec tetriminoLowRowPosition
+
+	continueTetriminoLowRowPosition:
 		adc #TETRIMINO_HEIGHT
 		cmp #TETRIMINO_ROW_LAST
 		bcc continueCheckCompleteLines
@@ -252,6 +258,7 @@ TETRIMINO:
 		removeLine:
 			AddToScore(1,3)
 			jsr OUTPUT.moveLines
+			inc tetriminoLowRowPosition
 			jmp addLineCounter
 		previewsLine:
 			dex
