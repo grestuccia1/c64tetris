@@ -49,7 +49,8 @@ GAME:
         jsr LEVELS.init
         jsr STATS.init
 
-        
+        lda #1
+        sta playMusic
 
         PopFromStack()
         rts

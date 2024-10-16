@@ -32,6 +32,43 @@ OUTPUT:
 			PopFromStack()
 			rts
 
+	rowIsComplete:
+		PushToStack()
+
+		ldx charRow
+		cpx #TETRIMINO_ROW_OOR
+		bcs setPositionInRowOOR
+
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+		lda Row_Color_LO,x
+		sta ZP_ROW_COLOR_LO
+		lda Row_Color_HI,x
+		sta ZP_ROW_COLOR_HI
+
+		ldy charCol
+
+		moveNextPositionInRow:
+		cpy #TETRIMINO_COL_LAST
+		beq setPositionInRowOOR
+
+		lda (ZP_ROW_LO),y
+
+		iny
+		cmp	#SPACE
+		bne moveNextPositionInRow 
+
+		setPositionInRowOOR:
+		
+			sta charCollision
+
+			PopFromStack()
+			rts
+
+
+
 	getChar:
 		PushToStack()
 

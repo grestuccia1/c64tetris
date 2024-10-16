@@ -220,7 +220,14 @@ TETRIMINO:
 	checkCompleteLines:
 		PushToStack()
 
+		clc
+		lda tetriminoRow
+		adc #TETRIMINO_HEIGHT
+		cmp #TETRIMINO_ROW_LAST
+		bcc continueCheckCompleteLines
 		lda #TETRIMINO_ROW_LAST
+
+	continueCheckCompleteLines:
 		sta charRow
 		ldx charRow
 		
@@ -232,39 +239,34 @@ TETRIMINO:
 			sta charCollision
 
 			ldy #TETRIMINO_COL_FIRST
+			sty charCol
 
-			moveNextPosition:		
-				sty charCol
-				cpy #TETRIMINO_COL_LAST
-				beq removeLine
+  			jsr OUTPUT.rowIsComplete
 
-				jsr OUTPUT.getChar
+ 			lda charCollision
+			cmp	#SPACE
+			bne removeLine 
+			
+			jmp previewsLine
 
-				iny
-				lda charCollision
-				cmp	#SPACE
-				bne moveNextPosition 
-				
-				jmp previewsLine
-
-			removeLine:
-				AddToScore(1,3)
-				jsr OUTPUT.moveLines
-				jmp addLineCounter
-			previewsLine:
-				dex
-			keepInSameLine:	
-				stx charRow
-				cpx tetriminoRow
-				bne movePreviousLine
-				jmp endCheckCompleteLines
+		removeLine:
+			AddToScore(1,3)
+			jsr OUTPUT.moveLines
+			jmp addLineCounter
+		previewsLine:
+			dex
+		keepInSameLine:	
+			stx charRow
+			cpx tetriminoRow
+			bcs movePreviousLine
+			jmp endCheckCompleteLines
 
 		addLineCounter:
 			AddLineCounter()
 			jmp keepInSameLine
 
 		endCheckCompleteLines:
-			jsr LEVELS.checkCompleteLevel
+ 			jsr LEVELS.checkCompleteLevel
 			jsr HUD.updateLinesLeftCounter
 
 			PopFromStack()
