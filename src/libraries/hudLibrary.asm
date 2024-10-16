@@ -227,6 +227,35 @@ HUD:
 		PopFromStack()	
 		rts
 
+	startLevelCounter:
+		PushToStack()	
+
+		ldx #HUD_START_LEVEL_Y_POS
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+
+		ldy #HUD_START_LEVEL_X_POS
+
+		lda currentLevel
+		jsr MATH.divideBy10
+		iny
+
+		clc
+		adc #HUD_CHAR_ZERO
+		sta (ZP_ROW_LO),y
+
+		dey
+
+		txa
+		clc
+		adc #HUD_CHAR_ZERO
+		sta (ZP_ROW_LO),y
+
+		PopFromStack()	
+		rts	
+
 	updateLinesLeftCounter:
 		PushToStack()	
 

@@ -3,9 +3,14 @@
 GAME:
 {
     init:
+        lda #GAME_START_UP
+        sta gameMode
+        rts
+
+    startGameMenu:
         lda #GAME_MODE_MENU
         sta gameMode
-    rts
+        rts
 
     goToMenu:
         PushToStack()
@@ -15,7 +20,11 @@ GAME:
 
         jsr SCREEN_CLEAR
         LoadCharColorMap(HUD_TETRIS_TITLE_ADDRESS, HUD_TETRIS_TITLE_COLORS_ADDRESS, 3, 6, 35, 7)
-        WriteText(START_MESSAGE, 9, 19, 1)
+
+        WriteText(START_MESSAGE, 4, 16, 1)
+        WriteText(MUSIC_ON_OFF_MESSAGE, 4, 18, 1)
+        WriteText(CHANGE_LEVEL_MESSAGE, 4, 20, 1)
+        WriteText(START_LEVEL_NUMBER, 4, 22, 1)
 
         ShowFolkRussianDancer(77, 100)
 
@@ -32,11 +41,15 @@ GAME:
         DrawTetrimino(0, 1, 36, 0)
 
         //Bottom right
-        DrawTetrimino(6, 23, 37, 0)
-        DrawTetrimino(5, 21, 38, 1)
+        LoadCharMap(HUD_REX_ADDRESS,31,14,9,10)
+
+        WriteText(REX_MESSAGE, 32, 24, 1)
+        SetTextColor(32,14,10,8, WHITE_COLOR)
 
         jsr LEVELS.init
         jsr STATS.init
+
+        
 
         PopFromStack()
         rts
@@ -68,7 +81,10 @@ continueColorTransition:
 	    sta textColor
         
         noChangeColorInMenu: 
-        SetTextColorStored(9, 19, 1, 21)
+        SetTextColorStored(4, 16, 7, 27)
+        SetTextColorStored(32, 24, 1, 8)
+
+        //Bottom right
 
         jsr SCNKEY
         jsr GETIN
@@ -81,6 +97,41 @@ continueColorTransition:
         HideFolkRussianDancer()
 
         inMenuNoF1:
+
+            cmp #KEY_F3
+            bne inMenuNoF3
+
+            lda playMusic
+            eor #1
+            sta playMusic
+            bne turnOffMusic
+            lda #IS_VOLUME_OFF
+            sta MUSIC_VOLUME
+            jmp inMenuNoF3
+
+            turnOffMusic:
+                    lda #IS_VOLUME_ON
+                    sta MUSIC_VOLUME
+
+        inMenuNoF3:
+
+            cmp #KEY_F5
+            bne inMenuNoF5
+
+        increaseLevelMenu:
+            jsr LEVELS.increaseLevel
+
+            lda currentLevel
+            cmp #CHANGE_MAX_LEVEL
+            bne drawCurrentLevel
+            lda #0
+            sta currentLevel
+            jmp increaseLevelMenu
+
+        drawCurrentLevel:    
+            jsr HUD.startLevelCounter
+
+        inMenuNoF5:
 
         PopFromStack()
         rts
@@ -182,8 +233,8 @@ continueColorTransition:
         lda #GAME_MODE_MENU
         sta gameMode
 
-        inGameOverNoF1:
-        
+inGameOverNoF1:
+
         PopFromStack()
         rts
 

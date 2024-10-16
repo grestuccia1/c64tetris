@@ -25,6 +25,9 @@ BasicUpstart2(main)
 *=CHARSET_ADDRESS "Charset"
 .import binary "charset/charset.bin"
 
+*=HUD_REX_ADDRESS "HUD rex"
+.import binary "hud/rex.bin"
+
 *=HUD_GAMEPLAY_ADDRESS "HUD gameplay"
 .import binary "hud/hudgameplay.bin"
 

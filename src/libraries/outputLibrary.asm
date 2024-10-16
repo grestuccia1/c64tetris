@@ -85,44 +85,53 @@ OUTPUT:
 	writeText:
 		PushToStack()
 
-		lda textColor
-		sta TEXT_COLOR
-
-		clc // Set cursor position
-		ldy textCol
 		ldx textRow
-		jsr PLOT
+		cpx #TETRIMINO_ROW_OOR
+		bcs drawTextOOR
 
-		ldy #0 // First char in specified text
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+		lda Row_Color_LO,x
+		sta ZP_ROW_COLOR_LO
+		lda Row_Color_HI,x
+		sta ZP_ROW_COLOR_HI
 
-		textLoop:
+		lda #0
+		sta temp
+
+		textWriteLoop:
+			ldy temp
 			lda (ZP_TEXT_LO),y
-			cmp #STOP_CHAR
-			beq doneWriteText
-				cmp #NEW_ROW_CHAR
-				bne notNewRow
-					sty tempY
+			beq drawTextOOR
+			
+		    cmp #64    
+    		bcc no_restar
+    
+		    sec 
+    		sbc #64
 
-					inc textRow
+		no_restar:
+			sta textChar
 
-					clc
-					ldy textCol
-					ldx textRow
-					jsr PLOT
+			ldy textCol
+			
+			lda textChar
+			sta (ZP_ROW_LO),y
 
-					ldy tempY
+			lda textColor
+			sta (ZP_ROW_COLOR_LO),y
 
-					iny // Next char
-					jmp textLoop
-				notNewRow:
-				jsr CHAROUT
-				iny // Next char
-				jmp textLoop
+			inc textCol
+			inc temp
 
-		doneWriteText:
-		
-		PopFromStack()
-		rts
+			jmp textWriteLoop
+
+		drawTextOOR:
+			PopFromStack()
+			rts
+
 
 	setTextColor:
 		PushToStack()
@@ -288,4 +297,5 @@ OUTPUT:
 
 		PopFromStack()
 		rts		
+
 }

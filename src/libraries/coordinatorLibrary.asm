@@ -4,11 +4,34 @@ COORDINATOR: {
 
     gamePlay:
         lda gameMode
-		cmp #GAME_MODE_MENU
-		bne noGameModeMenu
 
-		jsr GAME.goToMenu
-		jmp noGameModeEnd
+		cmp #GAME_START_UP
+		bne noGameStartUp
+
+			ldx tempStartUpDelayTimer
+				beq startUpDelayTimerReached 
+				dec tempStartUpDelayTimer    
+				jmp noGameModeEnd                  
+
+			startUpDelayTimerReached:
+				lda #START_UP_DELAY_TIMER_REACHED
+				sta tempStartUpDelayTimer 
+
+				lda #GAME_MODE_MENU
+				sta gameMode
+
+				lda #BLACK_COLOR
+				sta $D020
+				sta $D021
+
+			jmp noGameModeEnd
+		noGameStartUp:
+			
+			cmp #GAME_MODE_MENU
+			bne noGameModeMenu
+
+			jsr GAME.goToMenu
+			jmp noGameModeEnd
 
 		noGameModeMenu:
 			cmp #GAME_MODE_MENU_READY
