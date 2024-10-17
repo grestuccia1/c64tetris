@@ -28,3 +28,7 @@ tetriminoNext: .byte 0
 
 tetriminoLowRowPosition: .byte TETRIMINO_ROW_LAST
 
+tetriminoDynamicLastCol:    .byte TETRIMINO_COL_LAST
+tetriminoDynamicRowLENGTH:  .byte TETRIMINO_ROW_LENGTH
+
+tetriminoWideMode: .byte 0

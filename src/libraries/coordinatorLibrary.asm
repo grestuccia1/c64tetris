@@ -81,8 +81,8 @@ COORDINATOR: {
 				sta charRow
 				lda #TETRIMINO_COL_FIRST
 				sta charCol
-				lda #TETRIMINO_ROW_LENGHT
-				sta textLength
+				lda tetriminoDynamicRowLENGTH
+				sta textLENGTH
 				lda #TETRIMINO_COL_FIRST
 				sta textHeight
 				lda #BLOCK

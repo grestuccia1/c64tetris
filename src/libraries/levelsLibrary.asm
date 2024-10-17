@@ -120,35 +120,36 @@ LEVELS: {
             jsr COLLITION.lineColition
             lda transitionRowMax
             sta tetriminoLowRowPosition
-
+            dec tetriminoLowRowPosition
+            
             PopFromStack()
             rts
         
         preloadLevel4:
-            LoadLevel(level4Length, level4X, level4Y, level4Color)
+            LoadLevel(level4LENGTH, level4X, level4Y, level4Color)
             jmp preloadLevelEnd
 
         preloadLevel5:
-            LoadLevel(level5Length, level5X, level5Y, level5Color)
+            LoadLevel(level5LENGTH, level5X, level5Y, level5Color)
             jmp preloadLevelEnd
 
         preloadLevel6:
-            LoadLevel(level6Length, level6X, level6Y, level6Color)
+            LoadLevel(level6LENGTH, level6X, level6Y, level6Color)
             jmp preloadLevelEnd
 
         preloadLevel7:
-            LoadLevel(level7Length, level7X, level7Y, level7Color)
+            LoadLevel(level7LENGTH, level7X, level7Y, level7Color)
             jmp preloadLevelEnd
 
         preloadLevel8:
-            LoadLevel(level8Length, level8X, level8Y, level8Color)
+            LoadLevel(level8LENGTH, level8X, level8Y, level8Color)
             jmp preloadLevelEnd
 
         preloadLevel9:
-            LoadLevel(level9Length, level9X, level9Y, level9Color)
+            LoadLevel(level9LENGTH, level9X, level9Y, level9Color)
             jmp preloadLevelEnd
 
         preloadLevel10:
-            LoadLevel(level10Length, level10X, level10Y, level10Color)
+            LoadLevel(level10LENGTH, level10X, level10Y, level10Color)
             jmp preloadLevelEnd
 }

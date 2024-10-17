@@ -10,6 +10,7 @@
 
 .label KEY_F5 = $87
 
+.label KEY_F7 = $88
 
 .label DISABLED_BASIC = %00110110
 .label SCREEN_0400_CHARSET_3800 = %00011110 // Screen RAM: $0400   Charset: $3800

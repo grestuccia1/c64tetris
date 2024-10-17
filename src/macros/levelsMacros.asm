@@ -1,13 +1,17 @@
 // ----------------------------------- LEVELS MACROS -----------------------------------
 
-.macro LoadLevel(levelLength, levelXs, levelYs, levelColors) {
+.macro LoadLevel(levelLENGTH, levelXs, levelYs, levelColors) {
     
     ldx #0
 
     preloadLevelLoop:
         lda levelXs, x
         sta charCol
+        lda tetriminoWideMode
+        beq noWideMode
+        inc charCol
 
+    noWideMode:
         lda levelYs, x
         sta charRow
 
@@ -20,7 +24,7 @@
         jsr OUTPUT.drawChar
 
         inx
-        cpx levelLength
+        cpx levelLENGTH
         bne preloadLevelLoop
 
 }

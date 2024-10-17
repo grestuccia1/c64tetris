@@ -23,8 +23,9 @@ GAME:
 
         WriteText(START_MESSAGE, 4, 16, 1)
         WriteText(MUSIC_ON_OFF_MESSAGE, 4, 18, 1)
-        WriteText(CHANGE_LEVEL_MESSAGE, 4, 20, 1)
-        WriteText(START_LEVEL_NUMBER, 4, 22, 1)
+        WriteText(WIDE_MODE_MESSAGE, 4, 20, 1)
+        WriteText(CHANGE_LEVEL_MESSAGE, 4, 22, 1)
+        WriteText(START_LEVEL_NUMBER, 4, 24, 1)
 
         ShowFolkRussianDancer(77, 100)
 
@@ -82,7 +83,6 @@ continueColorTransition:
 	    sta textColor
         
         noChangeColorInMenu: 
-        SetTextColorStored(4, 16, 7, 27)
         SetTextColorStored(32, 24, 1, 8)
 
         //Bottom right
@@ -114,10 +114,40 @@ continueColorTransition:
                     lda #IS_VOLUME_ON
                     sta MUSIC_VOLUME
 
+
         inMenuNoF3:
 
             cmp #KEY_F5
             bne inMenuNoF5
+
+            lda tetriminoWideMode
+            eor #1
+            sta tetriminoWideMode
+            bne changeToWideMode
+
+            lda #TETRIMINO_COL_LAST
+            sta tetriminoDynamicLastCol
+
+            lda #TETRIMINO_ROW_LENGTH
+            sta tetriminoDynamicRowLENGTH
+
+            WriteText(WIDE_MODE_MESSAGE, 4, 20, 1)
+
+            jmp inMenuNoF5
+            changeToWideMode:
+
+                lda #TETRIMINO_COL_LAST_WIDE_MODE
+                sta tetriminoDynamicLastCol
+
+                lda #TETRIMINO_ROW_LENGTH_WIDE_MODE
+                sta tetriminoDynamicRowLENGTH
+
+                WriteText(NORMAL_MODE_MESSAGE, 4, 20, 1)
+
+        inMenuNoF5:
+
+            cmp #KEY_F7
+            bne inMenuNoF7
 
         increaseLevelMenu:
             jsr LEVELS.increaseLevel
@@ -132,7 +162,7 @@ continueColorTransition:
         drawCurrentLevel:    
             jsr HUD.startLevelCounter
 
-        inMenuNoF5:
+        inMenuNoF7:
 
         PopFromStack()
         rts
@@ -147,6 +177,15 @@ continueColorTransition:
         SetTextColor(17,16,1,6,1)
         SetTextColor(19,20,1,2,1)
         SetTextColor(19,24,1,2,1)
+
+        lda tetriminoWideMode
+        beq noWideMode
+        FillRectangle(11,0,24,1,SPACE)
+        FillRectangle(TETRIMINO_COL_LAST_WIDE_MODE,0,24,1,WALL)
+        FillRectangle(0,24,1,TETRIMINO_COL_LAST_WIDE_MODE + 1,WALL)
+        
+        noWideMode:
+        
         jsr STATS.applyColors
         jsr HUD.updateLevelCounter
         jsr HUD.updateLinesLeftCounter
@@ -218,7 +257,18 @@ continueColorTransition:
     clearContainer:
         PushToStack()
 
-        FillRectangle(1, 0, 24, 10, SPACE)
+        lda #TETRIMINO_COL_FIRST
+        sta charCol
+        lda #TETRIMINO_ROW_FIRST
+        sta charRow
+        lda tetriminoDynamicRowLENGTH
+        sta textLENGTH
+        lda #TETRIMINO_CONTAINER_HEIGHT
+        sta textHeight
+        lda #SPACE
+        sta textChar
+
+        jsr OUTPUT.fillText
 
         PopFromStack()
         rts    

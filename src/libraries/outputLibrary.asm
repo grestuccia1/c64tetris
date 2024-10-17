@@ -51,7 +51,7 @@ OUTPUT:
 		ldy charCol
 
 		moveNextPositionInRow:
-		cpy #TETRIMINO_COL_LAST
+		cpy tetriminoDynamicLastCol
 		beq setPositionInRowOOR
 
 		lda (ZP_ROW_LO),y
@@ -180,8 +180,8 @@ OUTPUT:
 
 		lda charCol
 		clc
-		adc textLength
-		sta textLength
+		adc textLENGTH
+		sta textLENGTH
 		
 		ldx charRow
 
@@ -198,7 +198,7 @@ OUTPUT:
 		textColorColLoop:
 			sta (ZP_ROW_COLOR_LO),y
 			iny
-			cpy textLength
+			cpy textLENGTH
 			bne textColorColLoop
 
 			inx
@@ -218,8 +218,8 @@ OUTPUT:
 
 		lda charCol
 		clc
-		adc textLength
-		sta textLength
+		adc textLENGTH
+		sta textLENGTH
 		
 		ldx charRow
 
@@ -236,7 +236,7 @@ OUTPUT:
 		textFillColLoop:
 			sta (ZP_ROW_LO),y
 			iny
-			cpy textLength
+			cpy textLENGTH
 			bne textFillColLoop
 
 			inx
@@ -256,8 +256,8 @@ OUTPUT:
 
 		lda charCol
 		clc
-		adc textLength
-		sta textLength
+		adc textLENGTH
+		sta textLENGTH
 		
 		ldx charRow
 
@@ -281,7 +281,7 @@ OUTPUT:
 				lda textColor
 				sta (ZP_ROW_COLOR_LO),y
 				iny
-				cpy textLength
+				cpy textLENGTH
 				bne fillTextColorColLoop
 
 				inx
@@ -326,7 +326,7 @@ OUTPUT:
 				sta (ZP_ROW_COLOR_LO), y
 
 				iny
-				cpy #TETRIMINO_COL_LAST
+				cpy tetriminoDynamicLastCol
 				bne moveNextChar
 
 			cpx tetriminoLowRowPosition

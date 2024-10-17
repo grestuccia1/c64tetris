@@ -95,7 +95,7 @@ COLLITION:
 
 			inc charCol
 			lda charCol
-			cmp #TETRIMINO_COL_LAST
+			cmp tetriminoDynamicLastCol
 			bne nextCharInLine
 
 			lda #TETRIMINO_COL_FIRST

@@ -258,7 +258,7 @@ TETRIMINO:
 		removeLine:
 			AddToScore(1,3)
 			jsr OUTPUT.moveLines
-			inc tetriminoLowRowPosition
+			// inc tetriminoLowRowPosition
 			jmp addLineCounter
 		previewsLine:
 			dex
