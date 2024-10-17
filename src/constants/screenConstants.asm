@@ -18,34 +18,42 @@
 .label SCREEN_RAM_HIGH_BYTE = $0288
 
 START_MESSAGE: 
+.encoding "screencode_upper"
 .text "PRESS F1 TO START" 
 .byte 0
 
 MUSIC_ON_OFF_MESSAGE: 
+.encoding "screencode_upper"
 .text "PRESS F3 TO TOGGLE MUSIC" 
 .byte 0
 
 NORMAL_MODE_MESSAGE: 
+.encoding "screencode_upper"
 .text "PRESS F5 TO NORMAL MODE" 
 .byte 0
 
 WIDE_MODE_MESSAGE: 
+.encoding "screencode_upper"
 .text "PRESS F5 TO WIDE MODE  " 
 .byte 0
 
 CHANGE_LEVEL_MESSAGE: 
+.encoding "screencode_upper"
 .text "PRESS F7 TO CHANGE LEVEL" 
 .byte 0
 
 START_LEVEL_NUMBER: 
+.encoding "screencode_upper"
 .text "LEVEL: 01" 
 .byte 0
 
 REX_MESSAGE: 
+.encoding "screencode_upper"
 .text "REX 2024" 
 .byte 0
 
 GAME_OVER_MESSAGE: 
+.encoding "screencode_upper"
 .text "PRESS F1 TO CONTINUE" 
 .byte 0
 

@@ -143,13 +143,6 @@ OUTPUT:
 			lda (ZP_TEXT_LO),y
 			beq drawTextOOR
 			
-		    cmp #64    
-    		bcc no_restar
-    
-		    sec 
-    		sbc #64
-
-		no_restar:
 			sta textChar
 
 			ldy textCol
