@@ -28,10 +28,12 @@ Mi primera computadora no fue solo una herramienta; fue la chispa que encendió 
 - Cálculo de puntaje basado en líneas eliminadas.
 - Niveles.
 - Detección de fin de juego cuando los bloques alcanzan la parte superior de la pantalla.
-- Música.
+- Música (se puede prender o apagar).
 - Estadísticas.
 - Pantalla de título y menú.
 - Varios niveles con dificultad creciente ya implementados.
+- Modo ancho
+- Selección de niveles
 
 ## Cómo se hizo el juego
 
@@ -121,4 +123,4 @@ Este proyecto se lanza bajo la Licencia MIT. Eres libre de usar, modificar y dis
 
 **Todos los derechos de Tetris pertenecen a sus respectivos dueños. Este proyecto está inspirado en Tetris y es solo para fines educativos, sin intención comercial.**
 
-**Música**: Song 11 - Author [Leigh White (Racer X)](https://csdb.dk/release/?id=17674) ❤️❤️❤️
+**Música**: New Song - Autor [Leigh White (Racer X)](https://csdb.dk/release/?id=17674) ❤️❤️❤️

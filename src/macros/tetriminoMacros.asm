@@ -88,11 +88,18 @@
 	lda #TETRIMINO_COL_START
 	sta tetriminoCol
 
-	lda tetriminoNext
-	sta tetriminoNr
-	jsr TETRIMINO.change
+	lda tetriminoWideMode
+	beq noWideMode
+	inc tetriminoCol
+	inc tetriminoCol
 
-	lda ZP_RANDOM_NUMBER
-	sta tetriminoNext
+    noWideMode:
+
+		lda tetriminoNext
+		sta tetriminoNr
+		jsr TETRIMINO.change
+
+		lda ZP_RANDOM_NUMBER
+		sta tetriminoNext
 
 }

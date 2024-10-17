@@ -329,6 +329,8 @@ OUTPUT:
 				cpy tetriminoDynamicLastCol
 				bne moveNextChar
 
+			lda tetriminoLowRowPosition
+
 			cpx tetriminoLowRowPosition
 	 		bne moveLinePrevious
 

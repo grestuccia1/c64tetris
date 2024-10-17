@@ -219,16 +219,19 @@ TETRIMINO:
 	checkCompleteLines:
 		PushToStack()
 
+ 		lda tetriminoLowRowPosition
 		clc
 		lda tetriminoRow
-
 		cmp tetriminoLowRowPosition
-		bcs continueTetriminoLowRowPosition
+		beq changeTetriminoLowRowPosition 
+		bcc changeTetriminoLowRowPosition 
+		jmp continueTetriminoLowRowPosition
+	changeTetriminoLowRowPosition:
 		sta tetriminoLowRowPosition
 		dec tetriminoLowRowPosition
 
 	continueTetriminoLowRowPosition:
-		adc #TETRIMINO_HEIGHT
+ 		adc #TETRIMINO_HEIGHT
 		cmp #TETRIMINO_ROW_LAST
 		bcc continueCheckCompleteLines
 		lda #TETRIMINO_ROW_LAST
@@ -258,9 +261,10 @@ TETRIMINO:
 		removeLine:
 			AddToScore(1,3)
 			jsr OUTPUT.moveLines
-			// inc tetriminoLowRowPosition
+			inc tetriminoLowRowPosition
+			lda tetriminoLowRowPosition
 			jmp addLineCounter
-		previewsLine:
+ 		previewsLine:
 			dex
 		keepInSameLine:	
 			stx charRow

@@ -27,12 +27,12 @@ My first computer was not just a tool; it was the spark that ignited my passion 
 - Score calculation based on lines cleared.
 - Levels.
 - Game over detection when blocks reach the top of the screen.
-- Music.
+- Music on/off.
 - Stats.
 - Title screen and menu.
 - Multiple levels with increasing difficulty already implemented.
-
-
+- Wide mode
+- Select start level
 
 ## How the Game Was Made
 
@@ -123,4 +123,4 @@ This project is released under the MIT License. You are free to use, modify, and
 ## Important
 **All rights to Tetris belong to their respective owners. This project is inspired by Tetris and is for educational purposes only, with no commercial intent.**
 
-**Music**: Song 11 - Author [Leigh White (Racer X)](https://csdb.dk/release/?id=17674) ❤️❤️❤️
+**Music**: New Song - Author [Leigh White (Racer X)](https://csdb.dk/release/?id=17674) ❤️❤️❤️

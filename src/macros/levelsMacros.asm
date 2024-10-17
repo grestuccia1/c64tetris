@@ -10,6 +10,7 @@
         lda tetriminoWideMode
         beq noWideMode
         inc charCol
+        inc charCol
 
     noWideMode:
         lda levelYs, x
