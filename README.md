@@ -22,17 +22,17 @@ My first computer was not just a tool; it was the spark that ignited my passion 
 
 ## Features
 
-- Classic Tetris gameplay with falling tetrominoes.
-- Keyboard controls for movement, rotation, and quick drop.
-- Score calculation based on lines cleared.
-- Levels.
-- Game over detection when blocks reach the top of the screen.
-- Music on/off.
-- Stats.
-- Title screen and menu.
-- Multiple levels with increasing difficulty already implemented.
-- Wide mode
-- Select start level
+-	Classic Tetris gameplay with falling tetrominoes.
+-	Joystick support on Port 2 of the Commodore 64 for an authentic gaming experience.
+-	Score calculation based on lines cleared.
+-	Level progression with increasing difficulty.
+-	Game over detection when blocks reach the top of the screen.
+-	Music toggle (on/off) option.
+-	In-game stats (pieces placed, lines cleared, etc.).
+-	Title screen and menu for game options.
+-	Multiple levels with automatic progression.
+-	Wide mode with a wider playfield (14 columns wide instead of the standard 10).
+-	Start level selection from the menu before starting the game.
 
 ## How the Game Was Made
 

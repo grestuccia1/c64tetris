@@ -23,17 +23,17 @@ Mi primera computadora no fue solo una herramienta; fue la chispa que encendió 
 
 ## Características
 
-- Jugabilidad clásica de Tetris con tetrominós que caen.
-- Controles por teclado para moverse, rotar y caída rápida.
-- Cálculo de puntaje basado en líneas eliminadas.
-- Niveles.
-- Detección de fin de juego cuando los bloques alcanzan la parte superior de la pantalla.
-- Música (se puede prender o apagar).
-- Estadísticas.
-- Pantalla de título y menú.
-- Varios niveles con dificultad creciente ya implementados.
-- Modo ancho
-- Selección de niveles
+-	Jugabilidad clásica de Tetris con tetrominós que caen.
+-	Compatibilidad con joystick en el Puerto 2 de la Commodore 64 para una experiencia de juego auténtica.
+-	Cálculo de puntuación basado en las líneas completadas.
+-	Progresión de niveles con dificultad creciente.
+-	Detección de game over cuando los bloques alcanzan la parte superior de la pantalla.
+-	Opción de activar/desactivar música.
+-	Estadísticas en el juego (piezas colocadas, líneas completadas, etc.).
+-	Pantalla de título y menú para opciones de juego.
+-	Múltiples niveles con progresión automática.
+-	Modo ancho con un campo de juego más amplio (14 columnas de ancho en lugar de las 10 estándar).
+-	Selección del nivel inicial desde el menú antes de empezar la partida.
 
 ## Cómo se hizo el juego
 

@@ -2,9 +2,9 @@
 
 .macro playSFX(label) {
 	
-	lda #<label        //Start address of sound effect data 
+	lda #<label   
     ldy #>label 
-    ldx #14       //0, 7 or 14 for channels 1-3 
+    ldx #14       
    	jsr $9503
 
 }
