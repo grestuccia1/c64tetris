@@ -23,9 +23,8 @@ GAME:
 
         WriteText(START_MESSAGE, 4, 16, 1)
         WriteText(MUSIC_ON_OFF_MESSAGE, 4, 18, 1)
-        WriteText(WIDE_MODE_MESSAGE, 4, 20, 1)
+        WriteText(CHANGE_MODE_MESSAGE, 4, 20, 1)
         WriteText(CHANGE_LEVEL_MESSAGE, 4, 22, 1)
-        WriteText(START_LEVEL_NUMBER, 4, 24, 1)
 
         ShowFolkRussianDancer(77, 100)
 
@@ -84,6 +83,8 @@ continueColorTransition:
         
         noChangeColorInMenu: 
         SetTextColorStored(32, 24, 1, 8)
+        SetTextColorStored(23, 20, 1, 6)
+        SetTextColorStored(24, 22, 1, 2)
 
         //Bottom right
 
@@ -131,7 +132,7 @@ continueColorTransition:
             lda #TETRIMINO_ROW_LENGTH
             sta tetriminoDynamicRowLENGTH
 
-            WriteText(WIDE_MODE_MESSAGE, 4, 20, 1)
+            WriteText(NORMAL_MODE_MESSAGE, 23, 20, 1)
 
             jmp inMenuNoF5
             changeToWideMode:
@@ -142,7 +143,7 @@ continueColorTransition:
                 lda #TETRIMINO_ROW_LENGTH_WIDE_MODE
                 sta tetriminoDynamicRowLENGTH
 
-                WriteText(NORMAL_MODE_MESSAGE, 4, 20, 1)
+                WriteText(WIDE_MODE_MESSAGE, 23, 20, 1)
 
         inMenuNoF5:
 

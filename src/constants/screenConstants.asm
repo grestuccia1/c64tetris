@@ -19,28 +19,34 @@
 
 START_MESSAGE: 
 .encoding "screencode_upper"
-.text "PRESS F1 TO START" 
+.text "F1 TO START" 
 .byte 0
 
 MUSIC_ON_OFF_MESSAGE: 
 .encoding "screencode_upper"
-.text "PRESS F3 TO TOGGLE MUSIC" 
+.text "F3 TO TOGGLE MUSIC" 
 .byte 0
 
-NORMAL_MODE_MESSAGE: 
+CHANGE_MODE_MESSAGE: 
 .encoding "screencode_upper"
-.text "PRESS F5 TO NORMAL MODE" 
+.text "F5 TO CHANGE MODE: NORMAL" 
 .byte 0
 
 WIDE_MODE_MESSAGE: 
 .encoding "screencode_upper"
-.text "PRESS F5 TO WIDE MODE  " 
+.text "WIDE   " 
+.byte 0
+
+NORMAL_MODE_MESSAGE: 
+.encoding "screencode_upper"
+.text "NORMAL" 
 .byte 0
 
 CHANGE_LEVEL_MESSAGE: 
 .encoding "screencode_upper"
-.text "PRESS F7 TO CHANGE LEVEL" 
+.text "F7 TO CHANGE LEVEL: 01" 
 .byte 0
+
 
 START_LEVEL_NUMBER: 
 .encoding "screencode_upper"
