@@ -120,6 +120,8 @@ continueColorTransition:
             cmp #KEY_F5
             bne inMenuNoF5
 
+            playSFX(SOUNDS.PlayerGroundShake)
+
             lda tetriminoWideMode
             eor #1
             sta tetriminoWideMode

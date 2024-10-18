@@ -3,7 +3,7 @@
 #import "includes/constants.asm"
 #import "includes/macros.asm"
 
-.var music = LoadSid("music/racer_x.sid")
+.var music = LoadSid("assets/music/racer_x.sid")
 
 BasicUpstart2(main)
 
@@ -23,25 +23,25 @@ BasicUpstart2(main)
 .fill music.size, music.getData(i)
 
 *=CHARSET_ADDRESS "Charset"
-.import binary "charset/charset.bin"
+.import binary "assets/charset/charset.bin"
 
 *=HUD_REX_ADDRESS "HUD rex"
-.import binary "hud/rex.bin"
+.import binary "assets/hud/rex.bin"
 
 *=HUD_GAMEPLAY_ADDRESS "HUD gameplay"
-.import binary "hud/hudgameplay.bin"
+.import binary "assets/hud/hudgameplay.bin"
 
 *=HUD_TETRIS_TITLE_ADDRESS "HUD Tetris Title"
-.import binary "hud/tetrisTitle.bin"
+.import binary "assets/hud/tetrisTitle.bin"
 
 *=HUD_TETRIS_TITLE_COLORS_ADDRESS "HUD Tetris Title Colors"
-.import binary "hud/tetrisTitleColors.bin"
+.import binary "assets/hud/tetrisTitleColors.bin"
 
 *=HUD_GAME_OVER_TITLE_ADDRESS "HUD Game Over"
-.import binary "hud/gameOverTitle.bin"
+.import binary "assets/hud/gameOverTitle.bin"
 
 *=HUD_GAME_OVER_TITLE_COLORS_ADDRESS "HUD Game Over Title Colors"
-.import binary "hud/gameOverTitleColors.bin"
+.import binary "assets/hud/gameOverTitleColors.bin"
 
 *=SPRITES_ADDRESS "Sprites"
-.import binary "sprites/dancer.bin"
+.import binary "assets/sprites/dancer.bin"

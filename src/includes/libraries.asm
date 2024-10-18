@@ -13,3 +13,4 @@
 #import "../libraries/coordinatorLibrary.asm"
 #import "../libraries/outputLibrary.asm"
 #import "../libraries/levelsLibrary.asm"
+#import "../libraries/soundsLibrary.asm"
