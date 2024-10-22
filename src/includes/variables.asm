@@ -11,3 +11,4 @@
 #import "../variables/textVariables.asm"
 #import "../variables/levelsVariables.asm"
 #import "../variables/spriteVariables.asm"
+#import "../variables/clockVariables.asm"

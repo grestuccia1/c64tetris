@@ -20,15 +20,15 @@ COORDINATOR: {
 				lda #GAME_MODE_MENU
 				sta gameMode
 
-				lda #BLACK_COLOR
-				sta $D020
-				sta $D021
-
 			jmp noGameModeEnd
 		noGameStartUp:
 			
 			cmp #GAME_MODE_MENU
 			bne noGameModeMenu
+
+			lda #BLACK_COLOR
+			sta SCREEN_BORDER_COLOR
+			sta SCREEN_BACKGROUND_COLOR
 
 			jsr GAME.goToMenu
 			jmp noGameModeEnd

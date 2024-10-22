@@ -32,6 +32,27 @@ OUTPUT:
 			PopFromStack()
 			rts
 
+	drawCharNoColor:
+		PushToStack()
+
+		ldx charRow
+		cpx #TETRIMINO_ROW_OOR
+		bcs drawCharNoColorOOR
+
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+
+		ldy charCol
+
+		lda charId
+		sta (ZP_ROW_LO),y
+
+		drawCharNoColorOOR:
+			PopFromStack()
+			rts
+
 	rowIsComplete:
 		PushToStack()
 

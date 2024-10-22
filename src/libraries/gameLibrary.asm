@@ -21,10 +21,10 @@ GAME:
         jsr SCREEN_CLEAR
         LoadCharColorMap(HUD_TETRIS_TITLE_ADDRESS, HUD_TETRIS_TITLE_COLORS_ADDRESS, 3, 6, 35, 7)
 
-        WriteText(START_MESSAGE, 4, 16, 1)
-        WriteText(MUSIC_ON_OFF_MESSAGE, 4, 18, 1)
-        WriteText(CHANGE_MODE_MESSAGE, 4, 20, 1)
-        WriteText(CHANGE_LEVEL_MESSAGE, 4, 22, 1)
+        WriteText(START_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS, WHITE_COLOR)
+        WriteText(MUSIC_ON_OFF_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, WHITE_COLOR)
+        WriteText(CHANGE_MODE_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, WHITE_COLOR)
+        WriteText(CHANGE_LEVEL_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, WHITE_COLOR)
 
         ShowFolkRussianDancer(77, 100)
 
@@ -174,6 +174,8 @@ continueColorTransition:
         lda #GAME_MODE_PLAYING_READY
         sta gameMode
         LoadFullScreen(HUD_GAMEPLAY_ADDRESS)
+        SetTextColor(17,8,1,6,1)
+
         SetTextColor(17,12,1,6,1)
         SetTextColor(17,16,1,6,1)
         SetTextColor(19,20,1,2,1)
@@ -191,7 +193,8 @@ continueColorTransition:
         jsr HUD.updateLevelCounter
         jsr HUD.updateLinesLeftCounter
         jsr LEVELS.preloadLevel
-        
+        jsr CLOCK.start
+
         NewTetrimino()
         
         PopFromStack()
@@ -217,6 +220,8 @@ continueColorTransition:
 
     goToGameOver:
         PushToStack()
+
+        jsr CLOCK.stop
 
         lda #GAME_MODE_GAME_OVER_READY
         sta gameMode

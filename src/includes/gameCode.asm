@@ -15,8 +15,8 @@ gameLoop:
 		cmp #GAME_START_UP
 		bne noGameStartUpInLoop
 
-		inc $D020
-		inc $D021
+		inc SCREEN_BORDER_COLOR
+		inc SCREEN_BACKGROUND_COLOR
 	
 	noGameStartUpInLoop:
 	

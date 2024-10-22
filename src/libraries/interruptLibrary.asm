@@ -4,7 +4,10 @@
 INTERRUPT:
 {
 	setupRasterInterrupt:
+
 		sei 									// Disable interrupt requests
+
+		jsr CLOCK.setupPalOrNtsc
 
 		lda #%01111111
 		sta INTERRUPT_CONTROL_AND_STATUS_CIA_1	// Disable interrupt signals from CIA 1
@@ -46,7 +49,6 @@ INTERRUPT:
 		sta INTERRUPT_CONTROL
 		rts
 
-
 	irq:
 		lda INTERRUPT_STATUS
 		ora #%00000001 							// Acknowledge raster interrupt
@@ -60,6 +62,11 @@ INTERRUPT:
 			
 		skipMusic:
 
+		jsr CLOCK.update
+
+		jsr CLOCK.draw
+
 		jmp INTERRUPT_RETURN					// KERNAL interrupt return routine
 
 }
+

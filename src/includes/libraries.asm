@@ -14,3 +14,4 @@
 #import "../libraries/outputLibrary.asm"
 #import "../libraries/levelsLibrary.asm"
 #import "../libraries/soundsLibrary.asm"
+#import "../libraries/clockLibrary.asm"
