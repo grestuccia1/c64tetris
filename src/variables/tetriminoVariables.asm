@@ -1,34 +1,41 @@
 
 // ----------------------------------- TETRIMINO VARIABLES -----------------------------------
 
-tetriminoNr: .byte 0
-tetriminoRow: .byte 0
-tetriminoCol: .byte 0
-tetriminoRot: .byte 0
+tetriminoNr:                .byte 0
+tetriminoRow:               .byte 0
+tetriminoCol:               .byte 0
+tetriminoRot:               .byte 0
 
-tetriminoInit: .byte 0
-tetriminoEnd: .byte 4
+tetriminoInit:              .byte 0
+tetriminoEnd:               .byte 4
 
-tetriminoPX: .byte 0
-tetriminoPY: .byte 0
+tetriminoPX:                .byte 0
+tetriminoPY:                .byte 0
 
-tetriminoDirection: .byte 0
+tetriminoDirection:         .byte 0
 
-tetriminoHSpeedTimer: .byte 0
-tetriminoHSpeed: .byte 2
+tetriminoHSpeedTimer:       .byte 0
+tetriminoHSpeed:            .byte 2
 
 tetriminoRotateCooldownTimer: .byte 0
-tetriminoRotateCooldown: .byte 6
+tetriminoRotateCooldown:    .byte 6
 
-tetriminoFallDelayTimer: .byte 40
-tetriminoFallDelay: .byte 40
-tetriminoMustFall: .byte 0
+tetriminoFallDelayTimer:    .byte 40
+tetriminoFallDelay:         .byte 40
+tetriminoMustFall:          .byte 0
 
-tetriminoNext: .byte 0
+tetriminoNext:              .byte 0
 
-tetriminoLowRowPosition: .byte TETRIMINO_ROW_LAST
+tetriminoLowRowPosition:    .byte TETRIMINO_ROW_LAST
 
 tetriminoDynamicLastCol:    .byte TETRIMINO_COL_LAST
-tetriminoDynamicRowLENGTH:  .byte TETRIMINO_ROW_LENGTH
+tetriminoDynamicRowLength:  .byte TETRIMINO_ROW_LENGTH
 
-tetriminoWideMode: .byte 0
+tetriminoWideMode:          .byte 0
+
+tetriminoCompletedLines:    .byte 0
+                            .byte 0
+                            .byte 0 
+                            .byte 0
+
+tetriminoCompletedLinesIndex: .byte 0

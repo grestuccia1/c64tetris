@@ -25,7 +25,7 @@
 	lda #col
 	sta charCol
 	lda #length
-	sta textLENGTH
+	sta textLength
 	lda #height
 	sta textHeight
 	lda #colorVariable
@@ -41,7 +41,7 @@
 	lda #col
 	sta charCol
 	lda #length
-	sta textLENGTH
+	sta textLength
 	lda #height
 	sta textHeight
 	
@@ -55,7 +55,7 @@
 	lda #col
 	sta charCol
 	lda #length
-	sta textLENGTH
+	sta textLength
 	lda #height
 	sta textHeight
 	lda #char

@@ -194,8 +194,8 @@ OUTPUT:
 
 		lda charCol
 		clc
-		adc textLENGTH
-		sta textLENGTH
+		adc textLength
+		sta textLength
 		
 		ldx charRow
 
@@ -212,7 +212,7 @@ OUTPUT:
 		textColorColLoop:
 			sta (ZP_ROW_COLOR_LO),y
 			iny
-			cpy textLENGTH
+			cpy textLength
 			bne textColorColLoop
 
 			inx
@@ -232,8 +232,8 @@ OUTPUT:
 
 		lda charCol
 		clc
-		adc textLENGTH
-		sta textLENGTH
+		adc textLength
+		sta textLength
 		
 		ldx charRow
 
@@ -250,7 +250,7 @@ OUTPUT:
 		textFillColLoop:
 			sta (ZP_ROW_LO),y
 			iny
-			cpy textLENGTH
+			cpy textLength
 			bne textFillColLoop
 
 			inx
@@ -270,8 +270,8 @@ OUTPUT:
 
 		lda charCol
 		clc
-		adc textLENGTH
-		sta textLENGTH
+		adc textLength
+		sta textLength
 		
 		ldx charRow
 
@@ -295,7 +295,7 @@ OUTPUT:
 				lda textColor
 				sta (ZP_ROW_COLOR_LO),y
 				iny
-				cpy textLENGTH
+				cpy textLength
 				bne fillTextColorColLoop
 
 				inx

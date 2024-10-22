@@ -1,6 +1,6 @@
 // ----------------------------------- LEVELS MACROS -----------------------------------
 
-.macro LoadLevel(levelLENGTH, levelXs, levelYs, levelColors) {
+.macro LoadLevel(levelLength, levelXs, levelYs, levelColors) {
     
     ldx #0
 
@@ -25,7 +25,7 @@
         jsr OUTPUT.drawChar
 
         inx
-        cpx levelLENGTH
+        cpx levelLength
         bne preloadLevelLoop
 
 }

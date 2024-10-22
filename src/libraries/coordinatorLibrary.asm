@@ -81,8 +81,8 @@ COORDINATOR: {
 				sta charRow
 				lda #TETRIMINO_COL_FIRST
 				sta charCol
-				lda tetriminoDynamicRowLENGTH
-				sta textLENGTH
+				lda tetriminoDynamicRowLength
+				sta textLength
 				lda #TETRIMINO_COL_FIRST
 				sta textHeight
 				lda #BLOCK
@@ -135,6 +135,65 @@ COORDINATOR: {
 			jmp noGameModeEnd
 
 		noGameModeGameOverReady:
+ 			cmp #GAME_MODE_DELELE_LINE
+            bne noGameModeDeleteLine
+
+ 			jsr TETRIMINO.completedLines
+
+			lda tetriminoCompletedLinesIndex
+			cmp #0
+			beq noGameModeToDeleteLines
+
+			lda #GAME_MODE_DELELE_LINE_ANIMATED
+			sta gameMode
+			jmp noGameModeDeleteLine
+		noGameModeToDeleteLines:
+ 			lda #GAME_MODE_DELELE_LINE_READY
+			sta gameMode
+			jmp noGameModeDeleteLineMove
+
+		noGameModeDeleteLine:
+ 			cmp #GAME_MODE_DELELE_LINE_ANIMATED
+            bne noGameModeDeleteLineAnimated
+
+			jsr TETRIMINO.changeColorLineToDelete
+
+			lda tempTransitionDeleteLineDelay
+			beq transitionDeleteLineDelayTimerReached
+			dec tempTransitionDeleteLineDelay
+			jmp noGameModeEnd
+			transitionDeleteLineDelayTimerReached:
+				lda #TRANSITION_DELETE_LINE_DELAY_TIMER_REACHED
+				sta tempTransitionDeleteLineDelay
+
+			lda #GAME_MODE_DELELE_LINE_MOVE
+			sta gameMode
+
+		noGameModeDeleteLineAnimated:
+ 			cmp #GAME_MODE_DELELE_LINE_MOVE
+            bne noGameModeDeleteLineMove
+
+			lda #GAME_MODE_DELELE_LINE_READY
+			sta gameMode
+
+			jsr TETRIMINO.checkCompleteLines
+
+			lda gameMode
+			cmp #GAME_MODE_DELELE_LINE_READY
+			beq noGameModeDeleteLineAnimated
+
+			jsr GAME.nextTetrimino
+
+		noGameModeDeleteLineMove:
+ 			cmp #GAME_MODE_DELELE_LINE_READY
+            bne noGameModeDeleteLineReady
+
+            jsr GAME.nextTetrimino
+
+			lda #GAME_MODE_PLAYING_READY
+			sta gameMode
+
+		noGameModeDeleteLineReady:
         noGameModeEnd: 
         rts
 }

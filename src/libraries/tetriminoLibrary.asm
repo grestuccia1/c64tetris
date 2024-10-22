@@ -216,6 +216,79 @@ TETRIMINO:
 		PopFromStack()
 		rts
 
+	completedLines:
+		PushToStack()
+
+		lda #0
+		sta tetriminoCompletedLinesIndex
+		ldy #3
+		clearCompletedLines:
+			sta tetriminoCompletedLines, y
+			dey                           
+			bpl clearCompletedLines  
+
+			lda tetriminoLowRowPosition
+			//clc
+		//	lda tetriminoRow
+		//	cmp tetriminoLowRowPosition
+		//	beq changeTetriminoLowRowPositionCompletedLines 
+		//	bcc changeTetriminoLowRowPositionCompletedLines  
+		//	jmp continueTetriminoLowRowPositionCompletedLines 
+		//changeTetriminoLowRowPositionCompletedLines:
+		//	sta tetriminoLowRowPosition
+		//	dec tetriminoLowRowPosition
+
+		continueTetriminoLowRowPositionCompletedLines:
+			clc
+			adc #TETRIMINO_HEIGHT
+			cmp #TETRIMINO_ROW_LAST
+			bcc continueCheckCompleteLinesCompletedLines 
+			lda #TETRIMINO_ROW_LAST
+
+		continueCheckCompleteLinesCompletedLines:
+			sta charRow
+			ldx charRow
+			
+			lda #TETRIMINO_COL_FIRST
+			sta charCol
+
+			movePreviousLineCompletedLines:
+				lda #BLOCK
+				sta charCollision
+
+				ldy #TETRIMINO_COL_FIRST
+				sty charCol
+
+				jsr OUTPUT.rowIsComplete
+
+				lda charCollision
+				cmp	#SPACE
+				bne removeLineCompletedLines 
+				
+				jmp previewsLineCompletedLines
+
+			removeLineCompletedLines:
+
+				ldy tetriminoCompletedLinesIndex
+				lda charRow
+				sta tetriminoCompletedLines, y
+				inc tetriminoCompletedLinesIndex
+
+			previewsLineCompletedLines:
+				
+				dex
+
+			keepInSameLineCompletedLines:	
+				stx charRow
+				cpx tetriminoRow
+				bcs movePreviousLineCompletedLines
+				jmp endCheckCompleteLinesCompletedLines
+
+			endCheckCompleteLinesCompletedLines:
+
+		PopFromStack()
+		rts
+
 	checkCompleteLines:
 		PushToStack()
 
@@ -318,4 +391,38 @@ TETRIMINO:
 		lda tetriminoFallDelay
 		sta tetriminoFallDelayTimer
 		rts
+
+	changeColorLineToDelete:
+		PushToStack()
+
+		ldy tetriminoCompletedLinesIndex 
+		dey
+		changeColorLineToDeleteLoop:
+			lda tetriminoCompletedLines, y
+			
+			sta charRow
+			lda #TETRIMINO_COL_FIRST
+			sta charCol
+			lda tetriminoDynamicRowLength
+			sta textLength
+			lda #TETRIMINO_COL_FIRST
+			sta textHeight
+			lda #BLOCK
+			sta textChar
+			ldx charRow
+
+			jsr MATH.generateRandomBelow10
+			tax
+			
+			lda rowTransitionColor, x
+			sta textColor
+
+			jsr OUTPUT.fillTextColor
+
+			dey                             
+			bpl changeColorLineToDeleteLoop  
+
+			changeColorLineToDeleteDone:
+				PopFromStack()
+				rts	
 }

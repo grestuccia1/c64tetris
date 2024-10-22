@@ -130,7 +130,7 @@ continueColorTransition:
             sta tetriminoDynamicLastCol
 
             lda #TETRIMINO_ROW_LENGTH
-            sta tetriminoDynamicRowLENGTH
+            sta tetriminoDynamicRowLength
 
             WriteText(NORMAL_MODE_MESSAGE, 23, 20, 1)
 
@@ -141,7 +141,7 @@ continueColorTransition:
                 sta tetriminoDynamicLastCol
 
                 lda #TETRIMINO_ROW_LENGTH_WIDE_MODE
-                sta tetriminoDynamicRowLENGTH
+                sta tetriminoDynamicRowLength
 
                 WriteText(WIDE_MODE_MESSAGE, 23, 20, 1)
 
@@ -267,8 +267,8 @@ continueColorTransition:
         sta charCol
         lda #TETRIMINO_ROW_FIRST
         sta charRow
-        lda tetriminoDynamicRowLENGTH
-        sta textLENGTH
+        lda tetriminoDynamicRowLength
+        sta textLength
         lda #TETRIMINO_CONTAINER_HEIGHT
         sta textHeight
         lda #SPACE
@@ -295,6 +295,18 @@ inGameOverNoF1:
         PopFromStack()
         rts
 
+nextTetrimino:
+        jsr STATS.increaseTetrimino
+        jsr MATH.generateRandomBelow10
+        sta tempScore
+        UpdateScore(5)
+
+        jsr TETRIMINO.speedUp
+
+        jsr TETRIMINO.resetFall
+        
+        NewTetrimino()
+        rts
 
     createNewTestTetrimino:
         PushToStack()
@@ -309,20 +321,9 @@ inGameOverNoF1:
         noGameOver:
             jsr TETRIMINO.draw
 
-            jsr TETRIMINO.checkCompleteLines
-
-            jsr STATS.increaseTetrimino
-
-            jsr MATH.generateRandomBelow10
-            sta tempScore
-            UpdateScore(5)
-
-            jsr TETRIMINO.speedUp
-
-            jsr TETRIMINO.resetFall
+            lda #GAME_MODE_DELELE_LINE
+            sta gameMode
             
-            NewTetrimino()
-
         createNewTestTetriminoDone:
             
             PopFromStack()
