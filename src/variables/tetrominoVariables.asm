@@ -26,7 +26,6 @@ tetrominoMustFall:          .byte 0
 
 tetrominoNext:              .byte 0
 
-tetrominoLowRowPosition:    .byte TETROMINO_ROW_LAST
 
 tetrominoDynamicLastCol:    .byte TETROMINO_COL_LAST
 tetrominoDynamicRowLength:  .byte TETROMINO_ROW_LENGTH

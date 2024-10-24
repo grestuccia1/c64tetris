@@ -121,9 +121,6 @@ LEVELS: {
         preloadLevelEnd:
             
             jsr COLLITION.lineColition
-            lda transitionRowMax
-            sta tetrominoLowRowPosition
-            dec tetrominoLowRowPosition
             
             PopFromStack()
             rts

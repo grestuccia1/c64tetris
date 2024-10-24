@@ -50,6 +50,7 @@ GAME:
         jsr LEVELS.init
         jsr STATS.init
 
+        //Turn on music
         lda #1
         sta playMusic
 

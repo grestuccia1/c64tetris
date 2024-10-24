@@ -364,9 +364,7 @@ OUTPUT:
 				cpy tetrominoDynamicLastCol
 				bne moveNextChar
 
-			lda tetrominoLowRowPosition
-
-			cpx tetrominoLowRowPosition
+			cpx #TETROMINO_ROW_FIRST
 	 		bne moveLinePrevious
 
 		PopFromStack()

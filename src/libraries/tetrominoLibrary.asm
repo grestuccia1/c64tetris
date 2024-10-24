@@ -253,7 +253,7 @@ TETROMINO:
 	completedLines:
 		PushToStack()
 
-		lda #0
+   		lda #0
 		sta tetrominoCompletedLinesIndex
 		ldy #4
 		clearCompletedLines:
@@ -261,13 +261,6 @@ TETROMINO:
 			dey                           
 			bpl clearCompletedLines  
 
-			lda tetrominoLowRowPosition
-
-		continueTetrominoLowRowPositionCompletedLines:
-			clc
-			adc tetrominoHeight
-			cmp #TETROMINO_ROW_LAST
-			bcc continueCheckCompleteLinesCompletedLines 
 			lda #TETROMINO_ROW_LAST
 
 		continueCheckCompleteLinesCompletedLines:
@@ -317,21 +310,6 @@ TETROMINO:
 	checkCompleteLines:
 		PushToStack()
 
- 		lda tetrominoLowRowPosition
-		clc
-		lda tetrominoRow
-		cmp tetrominoLowRowPosition
-		beq changeTetrominoLowRowPosition 
-		bcc changeTetrominoLowRowPosition 
-		jmp continueTetrominoLowRowPosition
-	changeTetrominoLowRowPosition:
-		sta tetrominoLowRowPosition
-		dec tetrominoLowRowPosition
-
-	continueTetrominoLowRowPosition:
- 		adc tetrominoHeight
-		cmp #TETROMINO_ROW_LAST
-		bcc continueCheckCompleteLines
 		lda #TETROMINO_ROW_LAST
 
 	continueCheckCompleteLines:
@@ -359,8 +337,6 @@ TETROMINO:
 		removeLine:
 			AddToScore(1,3)
 			jsr OUTPUT.moveLines
-			inc tetrominoLowRowPosition
-			lda tetrominoLowRowPosition
 			jmp addLineCounter
  		previewsLine:
 			dex
