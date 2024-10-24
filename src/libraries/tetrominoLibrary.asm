@@ -462,7 +462,11 @@ TETROMINO:
 				rts	
 
 
-	createNewTetromino:
-			NewTetromino()
-			rts
+	resetTetromino:
+		lda #0
+		sta tetrominoNr
+		sta tetrominoRow
+		sta tetrominoCol
+		sta tetrominoRot
+		rts
 }
