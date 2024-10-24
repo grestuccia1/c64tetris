@@ -142,10 +142,10 @@ drawChar:
     
     sta charId
 
-    lda #8
+    lda #HUD_CLOCK_Y_POS
     sta charRow
 
-    lda #18
+    lda #HUD_CLOCK_X_POS
     clc
     adc clockOffset
     sta charCol

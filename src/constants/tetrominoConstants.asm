@@ -1,0 +1,44 @@
+// ----------------------------------- TETROMINO CONSTANTS -----------------------------------
+
+.label RESET_ROTATION       = 0
+.label MAX_ROTATION         = 4
+
+.label RESET_SPEED          = 0
+
+.label TETROMINO_COL_FIRST  = 1
+.label TETROMINO_COL_LAST   = 11
+.label TETROMINO_CONTAINER_HEIGHT = 24
+
+.label TETROMINO_ROW_LENGTH = 10
+.label TETROMINO_ROW_FIRST  = 0
+.label TETROMINO_ROW_LAST   = 23
+.label TETROMINO_ROW_OOR    = 25
+
+.label TETROMINO_COL_LAST_WIDE_MODE   = 15
+.label TETROMINO_ROW_LENGTH_WIDE_MODE = 14
+
+.label TETROMINO_ROW_START  = 0
+.label TETROMINO_COL_START  = 4
+
+.label TETROMINO_I = 0
+.label TETROMINO_J = 1
+.label TETROMINO_L = 2
+.label TETROMINO_O = 3
+.label TETROMINO_S = 4
+.label TETROMINO_T = 5
+.label TETROMINO_Z = 6
+
+.label TETROMINO_I_COLOR    = RED_COLOR
+.label TETROMINO_J_COLOR    = YELLOW_COLOR
+.label TETROMINO_L_COLOR    = PURPLE_COLOR
+.label TETROMINO_O_COLOR    = BLUE_COLOR
+.label TETROMINO_S_COLOR    = CYAN_COLOR
+.label TETROMINO_T_COLOR    = LIGHT_GREEN_COLOR
+.label TETROMINO_Z_COLOR    = ORANGE_COLOR
+.label FONT_COLOR           = GREY_COLOR
+
+.label TETROMINO_MUST_FALL  = 1
+.label TETROMINO_NOT_FALL   = 0
+
+.label TETROMINO_HEIGHT_4X4 = 3
+.label TETROMINO_HEIGHT_5X5 = 4

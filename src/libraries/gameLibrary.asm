@@ -29,16 +29,16 @@ GAME:
         ShowFolkRussianDancer(77, 100)
 
         //Top left
-        DrawTetrimino(1, 0, -1, 3)
-        DrawTetrimino(5, 0, 1, 0)
+        DrawTetromino(1, 0, -1, 3)
+        DrawTetromino(5, 0, 1, 0)
 
         //Bottom left
-        DrawTetrimino(2, 22, -1, 1)
-        DrawTetrimino(4, 22, 1, 1)
+        DrawTetromino(2, 22, -1, 1)
+        DrawTetromino(4, 22, 1, 1)
         
         //Top right        
-        DrawTetrimino(3, -1, 37, 0)
-        DrawTetrimino(0, 1, 36, 0)
+        DrawTetromino(3, -1, 37, 0)
+        DrawTetromino(0, 1, 36, 0)
 
         //Bottom right
         LoadCharMap(HUD_REX_ADDRESS,31,14,9,10)
@@ -82,9 +82,9 @@ continueColorTransition:
 	    sta textColor
         
         noChangeColorInMenu: 
+        SetTextColorStored(23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1, 6)
+        SetTextColorStored(24, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, 1, 2)
         SetTextColorStored(32, 24, 1, 8)
-        SetTextColorStored(23, 20, 1, 6)
-        SetTextColorStored(24, 22, 1, 2)
 
         //Bottom right
 
@@ -121,29 +121,29 @@ continueColorTransition:
             cmp #KEY_F5
             bne inMenuNoF5
 
-            lda tetriminoWideMode
+            lda tetrominoWideMode
             eor #1
-            sta tetriminoWideMode
+            sta tetrominoWideMode
             bne changeToWideMode
 
-            lda #TETRIMINO_COL_LAST
-            sta tetriminoDynamicLastCol
+            lda #TETROMINO_COL_LAST
+            sta tetrominoDynamicLastCol
 
-            lda #TETRIMINO_ROW_LENGTH
-            sta tetriminoDynamicRowLength
+            lda #TETROMINO_ROW_LENGTH
+            sta tetrominoDynamicRowLength
 
-            WriteText(NORMAL_MODE_MESSAGE, 23, 20, 1)
+            WriteText(NORMAL_MODE_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
 
             jmp inMenuNoF5
             changeToWideMode:
 
-                lda #TETRIMINO_COL_LAST_WIDE_MODE
-                sta tetriminoDynamicLastCol
+                lda #TETROMINO_COL_LAST_WIDE_MODE
+                sta tetrominoDynamicLastCol
 
-                lda #TETRIMINO_ROW_LENGTH_WIDE_MODE
-                sta tetriminoDynamicRowLength
+                lda #TETROMINO_ROW_LENGTH_WIDE_MODE
+                sta tetrominoDynamicRowLength
 
-                WriteText(WIDE_MODE_MESSAGE, 23, 20, 1)
+                WriteText(WIDE_MODE_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
 
         inMenuNoF5:
 
@@ -174,28 +174,34 @@ continueColorTransition:
         lda #GAME_MODE_PLAYING_READY
         sta gameMode
         LoadFullScreen(HUD_GAMEPLAY_ADDRESS)
-        SetTextColor(17,8,1,6,1)
+        SetTextColor(HUD_CLOCK_X_POS,HUD_CLOCK_Y_POS,1,6,WHITE_COLOR)
 
-        SetTextColor(17,12,1,6,1)
-        SetTextColor(17,16,1,6,1)
-        SetTextColor(19,20,1,2,1)
-        SetTextColor(19,24,1,2,1)
+        SetTextColor(HUD_SCORE_X_POS,HUD_SCORE_Y_POS,1,HUD_SCORE_DIGITS,WHITE_COLOR)
+        SetTextColor(HUD_LINES_X_POS,HUD_LINES_Y_POS,1,HUD_LINES_DIGITS,WHITE_COLOR)
+        SetTextColor(HUD_LEVEL_X_POS,HUD_LEVEL_Y_POS,1,HUD_LEVEL_DIGITS,WHITE_COLOR)
+        SetTextColor(HUD_LINES_LEFT_X_POS,HUD_LINES_LEFT_Y_POS,1,HUD_LINES_LEFT_DIGITS,WHITE_COLOR)
 
-        lda tetriminoWideMode
+        lda tetrominoWideMode
         beq noWideMode
         FillRectangle(11,0,24,1,SPACE)
-        FillRectangle(TETRIMINO_COL_LAST_WIDE_MODE,0,24,1,WALL)
-        FillRectangle(0,24,1,TETRIMINO_COL_LAST_WIDE_MODE + 1,WALL)
+        FillRectangle(TETROMINO_COL_LAST_WIDE_MODE,0,HUD_STATS_POS_Y,1,WALL)
+        FillRectangle(0,24,1,TETROMINO_COL_LAST_WIDE_MODE + 1,WALL)
         
         noWideMode:
         
+        ldx tetrominoHeight
+		cpx #TETROMINO_HEIGHT_4X4
+		beq endLoad5X5HudStats
+            LoadCharMap(HUD_5X5_STATS_ADDRESS,HUD_STATS_POS_X_X5,HUD_STATS_POS_Y,TETROMINO_MAX_5X5,1)
+        endLoad5X5HudStats:
+
         jsr STATS.applyColors
         jsr HUD.updateLevelCounter
         jsr HUD.updateLinesLeftCounter
         jsr LEVELS.preloadLevel
         jsr CLOCK.start
 
-        NewTetrimino()
+        NewTetromino()
         
         PopFromStack()
         rts
@@ -203,15 +209,15 @@ continueColorTransition:
     inPlayingMode:
         PushToStack()
 
-        jsr TETRIMINO.remove
-        jsr TETRIMINO.handle
-        ClearTetriminoDirection(ALL_DIRECTIONS_NO_FIRE)
+        jsr TETROMINO.remove
+        jsr TETROMINO.handle
+        ClearTetrominoDirection(ALL_DIRECTIONS_NO_FIRE)
         lda gameMode
         cmp #GAME_MODE_PLAYING_READY
         bne justGameOver
 
-        jsr TETRIMINO.change
-        jsr TETRIMINO.draw
+        jsr TETROMINO.change
+        jsr TETROMINO.draw
 
         justGameOver:
         
@@ -263,13 +269,13 @@ continueColorTransition:
     clearContainer:
         PushToStack()
 
-        lda #TETRIMINO_COL_FIRST
+        lda #TETROMINO_COL_FIRST
         sta charCol
-        lda #TETRIMINO_ROW_FIRST
+        lda #TETROMINO_ROW_FIRST
         sta charRow
-        lda tetriminoDynamicRowLength
+        lda tetrominoDynamicRowLength
         sta textLength
-        lda #TETRIMINO_CONTAINER_HEIGHT
+        lda #TETROMINO_CONTAINER_HEIGHT
         sta textHeight
         lda #SPACE
         sta textChar
@@ -295,36 +301,36 @@ inGameOverNoF1:
         PopFromStack()
         rts
 
-nextTetrimino:
-        jsr STATS.increaseTetrimino
+nextTetromino:
+        jsr STATS.increaseTetromino
         jsr MATH.generateRandomBelow10
         sta tempScore
         UpdateScore(5)
 
-        jsr TETRIMINO.speedUp
+        jsr TETROMINO.speedUp
 
-        jsr TETRIMINO.resetFall
+        jsr TETROMINO.resetFall
         
-        NewTetrimino()
+        NewTetromino()
         rts
 
-    createNewTestTetrimino:
+    createNewTestTetromino:
         PushToStack()
 
-        lda tetriminoRow
-        cmp #TETRIMINO_ROW_START
+        lda tetrominoRow
+        cmp #TETROMINO_ROW_START
         bne noGameOver
 
         jsr GAME.goToGameOver
-        jmp createNewTestTetriminoDone
+        jmp createNewTestTetrominoDone
 
         noGameOver:
-            jsr TETRIMINO.draw
+            jsr TETROMINO.draw
 
             lda #GAME_MODE_DELELE_LINE
             sta gameMode
             
-        createNewTestTetriminoDone:
+        createNewTestTetrominoDone:
             
             PopFromStack()
             rts

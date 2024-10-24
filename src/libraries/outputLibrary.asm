@@ -8,7 +8,7 @@ OUTPUT:
 		PushToStack()
 
 		ldx charRow
-		cpx #TETRIMINO_ROW_OOR
+		cpx #TETROMINO_ROW_OOR
 		bcs drawCharOOR
 
 		lda Row_LO,x
@@ -36,7 +36,7 @@ OUTPUT:
 		PushToStack()
 
 		ldx charRow
-		cpx #TETRIMINO_ROW_OOR
+		cpx #TETROMINO_ROW_OOR
 		bcs drawCharNoColorOOR
 
 		lda Row_LO,x
@@ -57,7 +57,7 @@ OUTPUT:
 		PushToStack()
 
 		ldx charRow
-		cpx #TETRIMINO_ROW_OOR
+		cpx #TETROMINO_ROW_OOR
 		bcs setPositionInRowOOR
 
 		lda Row_LO,x
@@ -72,7 +72,7 @@ OUTPUT:
 		ldy charCol
 
 		moveNextPositionInRow:
-		cpy tetriminoDynamicLastCol
+		cpy tetrominoDynamicLastCol
 		beq setPositionInRowOOR
 
 		lda (ZP_ROW_LO),y
@@ -89,12 +89,33 @@ OUTPUT:
 			rts
 
 
+	getCharNoColor:
+		PushToStack()
+
+		ldx charRow
+		cpx #TETROMINO_ROW_OOR
+		bcs getCharOORNoColor
+
+		lda Row_LO,x
+		sta ZP_ROW_LO
+		lda Row_HI,x
+		sta ZP_ROW_HI
+
+		ldy charCol
+
+		lda (ZP_ROW_LO),y
+		sta charCollision
+
+		getCharOORNoColor:
+
+			PopFromStack()
+			rts
 
 	getChar:
 		PushToStack()
 
 		ldx charRow
-		cpx #TETRIMINO_ROW_OOR
+		cpx #TETROMINO_ROW_OOR
 		bcs getCharOOR
 
 		lda Row_LO,x
@@ -123,7 +144,7 @@ OUTPUT:
 		PushToStack()
 
 		ldx charRow
-		cpx #TETRIMINO_ROW_OOR
+		cpx #TETROMINO_ROW_OOR
 		bcs changeColorOOR
 
 		lda Row_Color_LO,x
@@ -144,7 +165,7 @@ OUTPUT:
 		PushToStack()
 
 		ldx textRow
-		cpx #TETRIMINO_ROW_OOR
+		cpx #TETROMINO_ROW_OOR
 		bcs drawTextOOR
 
 		lda Row_LO,x
@@ -330,7 +351,7 @@ OUTPUT:
 			lda Row_Color_HI,x
 			sta ZP_ROW_COLOR_PREVIOUS_HI
 
-			ldy #TETRIMINO_COL_FIRST
+			ldy #TETROMINO_COL_FIRST
 
 			moveNextChar:
 				lda (ZP_ROW_PREVIOUS_LO),y
@@ -340,12 +361,12 @@ OUTPUT:
 				sta (ZP_ROW_COLOR_LO), y
 
 				iny
-				cpy tetriminoDynamicLastCol
+				cpy tetrominoDynamicLastCol
 				bne moveNextChar
 
-			lda tetriminoLowRowPosition
+			lda tetrominoLowRowPosition
 
-			cpx tetriminoLowRowPosition
+			cpx tetrominoLowRowPosition
 	 		bne moveLinePrevious
 
 		PopFromStack()

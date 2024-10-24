@@ -34,6 +34,9 @@ BasicUpstart2(main)
 *=HUD_TETRIS_TITLE_ADDRESS "HUD Tetris Title"
 .import binary "assets/hud/tetrisTitle.bin"
 
+*=HUD_5X5_STATS_ADDRESS "HUD 5x5 Stats"
+.import binary "assets/hud/5x5Stats.bin"
+
 *=HUD_TETRIS_TITLE_COLORS_ADDRESS "HUD Tetris Title Colors"
 .import binary "assets/hud/tetrisTitleColors.bin"
 

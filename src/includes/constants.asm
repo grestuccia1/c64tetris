@@ -7,7 +7,7 @@
 #import "../constants/zeroPageConstants.asm"
 #import "../constants/inputConstants.asm"
 #import "../constants/directionsConstants.asm"
-#import "../constants/tetriminoConstants.asm"
+#import "../constants/tetrominoConstants.asm"
 #import "../constants/charsetConstants.asm"
 #import "../constants/statsConstants.asm"
 #import "../constants/gameConstants.asm"

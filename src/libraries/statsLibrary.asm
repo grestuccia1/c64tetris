@@ -8,47 +8,71 @@ STATS:
 
         initStatsLoop:
             lda #0
-            sta statsTetriminoTotal, y
-            sta statsTetriminoSubTotal,y 
+            sta statsTetrominoTotal, y
+            sta statsTetrominoSubTotal,y 
             lda #HUD_STATS_POS_Y - 1
-            sta statsTetriminoRow, y
+            sta statsTetrominoRow, y
 
             iny
-            cpy #TETRIMINO_MAX
+            cpy tetrominoMax
             bne initStatsLoop
 			
 		PopFromStack()
 		rts
         
-    increaseTetrimino:
+    increaseTetromino:
         PushToStack()
 
-        ldy tetriminoNr
-        lda statsTetriminoTotal, y
+        ldy tetrominoNr
+        lda statsTetrominoTotal, y
         clc
         adc #1
-        sta statsTetriminoTotal, y
+        sta statsTetrominoTotal, y
 
-        lda statsTetriminoSubTotal,y 
+        lda statsTetrominoSubTotal,y 
         clc
         adc #1
-        sta statsTetriminoSubTotal,y 
+        sta statsTetrominoSubTotal,y 
         cmp #MAX_STATS_BY_LINE
-        beq increaseTetriminoReachMaxLine
+        beq increaseTetrominoReachMaxLine
 
         jsr STATS.draw
 
-        jmp increaseTetriminoEnd  
+        jmp increaseTetrominoEnd  
 
-    increaseTetriminoReachMaxLine:
+    increaseTetrominoReachMaxLine:
         lda #0
-        sta statsTetriminoSubTotal,y 
-        lda statsTetriminoRow, y
+        sta statsTetrominoSubTotal,y 
+        lda statsTetrominoRow, y
         sec
         sbc #1
-        sta statsTetriminoRow, y
+        sta statsTetrominoRow, y
 
-    increaseTetriminoEnd:
+    increaseTetrominoEnd:
+
+        PopFromStack()
+        rts
+
+    calculatePositionCol:
+        PushToStack()
+        lda tetrominoHeight
+		cmp #TETROMINO_HEIGHT_4X4
+		bne positionColEnd
+		//4 x 4
+        tya 
+        jsr MATH.multiplyBy2
+        clc
+        adc #HUD_STATS_POS_X_X4
+
+		jmp positionColContinue
+		positionColEnd:
+		//5 x 5
+        tya
+        clc
+        adc #HUD_STATS_POS_X_X5
+		positionColContinue:    
+
+        sta charCol
 
         PopFromStack()
         rts
@@ -60,15 +84,16 @@ STATS:
 
         applyColorsRow:
 
-            ldx statsTetriminoCol, y
-            stx charCol
+            jsr calculatePositionCol
+            //ldx statsTetrominoCol, y
+            //stx charCol
 
             ldx #0
             stx charRow
 
             applyColorsColumn:
 
-                lda tetriminoColors, y
+                lda tetrominoColors, y
                 sta charColor
                 jsr OUTPUT.changeColor
 
@@ -78,7 +103,7 @@ STATS:
                 bne applyColorsColumn
 
             iny
-            cpy #TETRIMINO_MAX
+            cpy tetrominoMax
             bne applyColorsRow
 
         PopFromStack()
@@ -87,15 +112,16 @@ STATS:
     draw:
         PushToStack()
 
-        ldy tetriminoNr
+        ldy tetrominoNr
         
-        lda statsTetriminoRow, y
+        lda statsTetrominoRow, y
         sta charRow
 
-        lda statsTetriminoCol, y
-        sta charCol
+        jsr calculatePositionCol
+        //lda statsTetrominoCol, y
+        //sta charCol
 
-        lda statsTetriminoSubTotal,y 
+        lda statsTetrominoSubTotal,y 
         clc
         adc #STATS_CHARSET
         sta charId

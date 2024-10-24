@@ -7,8 +7,8 @@ INPUT:
 		lda JOYSTICK_2
 		cmp #JOY_2_IDLE
 		bne joy2notIdle
-			ClearTetriminoDirection(FIRE)
-			SetTetriminoDirection(FIRE_RELEASE)
+			ClearTetrominoDirection(FIRE)
+			SetTetrominoDirection(FIRE_RELEASE)
 			jmp doneReadJoystick_2
 		joy2notIdle:
 
@@ -16,47 +16,47 @@ INPUT:
 				lda JOYSTICK_2
 				and #JOY_DOWN
 				beq joy2down
-					ClearTetriminoDirection(DOWN)
+					ClearTetrominoDirection(DOWN)
 					jmp checkJoy2left
 				joy2down:
-					SetTetriminoDirection(DOWN)
+					SetTetrominoDirection(DOWN)
 
 			checkJoy2left:
 				lda JOYSTICK_2
 				and #JOY_LEFT
 				beq joy2left
-					ClearTetriminoDirection(LEFT)
+					ClearTetrominoDirection(LEFT)
 					jmp checkJoy2right
 				joy2left:
-					SetTetriminoDirection(LEFT)
+					SetTetrominoDirection(LEFT)
 
 			checkJoy2right:
 				lda JOYSTICK_2
 				and #JOY_RIGHT
 				beq joy2right
-					ClearTetriminoDirection(RIGHT)
+					ClearTetrominoDirection(RIGHT)
 					jmp checkJoy2up
 				joy2right:
-					SetTetriminoDirection(RIGHT)
+					SetTetrominoDirection(RIGHT)
 
 			checkJoy2up:
 				lda JOYSTICK_2
 				and #JOY_UP
 				beq joy2up
-					ClearTetriminoDirection(UP)
+					ClearTetrominoDirection(UP)
 					jmp checkJoy2fire
 				joy2up:
-					SetTetriminoDirection(UP)
+					SetTetrominoDirection(UP)
 
 			checkJoy2fire:
 				lda JOYSTICK_2
 				and #JOY_FIRE
 				beq joy2fire
-					ClearTetriminoDirection(FIRE)
-					SetTetriminoDirection(FIRE_RELEASE)
+					ClearTetrominoDirection(FIRE)
+					SetTetrominoDirection(FIRE_RELEASE)
 					jmp doneReadJoystick_2
 				joy2fire:
-					SetTetriminoDirection(FIRE)
+					SetTetrominoDirection(FIRE)
 						jmp doneReadJoystick_2
 
 		doneReadJoystick_2:

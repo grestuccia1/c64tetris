@@ -7,7 +7,7 @@
     preloadLevelLoop:
         lda levelXs, x
         sta charCol
-        lda tetriminoWideMode
+        lda tetrominoWideMode
         beq noWideMode
         inc charCol
         inc charCol

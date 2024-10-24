@@ -5,26 +5,26 @@ COLLITION:
 {
 
     init:
-        lda tetriminoRow
+        lda tetrominoRow
         sta collitionRow
 
-        lda tetriminoCol
+        lda tetrominoCol
         sta collitionCol
 
-        lda tetriminoRot
+        lda tetrominoRot
         sta collitionRot
 
         rts
 
     pass:    
         lda collitionRow
-        sta tetriminoRow
+        sta tetrominoRow
 
         lda collitionCol
-        sta tetriminoCol
+        sta tetrominoCol
 
         lda collitionRot
-        sta tetriminoRot
+        sta tetrominoRot
 
         rts
 
@@ -35,15 +35,27 @@ COLLITION:
 		sta charCollision
 
 		lda collitionRot 
-		asl
-		asl
+		ldx tetrominoHeight
+		cpx #TETROMINO_HEIGHT_4X4
+		bne mustMultiplyBy5Init
+		jsr MATH.multiplyBy4
+		jmp collitionInitContinue
+		mustMultiplyBy5Init:
+		jsr MATH.multiplyBy5
+		collitionInitContinue:
 		sta collitionInit
 
 		lda collitionRot 
 		clc
 		adc #1
-		asl
-		asl
+		ldx tetrominoHeight
+		cpx #TETROMINO_HEIGHT_4X4
+		bne mustMultiplyBy5End
+		jsr MATH.multiplyBy4
+		jmp collitionEndContinue
+		mustMultiplyBy5End:
+		jsr MATH.multiplyBy5
+		collitionEndContinue:
 		sta collitionEnd
 
 		ldy collitionInit
@@ -60,7 +72,7 @@ COLLITION:
 				adc collitionRow
 				sta charRow
 
-				jsr OUTPUT.getChar
+				jsr OUTPUT.getCharNoColor
 
 				lda charCollision
 				cmp	#SPACE
@@ -77,17 +89,17 @@ COLLITION:
 	lineColition:
 		PushToStack()
 
-		lda #TETRIMINO_ROW_FIRST
+		lda #TETROMINO_ROW_FIRST
 		sta charRow
 		
-		lda #TETRIMINO_COL_FIRST
+		lda #TETROMINO_COL_FIRST
 		sta charCol
 
 		lda #SPACE
 		sta charCollision
 
 		nextCharInLine:
-			jsr OUTPUT.getChar
+			jsr OUTPUT.getCharNoColor
 
 			lda charCollision
 			cmp	#SPACE
@@ -95,15 +107,15 @@ COLLITION:
 
 			inc charCol
 			lda charCol
-			cmp tetriminoDynamicLastCol
+			cmp tetrominoDynamicLastCol
 			bne nextCharInLine
 
-			lda #TETRIMINO_COL_FIRST
+			lda #TETROMINO_COL_FIRST
 			sta charCol
 
 			inc charRow
 			lda charRow
-			cmp #TETRIMINO_ROW_LAST
+			cmp #TETROMINO_ROW_LAST
 			bne nextCharInLine
 
 		lineColitionDone:
@@ -111,6 +123,13 @@ COLLITION:
 			lda charRow
 			sta transitionRowMax
 
-			PopFromStack()
-			rts
+			cmp #TETROMINO_ROW_LAST
+			bcs greaterThan23 
+			jmp endLineColitionDone
+			greaterThan23:
+				lda #TETROMINO_ROW_LAST
+				sta transitionRowMax
+			endLineColitionDone:
+				PopFromStack()
+				rts
 }

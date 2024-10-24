@@ -38,8 +38,8 @@ LEVELS: {
         lda linesGoalPerLevel, x
         sta linesNeededForNextLevel
 
-        lda tetriminoFallDelayPerLevel, x
-        sta tetriminoFallDelay
+        lda tetrominoFallDelayPerLevel, x
+        sta tetrominoFallDelay
 
         lda #RESET_LINES_FOR_LEVEL
         sta linesForLevel
@@ -122,8 +122,8 @@ LEVELS: {
             
             jsr COLLITION.lineColition
             lda transitionRowMax
-            sta tetriminoLowRowPosition
-            dec tetriminoLowRowPosition
+            sta tetrominoLowRowPosition
+            dec tetrominoLowRowPosition
             
             PopFromStack()
             rts

@@ -1,41 +1,55 @@
-// ----------------------------------- TETRIMINO LIBRARY -----------------------------------
+// ----------------------------------- TETROMINO LIBRARY -----------------------------------
 
-TETRIMINO:
+TETROMINO:
 {
 	paint:
 		PushToStack()
 
-		lda tetriminoRot 
-		asl
-		asl
-		sta tetriminoInit
+		lda tetrominoRot 
+		ldx tetrominoHeight
+		cpx #TETROMINO_HEIGHT_4X4
+		bne mustMultiplyBy5Init
+		jsr MATH.multiplyBy4
+		jmp tetrominoInitContinue
+		mustMultiplyBy5Init:
+		jsr MATH.multiplyBy5
+		tetrominoInitContinue:
+		sta tetrominoInit
 
-		lda tetriminoRot 
+		lda tetrominoRot 
 		clc
 		adc #1
-		asl
-		asl
-		sta tetriminoEnd
+		ldx tetrominoHeight
+		cpx #TETROMINO_HEIGHT_4X4
+		bne mustMultiplyBy5End
+		jsr MATH.multiplyBy4
+		jmp tetrominoEndContinue
+		mustMultiplyBy5End:
+		jsr MATH.multiplyBy5
+		tetrominoEndContinue:
+		sta tetrominoEnd
 
-		ldy tetriminoInit
+		ldy tetrominoInit
 		
 		piece:
 			
 				lda (ZP_PX_LO), y
 				clc
-				adc tetriminoCol
+				adc tetrominoCol
 				sta charCol
 
 				lda (ZP_PY_LO), y
 				clc
-				adc tetriminoRow
+				adc tetrominoRow
 				sta charRow
 
 				jsr OUTPUT.drawChar
 
 				iny
-				cpy tetriminoEnd
+				cpy tetrominoEnd
 				bne piece
+
+				endDraw:
 
 				PopFromStack()
 				rts
@@ -45,14 +59,14 @@ TETRIMINO:
 		lda #BLOCK
 		sta charId
 
-		jsr TETRIMINO.paint
+		jsr TETROMINO.paint
 		rts
 
 	remove:
 		lda #SPACE
 		sta charId
 
-		jsr TETRIMINO.paint
+		jsr TETROMINO.paint
 		rts
 
 	handle:
@@ -60,23 +74,23 @@ TETRIMINO:
 
 		jsr COLLITION.init	
 
-		lda #TETRIMINO_NOT_FALL
-		sta tetriminoMustFall
+		lda #TETROMINO_NOT_FALL
+		sta tetrominoMustFall
 
-		checktetriminoFallDelayTimer:
+		checktetrominoFallDelayTimer:
 		
-			ldx tetriminoFallDelayTimer
-			beq tetriminoFallDelayTimerReached
-			dec tetriminoFallDelayTimer
+			ldx tetrominoFallDelayTimer
+			beq tetrominoFallDelayTimerReached
+			dec tetrominoFallDelayTimer
 			jmp checkDownDirection
 						
-			tetriminoFallDelayTimerReached:
-	            jsr TETRIMINO.resetFall
+			tetrominoFallDelayTimerReached:
+	            jsr TETROMINO.resetFall
 
 				jmp moveSpriteDown
 
 		checkDownDirection:
-			lda tetriminoDirection
+			lda tetrominoDirection
 			and #DOWN
 			bne moveSpriteDown
 				jmp checkLeftDirection
@@ -88,11 +102,11 @@ TETRIMINO:
 				cmp	#SPACE
 				beq checkLeftDirection
 
-				lda tetriminoMustFall
+				lda tetrominoMustFall
 				cmp #1
 				bne cancelDownDirection
 
-				jsr GAME.createNewTestTetrimino
+				jsr GAME.createNewTestTetromino
 
 				PopFromStack()
 				rts
@@ -104,17 +118,17 @@ TETRIMINO:
 		
 		checkLeftDirection:
 
-			checkTetriminoHSpeedTimer:
-			lda tetriminoHSpeedTimer
-			cmp tetriminoHSpeed
-				beq tetriminoHSpeedTimerReached
-				inc tetriminoHSpeedTimer
+			checkTetrominoHSpeedTimer:
+			lda tetrominoHSpeedTimer
+			cmp tetrominoHSpeed
+				beq tetrominoHSpeedTimerReached
+				inc tetrominoHSpeedTimer
 				jmp checkRotate
-			tetriminoHSpeedTimerReached:
+			tetrominoHSpeedTimerReached:
 				lda #RESET_SPEED
-				sta tetriminoHSpeedTimer
+				sta tetrominoHSpeedTimer
 
-			lda tetriminoDirection
+			lda tetrominoDirection
 			and #LEFT
 			bne moveSpriteLeft
 				jmp checkRightDirection
@@ -131,7 +145,7 @@ TETRIMINO:
 				jmp checkRightDirection
 
 		checkRightDirection:
-			lda tetriminoDirection
+			lda tetrominoDirection
 			and #RIGHT
 			bne moveSpriteRight
 				jmp checkRotate
@@ -149,32 +163,32 @@ TETRIMINO:
 
 		checkRotate:
 
-			checkTetriminoRotateCooldownTimer:
-			lda tetriminoRotateCooldownTimer
+			checkTetrominoRotateCooldownTimer:
+			lda tetrominoRotateCooldownTimer
 			cmp #0
 				beq handleRotate
-				dec tetriminoRotateCooldownTimer
+				dec tetrominoRotateCooldownTimer
 				jmp endCheckDirection
 
 		handleRotate:
 
-			lda tetriminoDirection
+			lda tetrominoDirection
 			and #FIRE_AND_RELEASE
 			cmp #FIRE_AND_RELEASE
-			beq rotateTetrimino
+			beq rotateTetromino
 				jmp endCheckDirection
-			rotateTetrimino:
-				ClearTetriminoDirection(FIRE_RELEASE)		
+			rotateTetromino:
+				ClearTetrominoDirection(FIRE_RELEASE)		
 
-				lda tetriminoRotateCooldown
-				sta tetriminoRotateCooldownTimer
+				lda tetrominoRotateCooldown
+				sta tetrominoRotateCooldownTimer
 
 				inc collitionRot
 				lda collitionRot
 				cmp #MAX_ROTATION
-				beq resetRotateTetrimino
+				beq resetRotateTetromino
 				jmp endCheckDirection
-			resetRotateTetrimino:			
+			resetRotateTetromino:			
 				lda #RESET_ROTATION
 				sta collitionRot
 				jmp endCheckDirection	
@@ -186,7 +200,7 @@ TETRIMINO:
 			cmp	#SPACE
 			beq endCheckFinal
 
-			lda tetriminoRot
+			lda tetrominoRot
 			sta collitionRot
 
 		endCheckFinal:
@@ -199,19 +213,39 @@ TETRIMINO:
 	change:
 		PushToStack()
 
-		ldx tetriminoNr
-		lda tetriminoColors,x
+		ldx tetrominoNr
+		lda tetrominoColors,x
 		sta charColor
 
-		lda tetriminoPositionsX_LO,x  
-		ldy tetriminoPositionsX_HI,x  
-		sta ZP_PX_LO                  
-		sty ZP_PX_HI                  
+	
+		ldy tetrominoHeight
+		cpy #TETROMINO_HEIGHT_4X4
+		bne mustTetrominoBy5
+		
+			lda tetrominoPositionsX_LO,x  
+			ldy tetrominoPositionsX_HI,x  
+			sta ZP_PX_LO                  
+			sty ZP_PX_HI                  
 
-		lda tetriminoPositionsY_LO,x  
-		ldy tetriminoPositionsY_HI,x  
-		sta ZP_PY_LO                  
-		sty ZP_PY_HI                  
+			lda tetrominoPositionsY_LO,x  
+			ldy tetrominoPositionsY_HI,x  
+			sta ZP_PY_LO                  
+			sty ZP_PY_HI  
+
+		jmp endChange
+		mustTetrominoBy5:
+		
+			lda tetrominoPositionsX_5_LO,x  
+			ldy tetrominoPositionsX_5_HI,x  
+			sta ZP_PX_LO                  
+			sty ZP_PX_HI                  
+
+			lda tetrominoPositionsY_5_LO,x  
+			ldy tetrominoPositionsY_5_HI,x  
+			sta ZP_PY_LO                  
+			sty ZP_PY_HI  
+
+		endChange:
 
 		PopFromStack()
 		rts
@@ -220,43 +254,34 @@ TETRIMINO:
 		PushToStack()
 
 		lda #0
-		sta tetriminoCompletedLinesIndex
-		ldy #3
+		sta tetrominoCompletedLinesIndex
+		ldy #4
 		clearCompletedLines:
-			sta tetriminoCompletedLines, y
+			sta tetrominoCompletedLines, y
 			dey                           
 			bpl clearCompletedLines  
 
-			lda tetriminoLowRowPosition
-			//clc
-		//	lda tetriminoRow
-		//	cmp tetriminoLowRowPosition
-		//	beq changeTetriminoLowRowPositionCompletedLines 
-		//	bcc changeTetriminoLowRowPositionCompletedLines  
-		//	jmp continueTetriminoLowRowPositionCompletedLines 
-		//changeTetriminoLowRowPositionCompletedLines:
-		//	sta tetriminoLowRowPosition
-		//	dec tetriminoLowRowPosition
+			lda tetrominoLowRowPosition
 
-		continueTetriminoLowRowPositionCompletedLines:
+		continueTetrominoLowRowPositionCompletedLines:
 			clc
-			adc #TETRIMINO_HEIGHT
-			cmp #TETRIMINO_ROW_LAST
+			adc tetrominoHeight
+			cmp #TETROMINO_ROW_LAST
 			bcc continueCheckCompleteLinesCompletedLines 
-			lda #TETRIMINO_ROW_LAST
+			lda #TETROMINO_ROW_LAST
 
 		continueCheckCompleteLinesCompletedLines:
 			sta charRow
 			ldx charRow
 			
-			lda #TETRIMINO_COL_FIRST
+			lda #TETROMINO_COL_FIRST
 			sta charCol
 
 			movePreviousLineCompletedLines:
 				lda #BLOCK
 				sta charCollision
 
-				ldy #TETRIMINO_COL_FIRST
+				ldy #TETROMINO_COL_FIRST
 				sty charCol
 
 				jsr OUTPUT.rowIsComplete
@@ -269,10 +294,10 @@ TETRIMINO:
 
 			removeLineCompletedLines:
 
-				ldy tetriminoCompletedLinesIndex
+				ldy tetrominoCompletedLinesIndex
 				lda charRow
-				sta tetriminoCompletedLines, y
-				inc tetriminoCompletedLinesIndex
+				sta tetrominoCompletedLines, y
+				inc tetrominoCompletedLinesIndex
 
 			previewsLineCompletedLines:
 				
@@ -280,7 +305,7 @@ TETRIMINO:
 
 			keepInSameLineCompletedLines:	
 				stx charRow
-				cpx tetriminoRow
+				cpx tetrominoRow
 				bcs movePreviousLineCompletedLines
 				jmp endCheckCompleteLinesCompletedLines
 
@@ -292,35 +317,35 @@ TETRIMINO:
 	checkCompleteLines:
 		PushToStack()
 
- 		lda tetriminoLowRowPosition
+ 		lda tetrominoLowRowPosition
 		clc
-		lda tetriminoRow
-		cmp tetriminoLowRowPosition
-		beq changeTetriminoLowRowPosition 
-		bcc changeTetriminoLowRowPosition 
-		jmp continueTetriminoLowRowPosition
-	changeTetriminoLowRowPosition:
-		sta tetriminoLowRowPosition
-		dec tetriminoLowRowPosition
+		lda tetrominoRow
+		cmp tetrominoLowRowPosition
+		beq changeTetrominoLowRowPosition 
+		bcc changeTetrominoLowRowPosition 
+		jmp continueTetrominoLowRowPosition
+	changeTetrominoLowRowPosition:
+		sta tetrominoLowRowPosition
+		dec tetrominoLowRowPosition
 
-	continueTetriminoLowRowPosition:
- 		adc #TETRIMINO_HEIGHT
-		cmp #TETRIMINO_ROW_LAST
+	continueTetrominoLowRowPosition:
+ 		adc tetrominoHeight
+		cmp #TETROMINO_ROW_LAST
 		bcc continueCheckCompleteLines
-		lda #TETRIMINO_ROW_LAST
+		lda #TETROMINO_ROW_LAST
 
 	continueCheckCompleteLines:
 		sta charRow
 		ldx charRow
 		
-		lda #TETRIMINO_COL_FIRST
+		lda #TETROMINO_COL_FIRST
 		sta charCol
 
 		movePreviousLine:
 			lda #BLOCK
 			sta charCollision
 
-			ldy #TETRIMINO_COL_FIRST
+			ldy #TETROMINO_COL_FIRST
 			sty charCol
 
   			jsr OUTPUT.rowIsComplete
@@ -334,14 +359,14 @@ TETRIMINO:
 		removeLine:
 			AddToScore(1,3)
 			jsr OUTPUT.moveLines
-			inc tetriminoLowRowPosition
-			lda tetriminoLowRowPosition
+			inc tetrominoLowRowPosition
+			lda tetrominoLowRowPosition
 			jmp addLineCounter
  		previewsLine:
 			dex
 		keepInSameLine:	
 			stx charRow
-			cpx tetriminoRow
+			cpx tetrominoRow
 			bcs movePreviousLine
 			jmp endCheckCompleteLines
 
@@ -359,53 +384,53 @@ TETRIMINO:
 	speedUp:
 		PushToStack()
 
-		inc tetriminoPerLevel
+		inc tetrominoPerLevel
 
 		ldx currentLevel
-		lda tetriminoCountPerLevelToSpeedUp, x
-		cmp tetriminoPerLevel
-		beq speedUpTetrimino
-		jmp speedUpTetriminoDone
+		lda tetrominoCountPerLevelToSpeedUp, x
+		cmp tetrominoPerLevel
+		beq speedUpTetromino
+		jmp speedUpTetrominoDone
 
-		speedUpTetrimino:
-			lda tetriminoFallDelay
-			beq speedUpTetriminoDone
+		speedUpTetromino:
+			lda tetrominoFallDelay
+			beq speedUpTetrominoDone
 
 			lda #0
-			sta tetriminoPerLevel
+			sta tetrominoPerLevel
 			
-			lda tetriminoFallDelay
+			lda tetrominoFallDelay
 			sec
 			sbc #1
 			cmp #1
-			beq speedUpTetriminoDone
-			sta tetriminoFallDelay
+			beq speedUpTetrominoDone
+			sta tetrominoFallDelay
 
-		speedUpTetriminoDone:
+		speedUpTetrominoDone:
 			PopFromStack()
 			rts
 
 	resetFall:
-		lda #TETRIMINO_MUST_FALL
-		sta tetriminoMustFall
-		lda tetriminoFallDelay
-		sta tetriminoFallDelayTimer
+		lda #TETROMINO_MUST_FALL
+		sta tetrominoMustFall
+		lda tetrominoFallDelay
+		sta tetrominoFallDelayTimer
 		rts
 
 	changeColorLineToDelete:
 		PushToStack()
 
-		ldy tetriminoCompletedLinesIndex 
+		ldy tetrominoCompletedLinesIndex 
 		dey
 		changeColorLineToDeleteLoop:
-			lda tetriminoCompletedLines, y
+			lda tetrominoCompletedLines, y
 			
 			sta charRow
-			lda #TETRIMINO_COL_FIRST
+			lda #TETROMINO_COL_FIRST
 			sta charCol
-			lda tetriminoDynamicRowLength
+			lda tetrominoDynamicRowLength
 			sta textLength
-			lda #TETRIMINO_COL_FIRST
+			lda #TETROMINO_COL_FIRST
 			sta textHeight
 			lda #BLOCK
 			sta textChar

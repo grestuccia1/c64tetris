@@ -24,7 +24,7 @@ linesGoalPerLevel:
     .byte 28    // Level: 20
 
 
-tetriminoFallDelayPerLevel:
+tetrominoFallDelayPerLevel:
     .byte 0    
     .byte 50    // Level: 1
     .byte 50
@@ -47,7 +47,7 @@ tetriminoFallDelayPerLevel:
     .byte 20
     .byte 10    // Level: 20       
 
-tetriminoCountPerLevelToSpeedUp:
+tetrominoCountPerLevelToSpeedUp:
     .byte 0    
     .byte 20    // Level: 1
     .byte 20    
