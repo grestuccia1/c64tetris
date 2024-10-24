@@ -460,4 +460,9 @@ TETROMINO:
 			changeColorLineToDeleteDone:
 				PopFromStack()
 				rts	
+
+
+	createNewTetromino:
+			NewTetromino()
+			rts
 }

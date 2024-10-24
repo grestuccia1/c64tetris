@@ -81,11 +81,6 @@
 	sta tetrominoCol
 
 	ldy #HUD_CENTRAL_NEXT_POS_Y
-	ldx tetrominoHeight
-	cpx #TETROMINO_HEIGHT_4X4
-	beq noNeedDecrementPosition
-	dey
-	noNeedDecrementPosition:
 	sty tetrominoRow
 
 	ldx tetrominoHeight

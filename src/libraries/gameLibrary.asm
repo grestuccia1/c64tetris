@@ -324,6 +324,9 @@ continueColorTransition:
         cmp #KEY_F1
         bne inGameOverNoF1
 
+        jsr TETROMINO.createNewTetromino
+        jsr TETROMINO.createNewTetromino
+
         lda #GAME_MODE_MENU
         sta gameMode
 

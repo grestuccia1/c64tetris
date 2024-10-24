@@ -18,6 +18,7 @@ statsTetrominoTotal:
     .byte 0
     .byte 0
     .byte 0
+    .byte 0
 
 statsTetrominoRow:
     .byte HUD_STATS_POS_Y - 1
@@ -37,8 +38,10 @@ statsTetrominoRow:
     .byte HUD_STATS_POS_Y - 1
     .byte HUD_STATS_POS_Y - 1
     .byte HUD_STATS_POS_Y - 1
+    .byte HUD_STATS_POS_Y - 1
 
 statsTetrominoSubTotal:
+    .byte 0
     .byte 0
     .byte 0
     .byte 0
@@ -84,3 +87,4 @@ statsTetrominoColX5:
     .byte HUD_STATS_POS_X_X5 + 14
     .byte HUD_STATS_POS_X_X5 + 15
     .byte HUD_STATS_POS_X_X5 + 16
+    .byte HUD_STATS_POS_X_X5 + 17
