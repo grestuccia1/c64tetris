@@ -6,6 +6,8 @@
 // KERNAL Keyboard and text:
 .label KEY_F1 = $85
 
+.label KEY_F2 = $89
+
 .label KEY_F3 = $86
 
 .label KEY_F5 = $87

@@ -24,7 +24,12 @@ START_MESSAGE:
 
 MUSIC_ON_OFF_MESSAGE: 
 .encoding "screencode_upper"
-.text "F3 TO TOGGLE MUSIC" 
+.text "F2 TO TOGGLE MUSIC" 
+.byte 0
+
+TETROMINO_MESSAGE: 
+.encoding "screencode_upper"
+.text "F3 TO CHANGE TETROMINO: 4X4" 
 .byte 0
 
 CHANGE_MODE_MESSAGE: 
@@ -40,6 +45,16 @@ WIDE_MODE_MESSAGE:
 NORMAL_MODE_MESSAGE: 
 .encoding "screencode_upper"
 .text "NORMAL" 
+.byte 0
+
+TETROMINO_4X4_MESSAGE: 
+.encoding "screencode_upper"
+.text "4X4" 
+.byte 0
+
+TETROMINO_5X5_MESSAGE: 
+.encoding "screencode_upper"
+.text "5X5" 
 .byte 0
 
 CHANGE_LEVEL_MESSAGE: 

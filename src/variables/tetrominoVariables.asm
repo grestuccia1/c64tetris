@@ -41,8 +41,5 @@ tetrominoCompletedLines:    .byte 0
 
 tetrominoCompletedLinesIndex: .byte 0
 
-//tetrominoHeight:            .byte TETROMINO_HEIGHT_4X4 
-//tetrominoMax:               .byte TETROMINO_MAX_4X4
-
-tetrominoHeight:            .byte TETROMINO_HEIGHT_5X5 
-tetrominoMax:               .byte TETROMINO_MAX_5X5
+tetrominoHeight:            .byte TETROMINO_HEIGHT_4X4 
+tetrominoMax:               .byte TETROMINO_MAX_4X4

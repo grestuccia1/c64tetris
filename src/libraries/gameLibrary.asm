@@ -22,9 +22,10 @@ GAME:
         LoadCharColorMap(HUD_TETRIS_TITLE_ADDRESS, HUD_TETRIS_TITLE_COLORS_ADDRESS, 3, 6, 35, 7)
 
         WriteText(START_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS, WHITE_COLOR)
-        WriteText(MUSIC_ON_OFF_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, WHITE_COLOR)
+        WriteText(TETROMINO_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, WHITE_COLOR)
         WriteText(CHANGE_MODE_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, WHITE_COLOR)
         WriteText(CHANGE_LEVEL_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, WHITE_COLOR)
+        WriteText(MUSIC_ON_OFF_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 8, WHITE_COLOR)
 
         ShowFolkRussianDancer(77, 100)
 
@@ -82,6 +83,7 @@ continueColorTransition:
 	    sta textColor
         
         noChangeColorInMenu: 
+        SetTextColorStored(28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1, 3)
         SetTextColorStored(23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1, 6)
         SetTextColorStored(24, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, 1, 2)
         SetTextColorStored(32, 24, 1, 8)
@@ -100,8 +102,8 @@ continueColorTransition:
 
         inMenuNoF1:
 
-            cmp #KEY_F3
-            bne inMenuNoF3
+            cmp #KEY_F2
+            bne inMenuNoF2
 
             lda playMusic
             eor #1
@@ -109,12 +111,40 @@ continueColorTransition:
             bne turnOffMusic
             lda #IS_VOLUME_OFF
             sta MUSIC_VOLUME
-            jmp inMenuNoF3
+            jmp inMenuNoF2
 
             turnOffMusic:
                     lda #IS_VOLUME_ON
                     sta MUSIC_VOLUME
 
+
+        inMenuNoF2:
+
+            cmp #KEY_F3
+            bne inMenuNoF3
+
+            lda tetrominoHeight
+            cmp #TETROMINO_HEIGHT_4X4
+            beq changeTo5X5
+
+            lda #TETROMINO_HEIGHT_4X4
+            sta tetrominoHeight
+
+            lda #TETROMINO_MAX_4X4
+            sta tetrominoMax
+
+            WriteText(TETROMINO_4X4_MESSAGE, 28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
+
+            jmp inMenuNoF3
+            changeTo5X5:
+
+                lda #TETROMINO_HEIGHT_5X5
+                sta tetrominoHeight
+
+                lda #TETROMINO_MAX_5X5
+                sta tetrominoMax
+
+                WriteText(TETROMINO_5X5_MESSAGE, 28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
 
         inMenuNoF3:
 
