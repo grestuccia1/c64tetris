@@ -1,3 +1,5 @@
+.const DEBUG = false
+
 #import "system/memoryMap.asm"
 #import "system/config.asm"
 #import "includes/constants.asm"

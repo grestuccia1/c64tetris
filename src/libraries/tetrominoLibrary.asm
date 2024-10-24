@@ -304,6 +304,41 @@ TETROMINO:
 
 			endCheckCompleteLinesCompletedLines:
 
+		lda tetrominoCompletedLinesIndex
+		cmp #5
+		bne no5CompletedLines
+		// add 2000 points
+		AddToScore(2,2)
+		jmp completedLinesDone
+			no5CompletedLines:
+			cmp #4
+			bne no4CompletedLines
+			// add 900 points
+			AddToScore(9,3)
+			jmp completedLinesDone
+				no4CompletedLines:
+				cmp #3
+				bne no3CompletedLines
+				// add 400 points
+				AddToScore(4,3)
+				jmp completedLinesDone
+
+					no3CompletedLines:
+					cmp #2
+					bne no2CompletedLines
+					// add 150 points
+					AddToScore(1,3)
+					AddToScore(5,4)
+					jmp completedLinesDone
+
+						no2CompletedLines:
+						cmp #1
+						bne completedLinesDone
+						// add 50 points
+						AddToScore(5,4)
+
+		completedLinesDone:
+
 		PopFromStack()
 		rts
 
@@ -335,7 +370,6 @@ TETROMINO:
 			jmp previewsLine
 
 		removeLine:
-			AddToScore(1,3)
 			jsr OUTPUT.moveLines
 			jmp addLineCounter
  		previewsLine:

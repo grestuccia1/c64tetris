@@ -3,6 +3,13 @@
 MATH:
 {
     generateRandomBelow7:
+
+        .if (DEBUG) {
+            lda #0
+            sta ZP_RANDOM_NUMBER
+            rts
+        }
+
         lda $DC04                 
         and #$07                  
         cmp #7                    
@@ -21,6 +28,13 @@ MATH:
         rts
 
     generateRandomBelow18:
+
+        .if (DEBUG) {
+            lda #0
+            sta ZP_RANDOM_NUMBER
+            rts
+        }
+
         lda $DC04           
         and #$1F           
         cmp #18            
