@@ -27,6 +27,18 @@ GAME:
         WriteText(CHANGE_LEVEL_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, WHITE_COLOR)
         WriteText(MUSIC_ON_OFF_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 8, WHITE_COLOR)
 
+        lda tetrominoWideMode
+        cmp #1
+        bne noWideModeStartUp
+        WriteText(WIDE_MODE_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
+        noWideModeStartUp:
+        
+        lda tetrominoHeight
+        cmp #TETROMINO_HEIGHT_5X5
+        bne no5X5ModeStartUp
+        WriteText(TETROMINO_5X5_MESSAGE, 28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
+        no5X5ModeStartUp:
+
         ShowFolkRussianDancer(77, 100)
 
         //Top left
