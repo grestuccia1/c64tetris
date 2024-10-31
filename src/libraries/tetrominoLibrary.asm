@@ -106,7 +106,7 @@ TETROMINO:
 				cmp #1
 				bne cancelDownDirection
 
-				jsr GAME.createNewTestTetromino
+				jsr TETROMINO.createNewTetromino
 
 				PopFromStack()
 				rts
@@ -305,26 +305,26 @@ TETROMINO:
 			endCheckCompleteLinesCompletedLines:
 
 		lda tetrominoCompletedLinesIndex
-		cmp #5
+		cmp #TETROMINO_COMPLETE_5_LINES
 		bne no5CompletedLines
 		// add 2000 points
 		AddToScore(2,2)
 		jmp completedLinesDone
 			no5CompletedLines:
-			cmp #4
+			cmp #TETROMINO_COMPLETE_4_LINES
 			bne no4CompletedLines
 			// add 900 points
 			AddToScore(9,3)
 			jmp completedLinesDone
 				no4CompletedLines:
-				cmp #3
+				cmp #TETROMINO_COMPLETE_3_LINES
 				bne no3CompletedLines
 				// add 400 points
 				AddToScore(4,3)
 				jmp completedLinesDone
 
 					no3CompletedLines:
-					cmp #2
+					cmp #TETROMINO_COMPLETE_2_LINES
 					bne no2CompletedLines
 					// add 150 points
 					AddToScore(1,3)
@@ -332,7 +332,7 @@ TETROMINO:
 					jmp completedLinesDone
 
 						no2CompletedLines:
-						cmp #1
+						cmp #TETROMINO_COMPLETE_1_LINE
 						bne completedLinesDone
 						// add 50 points
 						AddToScore(5,4)
@@ -370,7 +370,7 @@ TETROMINO:
 			jmp previewsLine
 
 		removeLine:
-			jsr OUTPUT.moveLines
+			jsr TETROMINO.moveLinesDown
 			jmp addLineCounter
  		previewsLine:
 			dex
@@ -469,4 +469,173 @@ TETROMINO:
 		sta tetrominoCol
 		sta tetrominoRot
 		rts
+
+	
+	moveLinesDown:
+		PushToStack()
+
+		ldx charRow
+
+		moveLinePrevious:
+			lda Row_LO,x
+			sta ZP_ROW_LO
+			lda Row_HI,x
+			sta ZP_ROW_HI
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_HI
+
+			dex
+			lda Row_LO,x
+			sta ZP_ROW_PREVIOUS_LO
+			lda Row_HI,x
+			sta ZP_ROW_PREVIOUS_HI
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_PREVIOUS_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_PREVIOUS_HI
+
+			ldy #TETROMINO_COL_FIRST
+
+			moveNextChar:
+				lda (ZP_ROW_PREVIOUS_LO),y
+				sta (ZP_ROW_LO), y
+
+				lda (ZP_ROW_COLOR_PREVIOUS_LO), y
+				sta (ZP_ROW_COLOR_LO), y
+
+				iny
+				cpy tetrominoDynamicLastCol
+				bne moveNextChar
+
+			cpx #TETROMINO_ROW_FIRST
+	 		bne moveLinePrevious
+
+		PopFromStack()
+		rts		
+
+
+	moveLinesUp:
+		PushToStack()
+
+		ldx #0
+
+		moveLineNext:
+			lda Row_LO,x
+			sta ZP_ROW_PREVIOUS_LO
+			lda Row_HI,x
+			sta ZP_ROW_PREVIOUS_HI
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_PREVIOUS_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_PREVIOUS_HI
+
+			inx
+
+			lda Row_LO,x
+			sta ZP_ROW_LO
+			lda Row_HI,x
+			sta ZP_ROW_HI
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_HI
+
+			ldy #TETROMINO_COL_FIRST
+
+			moveNextCharUp:
+				lda (ZP_ROW_LO),y
+				sta (ZP_ROW_PREVIOUS_LO), y
+
+				lda (ZP_ROW_COLOR_LO), y
+				sta (ZP_ROW_COLOR_PREVIOUS_LO), y
+
+				iny
+				cpy tetrominoDynamicLastCol
+				bne moveNextCharUp
+
+			cpx #TETROMINO_ROW_LAST
+	 		bne moveLineNext
+
+		PopFromStack()
+  		rts		 
+
+	cleanLine:
+		PushToStack()
+
+		ldx charRow
+
+		moveLineToClean:
+			lda Row_LO,x
+			sta ZP_ROW_LO
+			lda Row_HI,x
+			sta ZP_ROW_HI
+
+			ldy #TETROMINO_COL_FIRST
+
+			moveNextCharToClean:
+				lda #SPACE
+				sta (ZP_ROW_LO),y
+				
+				iny
+				cpy tetrominoDynamicLastCol
+				bne moveNextCharToClean
+
+
+		PopFromStack()
+		rts
+
+	moveLinesUpClean:
+		PushToStack()
+
+		jsr moveLinesUp
+
+		lda #TETROMINO_ROW_LAST
+		sta charRow
+		jsr cleanLine
+
+		PopFromStack()
+		rts
+
+    newRandomTopBlock:
+        PushToStack()
+        jsr COLLITION.lineColition
+
+        lda transitionRowMax
+        sta charRow
+
+        lda transitionCol
+        sta charCol
+
+        lda #BLOCK  
+        sta charId
+
+        lda #WHITE_COLOR
+        sta charColor
+        jsr OUTPUT.drawChar 
+
+        PopFromStack()
+        rts   
+
+    createNewTetromino:
+        PushToStack()
+
+        lda tetrominoRow
+        cmp #TETROMINO_ROW_START
+        bne noGameOver
+
+        jsr GAME.goToGameOver
+        jmp createNewTetrominoDone
+
+        noGameOver:
+            jsr TETROMINO.draw
+
+            lda #GAME_MODE_DELELE_LINE
+            sta gameMode
+            
+        createNewTetrominoDone:
+            
+            PopFromStack()
+            rts
 }

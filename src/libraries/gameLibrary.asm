@@ -341,12 +341,12 @@ continueColorTransition:
         lda #GAME_MODE_MENU
         sta gameMode
 
-inGameOverNoF1:
+    inGameOverNoF1:
 
         PopFromStack()
         rts
 
-nextTetromino:
+    nextTetromino:
         jsr STATS.increaseTetromino
         jsr MATH.generateRandomBelow10
         sta tempScore
@@ -355,28 +355,12 @@ nextTetromino:
         jsr TETROMINO.speedUp
 
         jsr TETROMINO.resetFall
+
+        // Level post conditions
+        // jsr TETROMINO.newRandomTopBlock
+        // jsr TETROMINO.moveLinesUpClean
         
         NewTetromino()
         rts
 
-    createNewTestTetromino:
-        PushToStack()
-
-        lda tetrominoRow
-        cmp #TETROMINO_ROW_START
-        bne noGameOver
-
-        jsr GAME.goToGameOver
-        jmp createNewTestTetrominoDone
-
-        noGameOver:
-            jsr TETROMINO.draw
-
-            lda #GAME_MODE_DELELE_LINE
-            sta gameMode
-            
-        createNewTestTetrominoDone:
-            
-            PopFromStack()
-            rts
 }

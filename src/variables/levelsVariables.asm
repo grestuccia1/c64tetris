@@ -10,3 +10,4 @@ tetrominoPerLevel: .byte 0
 transitionRow: .byte 0
 transitionRowDelay: .byte 2
 transitionRowMax: .byte 23
+transitionCol: .byte 0

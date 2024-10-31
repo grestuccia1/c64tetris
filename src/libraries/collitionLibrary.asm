@@ -89,9 +89,9 @@ COLLITION:
 	lineColition:
 		PushToStack()
 
-		lda #TETROMINO_ROW_FIRST
+ 		lda #TETROMINO_ROW_FIRST
 		sta charRow
-		
+ 		
 		lda #TETROMINO_COL_FIRST
 		sta charCol
 
@@ -119,6 +119,9 @@ COLLITION:
 			bne nextCharInLine
 
 		lineColitionDone:
+			lda charCol
+			sta transitionCol
+
 			dec charRow
 			lda charRow
 			sta transitionRowMax

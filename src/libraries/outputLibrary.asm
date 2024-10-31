@@ -326,48 +326,5 @@ OUTPUT:
 			PopFromStack()
 			rts
 
-	moveLines:
-		PushToStack()
-
-		ldx charRow
-
-		moveLinePrevious:
-			lda Row_LO,x
-			sta ZP_ROW_LO
-			lda Row_HI,x
-			sta ZP_ROW_HI
-			lda Row_Color_LO,x
-			sta ZP_ROW_COLOR_LO
-			lda Row_Color_HI,x
-			sta ZP_ROW_COLOR_HI
-
-			dex
-			lda Row_LO,x
-			sta ZP_ROW_PREVIOUS_LO
-			lda Row_HI,x
-			sta ZP_ROW_PREVIOUS_HI
-			lda Row_Color_LO,x
-			sta ZP_ROW_COLOR_PREVIOUS_LO
-			lda Row_Color_HI,x
-			sta ZP_ROW_COLOR_PREVIOUS_HI
-
-			ldy #TETROMINO_COL_FIRST
-
-			moveNextChar:
-				lda (ZP_ROW_PREVIOUS_LO),y
-				sta (ZP_ROW_LO), y
-
-				lda (ZP_ROW_COLOR_PREVIOUS_LO), y
-				sta (ZP_ROW_COLOR_LO), y
-
-				iny
-				cpy tetrominoDynamicLastCol
-				bne moveNextChar
-
-			cpx #TETROMINO_ROW_FIRST
-	 		bne moveLinePrevious
-
-		PopFromStack()
-		rts		
 
 }
