@@ -85,16 +85,22 @@ TETROMINO:
 			jmp checkDownDirection
 						
 			tetrominoFallDelayTimerReached:
-	            jsr TETROMINO.resetFall
-
 				jmp moveSpriteDown
-
+		
 		checkDownDirection:
 			lda tetrominoDirection
 			and #DOWN
 			bne moveSpriteDown
 				jmp checkLeftDirection
 			moveSpriteDown:
+				lda tetrominoFallDelayTimer
+				beq continueMoveSpriteDown 
+
+				AddToScore(3,5)
+
+			continueMoveSpriteDown:
+				jsr TETROMINO.resetFall
+
 				inc collitionRow
 
 				jsr COLLITION.check
