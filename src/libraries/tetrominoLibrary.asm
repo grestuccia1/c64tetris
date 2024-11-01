@@ -400,11 +400,11 @@ TETROMINO:
 	speedUp:
 		PushToStack()
 
-		inc tetrominoPerLevel
+		inc tetrominoPerLevelSpeedUp
 
 		ldx currentLevel
 		lda tetrominoCountPerLevelToSpeedUp, x
-		cmp tetrominoPerLevel
+		cmp tetrominoPerLevelSpeedUp
 		beq speedUpTetromino
 		jmp speedUpTetrominoDone
 
@@ -413,7 +413,7 @@ TETROMINO:
 			beq speedUpTetrominoDone
 
 			lda #0
-			sta tetrominoPerLevel
+			sta tetrominoPerLevelSpeedUp
 			
 			lda tetrominoFallDelay
 			sec
@@ -423,6 +423,52 @@ TETROMINO:
 			sta tetrominoFallDelay
 
 		speedUpTetrominoDone:
+			PopFromStack()
+			rts
+
+	postConditionsMoveLinesUpClean:
+		PushToStack()
+
+		ldx currentLevel
+		lda tetrominoCountPerLevelToMoveLinesUp, x
+		beq postConditionsMoveLinesUpCleanTetrominoDone
+
+		inc tetrominoPerLevelMoveLinesUpClean
+
+		cmp tetrominoPerLevelMoveLinesUpClean
+		beq postConditionsMoveLinesUpCleanTetromino
+		jmp postConditionsMoveLinesUpCleanTetrominoDone
+
+		postConditionsMoveLinesUpCleanTetromino:
+			lda #0
+			sta tetrominoPerLevelMoveLinesUpClean
+			
+            jsr TETROMINO.moveLinesUpClean
+
+		postConditionsMoveLinesUpCleanTetrominoDone:
+			PopFromStack()
+			rts
+
+	postConditionsNewRandomTopBlock:
+		PushToStack()
+
+		ldx currentLevel
+		lda tetrominoCountPerLevelToNewRandomTopBlock, x
+		beq postConditionsNewRandomTopBlockTetrominoDone
+
+		inc tetrominoPerLevelNewRandomTopBlock
+
+		cmp tetrominoPerLevelNewRandomTopBlock
+		beq postConditionsNewRandomTopBlockTetromino
+		jmp postConditionsNewRandomTopBlockTetrominoDone
+
+		postConditionsNewRandomTopBlockTetromino:
+			lda #0
+			sta tetrominoPerLevelNewRandomTopBlock
+			
+            jsr TETROMINO.newRandomTopBlock
+
+		postConditionsNewRandomTopBlockTetrominoDone:
 			PopFromStack()
 			rts
 

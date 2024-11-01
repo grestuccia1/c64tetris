@@ -357,8 +357,8 @@ continueColorTransition:
         jsr TETROMINO.resetFall
 
         // Level post conditions
-        // jsr TETROMINO.newRandomTopBlock
-        // jsr TETROMINO.moveLinesUpClean
+        jsr TETROMINO.postConditionsNewRandomTopBlock
+        jsr TETROMINO.postConditionsMoveLinesUpClean
         
         NewTetromino()
         rts
