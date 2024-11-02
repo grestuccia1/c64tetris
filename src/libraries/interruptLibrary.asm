@@ -62,6 +62,8 @@ INTERRUPT:
 			
 		skipMusic:
 
+		jsr CLOCK.ticks
+
 		jsr CLOCK.update
 
 		jsr CLOCK.draw

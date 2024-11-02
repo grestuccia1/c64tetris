@@ -87,12 +87,12 @@ tetrominoCountPerLevelToMoveLinesUp:
     .byte 0
     .byte 0
     .byte 0
-    .byte 0     // Level: 15   
-    .byte 0  
-    .byte 0  
-    .byte 0 
-    .byte 0  
-    .byte 0     // Level: 20   
+    .byte 7     // Level: 15   
+    .byte 5  
+    .byte 5  
+    .byte 3 
+    .byte 7  
+    .byte 3     // Level: 20   
 
 tetrominoCountPerLevelToNewRandomTopBlock:
     .byte 0    
@@ -106,16 +106,16 @@ tetrominoCountPerLevelToNewRandomTopBlock:
     .byte 0    
     .byte 0    
     .byte 0    // Level: 10    
-    .byte 0    
-    .byte 0
-    .byte 0
-    .byte 0
+    .byte 7    
+    .byte 5
+    .byte 5
+    .byte 3
     .byte 0     // Level: 15   
     .byte 0  
     .byte 0  
     .byte 0 
-    .byte 0  
-    .byte 0     // Level: 20   
+    .byte 8  
+    .byte 5     // Level: 20   
 
 rowTransitionColor:
     .byte 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12

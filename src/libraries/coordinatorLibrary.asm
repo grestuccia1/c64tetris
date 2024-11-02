@@ -8,18 +8,15 @@ COORDINATOR: {
 		cmp #GAME_START_UP
 		bne noGameStartUp
 
-			ldx tempStartUpDelayTimer
-				beq startUpDelayTimerReached 
-				dec tempStartUpDelayTimer    
-				jmp noGameModeEnd                  
+			ldx #RASTER_TICK_10
+			jsr CLOCK.tickStatus
+			bne gamePlayEnd
 
-			startUpDelayTimerReached:
-				lda #START_UP_DELAY_TIMER_REACHED
-				sta tempStartUpDelayTimer 
-
-				lda #GAME_MODE_MENU
-				sta gameMode
-
+			lda #GAME_MODE_MENU
+			sta gameMode
+		
+		gamePlayEnd:
+			lda gameMode
 			jmp noGameModeEnd
 		noGameStartUp:
 			

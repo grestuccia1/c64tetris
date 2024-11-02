@@ -6,3 +6,4 @@
 #import "../tables/statsTables.asm"
 #import "../tables/levelsTables.asm"
 #import "../tables/tetrominoTablesX5.asm"
+#import "../tables/clockTables.asm"

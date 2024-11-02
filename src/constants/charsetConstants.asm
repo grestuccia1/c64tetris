@@ -4,6 +4,7 @@
 .label SPACE = 32
 .label BLOCK = 76
 .label WALL = 75
+.label BLOCK_RANDOM = 77
 .label ARROW_LEFT = 69
 .label ARROW_RIGHT = 70
 .label ARROW_UP = 71

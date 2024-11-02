@@ -514,6 +514,50 @@ TETROMINO:
 				rts	
 
 
+	changeColorBlockRandom:
+		PushToStack()
+
+		ldx #TETROMINO_ROW_FIRST
+
+		moveLineChangeColorBlockRandom:
+			lda Row_LO,x
+			sta ZP_ROW_LO
+			lda Row_HI,x
+			sta ZP_ROW_HI
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_HI
+
+			inx 
+
+			ldy #TETROMINO_COL_FIRST
+
+			moveNextCharChangeColorBlockRandom:
+				lda (ZP_ROW_LO), y
+				cmp #BLOCK_RANDOM
+                bne moveNextCharChangeColorBlockRandomDone
+
+				stx charRow
+                jsr MATH.generateRandomBelow10
+			    tax
+			
+			    lda rowTransitionColor, x
+				sta (ZP_ROW_COLOR_LO), y
+
+                ldx charRow
+
+				moveNextCharChangeColorBlockRandomDone:
+				iny
+				cpy tetrominoDynamicLastCol
+				bne moveNextCharChangeColorBlockRandom
+
+			cpx #TETROMINO_ROW_FIRST
+	 		bne moveLineChangeColorBlockRandom
+
+		PopFromStack()
+		rts	
+
 	resetTetromino:
 		lda #0
 		sta tetrominoNr
@@ -521,7 +565,6 @@ TETROMINO:
 		sta tetrominoCol
 		sta tetrominoRot
 		rts
-
 	
 	moveLinesDown:
 		PushToStack()
@@ -660,7 +703,7 @@ TETROMINO:
         lda transitionCol
         sta charCol
 
-        lda #BLOCK  
+        lda #BLOCK_RANDOM  
         sta charId
 
         lda #WHITE_COLOR

@@ -21,15 +21,84 @@ CLOCK:
             and #%00000010    
             beq isPal    
 
+            jsr setupTicketToNtsc
+
             lda #NTSC_RASTER
             jmp doneSetupPalOrNtsc
         isPal:
+
+            jsr setupTicketToPal
             lda #PAL_RASTER
 
     doneSetupPalOrNtsc:
             sta irq_counter_setup  
             sta irq_counter 
             rts
+
+
+    setupTicketToPal:
+        ldx #RASTER_TICKS_TOTAL
+
+        setupTicketToPalLoop:
+            lda rasterTicksResetPAL, x
+            sta rasterTicksReset, x
+            sta rasterTicksCounter, x
+
+            dex
+            bne  setupTicketToPalLoop
+        rts 
+
+    setupTicketToNtsc:
+        ldx #RASTER_TICKS_TOTAL
+
+        setupTicketToNtscLoop:
+            lda rasterTicksReset, x
+            sta rasterTicksCounter, x
+
+            dex
+            bne  setupTicketToNtscLoop
+        rts 
+
+    tickStatus:
+        lda rasterTicksCounter, x
+        rts
+
+    ticks:
+        PushToStack()
+
+        ldx #RASTER_TICKS_TOTAL
+
+        tickLoop:
+            lda rasterTicksCounter, x
+            beq resetTick
+
+            dec rasterTicksCounter, x
+
+            jmp nextTick
+        resetTick:
+
+            lda rasterTicksReset, x
+            sta rasterTicksCounter, x
+
+        nextTick:
+            dex
+            bne tickLoop
+
+        PopFromStack()
+        rts
+
+    resetTicks:
+        PushToStack()
+        ldx #RASTER_TICKS_TOTAL
+
+        resetTickLoop:
+            lda rasterTicksReset, x
+            sta rasterTicksCounter, x
+            dex
+            bne resetTickLoop
+
+        PopFromStack()
+        rts
 
     update:
         PushToStack()
@@ -42,7 +111,6 @@ CLOCK:
         bne endUpdateClock
         lda irq_counter_setup
         sta irq_counter  
-
 
         lda showColon
         eor #1
