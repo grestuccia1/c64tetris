@@ -22,11 +22,6 @@ START_MESSAGE:
 .text "F1 TO START" 
 .byte 0
 
-MUSIC_ON_OFF_MESSAGE: 
-.encoding "screencode_upper"
-.text "F2 TO TOGGLE MUSIC" 
-.byte 0
-
 TETROMINO_MESSAGE: 
 .encoding "screencode_upper"
 .text "F3 TO CHANGE TETROMINO: 4X4" 
@@ -70,8 +65,10 @@ START_LEVEL_NUMBER:
 
 REX_MESSAGE: 
 .encoding "screencode_upper"
-.text "REX 2024" 
+.text "REX 2024 V0'8" 
 .byte 0
+
+
 
 GAME_OVER_MESSAGE: 
 .encoding "screencode_upper"
@@ -79,4 +76,3 @@ GAME_OVER_MESSAGE:
 .byte 0
 
 .const MAX_COLOR_TRANSITION = 29
-.const TRANSITION_COLOR_DELAY = 8

@@ -5,18 +5,6 @@ LEVELS: {
         lda #LEVEL_RESET
         sta currentLevel
 
-        lda #TRANSITION_COLOR_DELAY
-        sta tempTransitionColorDelayTimer
-        
-        lda #TRANSITION_ROW_DELAY_TIMER_REACHED
-        sta tempTransitionRowDelayTimer
-        
-        lda #TRANSITION_BETWEEN_LEVELS_DELAY_TIMER_REACHED
-        sta tempTransitionBetweenLevelsDelay
-
-        lda #TRANSITION_DELETE_LINE_DELAY_TIMER_REACHED
-        sta tempTransitionDeleteLineDelay
-
         jsr LEVELS.increaseLevel
         jsr HUD.resetScore
         jsr HUD.resetLinesCounter

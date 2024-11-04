@@ -19,7 +19,7 @@ COORDINATOR: {
 			lda gameMode
 			jmp noGameModeEnd
 		noGameStartUp:
-			
+			lda gameMode
 			cmp #GAME_MODE_MENU
 			bne noGameModeMenu
 
@@ -38,6 +38,7 @@ COORDINATOR: {
 			jmp noGameModeEnd
 			
 		noGameModeMenuReady:
+			lda gameMode
 			cmp #GAME_MODE_PLAYING
 			bne noGameModePlaying
 
@@ -45,6 +46,7 @@ COORDINATOR: {
 			jmp noGameModeEnd
 			
 		noGameModePlaying:
+			lda gameMode
 			cmp #GAME_MODE_PLAYING_READY
 			bne noGameModePlayingReady
 
@@ -52,26 +54,22 @@ COORDINATOR: {
 			jmp noGameModeEnd
 
 		noGameModePlayingReady:
+			lda gameMode
             cmp #GAME_MODE_CHANGE_LEVEL
 			bne noGameModeChangeLevel
 
-			ldx tempTransitionRowDelayTimer
-			beq transitionRowDelayTimerReached 
-			dec tempTransitionRowDelayTimer    
-			jmp noGameModeEnd                  
+			ldx #RASTER_TICK_2
+			jsr CLOCK.tickStatus
+			bne noGameModeChangeLevel
 
-			transitionRowDelayTimerReached:
-				lda #TRANSITION_ROW_DELAY_TIMER_REACHED
-				sta tempTransitionRowDelayTimer 
+			AddToScore(1,4)
 
-				AddToScore(1,4)
+			lda transitionRow
+			cmp transitionRowMax
+			bne changeLevelTransition
 
-				lda transitionRow
-				cmp transitionRowMax
-				bne changeLevelTransition
-
-				lda #GAME_MODE_CHANGE_LEVEL_DELAY
-				sta gameMode
+			lda #GAME_MODE_CHANGE_LEVEL_DELAY
+			sta gameMode
 				
 			changeLevelTransition:
 				lda transitionRow
@@ -95,22 +93,20 @@ COORDINATOR: {
 				jmp noGameModeEnd
 
 		noGameModeChangeLevel:
+			lda gameMode
 			cmp #GAME_MODE_CHANGE_LEVEL_DELAY
 			bne noGameModeChangeLevelDelay
 
-			lda tempTransitionBetweenLevelsDelay
-			beq transitionBetweenLevelsDelayTimerReached
-			dec tempTransitionBetweenLevelsDelay
-			jmp noGameModeEnd
-			transitionBetweenLevelsDelayTimerReached:
-				lda #TRANSITION_BETWEEN_LEVELS_DELAY_TIMER_REACHED
-				sta tempTransitionBetweenLevelsDelay
+			ldx #RASTER_TICK_40
+			jsr CLOCK.tickStatus
+			bne noGameModeChangeLevelDelay
 
 			jsr GAME.changeLevel
 
 			jmp noGameModeEnd
 
         noGameModeChangeLevelDelay:
+			lda gameMode
             cmp #GAME_MODE_CHANGE_LEVEL_READY
             bne noGameModeChangeLevelReady
 
@@ -118,6 +114,7 @@ COORDINATOR: {
 			jmp noGameModeEnd
 
 		noGameModeChangeLevelReady:
+			lda gameMode
             cmp #GAME_MODE_GAME_OVER
 			bne noGameModeGameOver
 
@@ -125,6 +122,7 @@ COORDINATOR: {
 			jmp noGameModeEnd
 
         noGameModeGameOver:
+			lda gameMode
             cmp #GAME_MODE_GAME_OVER_READY
             bne noGameModeGameOverReady
 
@@ -132,6 +130,7 @@ COORDINATOR: {
 			jmp noGameModeEnd
 
 		noGameModeGameOverReady:
+			lda gameMode
  			cmp #GAME_MODE_DELELE_LINE
             bne noGameModeDeleteLine
 
@@ -150,23 +149,21 @@ COORDINATOR: {
 			jmp noGameModeDeleteLineMove
 
 		noGameModeDeleteLine:
+			lda gameMode
  			cmp #GAME_MODE_DELELE_LINE_ANIMATED
             bne noGameModeDeleteLineAnimated
 
 			jsr TETROMINO.changeColorLineToDelete
 
-			lda tempTransitionDeleteLineDelay
-			beq transitionDeleteLineDelayTimerReached
-			dec tempTransitionDeleteLineDelay
-			jmp noGameModeEnd
-			transitionDeleteLineDelayTimerReached:
-				lda #TRANSITION_DELETE_LINE_DELAY_TIMER_REACHED
-				sta tempTransitionDeleteLineDelay
-
+			ldx #RASTER_TICK_10
+			jsr CLOCK.tickStatus
+			bne noGameModeDeleteLineAnimated
+	
 			lda #GAME_MODE_DELELE_LINE_MOVE
 			sta gameMode
 
 		noGameModeDeleteLineAnimated:
+			lda gameMode
  			cmp #GAME_MODE_DELELE_LINE_MOVE
             bne noGameModeDeleteLineMove
 
@@ -182,6 +179,7 @@ COORDINATOR: {
 			jsr GAME.nextTetromino
 
 		noGameModeDeleteLineMove:
+			lda gameMode
  			cmp #GAME_MODE_DELELE_LINE_READY
             bne noGameModeDeleteLineReady
 

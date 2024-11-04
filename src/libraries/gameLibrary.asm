@@ -25,7 +25,6 @@ GAME:
         WriteText(TETROMINO_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, WHITE_COLOR)
         WriteText(CHANGE_MODE_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, WHITE_COLOR)
         WriteText(CHANGE_LEVEL_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, WHITE_COLOR)
-        WriteText(MUSIC_ON_OFF_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 8, WHITE_COLOR)
 
         lda tetrominoWideMode
         cmp #1
@@ -56,7 +55,7 @@ GAME:
         //Bottom right
         LoadCharMap(HUD_REX_ADDRESS,31,14,9,10)
 
-        WriteText(REX_MESSAGE, 32, 24, 1)
+        WriteText(REX_MESSAGE, 26, 24, 1)
         SetTextColor(32,14,10,8, WHITE_COLOR)
 
         jsr LEVELS.init
@@ -72,146 +71,128 @@ GAME:
     inMenuMode:
         PushToStack()
 
-        ldx tempTransitionColorDelayTimer
-        beq inMenuModeTransitionRowDelayTimerReached
-        dec tempTransitionColorDelayTimer
-        jmp noChangeColorInMenu
+        ldx #RASTER_TICK_2
+        jsr CLOCK.tickStatus
+        bne animatesFolkRussianDancer
 
-            inMenuModeTransitionRowDelayTimerReached:
-                lda #TRANSITION_COLOR_DELAY
-                sta tempTransitionColorDelayTimer
+        continueColorTransition:
+            inc tempColorTransition
+            ldx tempColorTransition
+            cpx #MAX_COLOR_TRANSITION
+            bne nextColorTransitionInMenu
+            lda #0
+            sta tempColorTransition
+
+            nextColorTransitionInMenu:
+            lda rowTransitionColor, x
+            sta textColor
             
-        AnimatesFolkRussianDancer()
+        animatesFolkRussianDancer:
+            ldx #RASTER_TICK_10
+            jsr CLOCK.tickStatus
+            bne noChangeColorInMenu
 
-continueColorTransition:
-        inc tempColorTransition
-        ldx tempColorTransition
-        cpx #MAX_COLOR_TRANSITION
-        bne nextColorTransitionInMenu
-        lda #0
-        sta tempColorTransition
+            AnimatesFolkRussianDancer()
 
-        nextColorTransitionInMenu:
-	    lda rowTransitionColor, x
-	    sta textColor
-        
         noChangeColorInMenu: 
-        SetTextColorStored(28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1, 3)
-        SetTextColorStored(23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1, 6)
-        SetTextColorStored(24, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, 1, 2)
-        SetTextColorStored(32, 24, 1, 8)
+            SetTextColorStored(28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1, 3)
+            SetTextColorStored(23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1, 6)
+            SetTextColorStored(24, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, 1, 2)
+            SetTextColorStored(25, 24, 1, 14)
 
-        //Bottom right
+            //Bottom right
 
-        jsr SCNKEY
-        jsr GETIN
-        cmp #KEY_F1
-        bne inMenuNoF1
+            jsr SCNKEY
+            jsr GETIN
+            cmp #KEY_F1
+            bne inMenuNoF1
 
-        jsr TETROMINO.resetTetromino
+            jsr TETROMINO.resetTetromino
 
-        lda #GAME_MODE_PLAYING
-        sta gameMode
-        
-        HideFolkRussianDancer()
+            lda #GAME_MODE_PLAYING
+            sta gameMode
+            
+            HideFolkRussianDancer()
 
-        inMenuNoF1:
+            inMenuNoF1:
 
-            cmp #KEY_F2
-            bne inMenuNoF2
+                cmp #KEY_F3
+                bne inMenuNoF3
 
-            lda playMusic
-            eor #1
-            sta playMusic
-            bne turnOffMusic
-            lda #IS_VOLUME_OFF
-            sta MUSIC_VOLUME
-            jmp inMenuNoF2
+                lda tetrominoHeight
+                cmp #TETROMINO_HEIGHT_4X4
+                beq changeTo5X5
 
-            turnOffMusic:
-                    lda #IS_VOLUME_ON
-                    sta MUSIC_VOLUME
-
-
-        inMenuNoF2:
-
-            cmp #KEY_F3
-            bne inMenuNoF3
-
-            lda tetrominoHeight
-            cmp #TETROMINO_HEIGHT_4X4
-            beq changeTo5X5
-
-            lda #TETROMINO_HEIGHT_4X4
-            sta tetrominoHeight
-
-            lda #TETROMINO_MAX_4X4
-            sta tetrominoMax
-
-            WriteText(TETROMINO_4X4_MESSAGE, 28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
-
-            jmp inMenuNoF3
-            changeTo5X5:
-
-                lda #TETROMINO_HEIGHT_5X5
+                lda #TETROMINO_HEIGHT_4X4
                 sta tetrominoHeight
 
-                lda #TETROMINO_MAX_5X5
+                lda #TETROMINO_MAX_4X4
                 sta tetrominoMax
 
-                WriteText(TETROMINO_5X5_MESSAGE, 28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
+                WriteText(TETROMINO_4X4_MESSAGE, 28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
 
-        inMenuNoF3:
+                jmp inMenuNoF3
+                changeTo5X5:
 
-            cmp #KEY_F5
-            bne inMenuNoF5
+                    lda #TETROMINO_HEIGHT_5X5
+                    sta tetrominoHeight
 
-            lda tetrominoWideMode
-            eor #1
-            sta tetrominoWideMode
-            bne changeToWideMode
+                    lda #TETROMINO_MAX_5X5
+                    sta tetrominoMax
 
-            lda #TETROMINO_COL_LAST
-            sta tetrominoDynamicLastCol
+                    WriteText(TETROMINO_5X5_MESSAGE, 28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
 
-            lda #TETROMINO_ROW_LENGTH
-            sta tetrominoDynamicRowLength
+            inMenuNoF3:
 
-            WriteText(NORMAL_MODE_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
+                cmp #KEY_F5
+                bne inMenuNoF5
 
-            jmp inMenuNoF5
-            changeToWideMode:
+                lda tetrominoWideMode
+                eor #1
+                sta tetrominoWideMode
+                bne changeToWideMode
 
-                lda #TETROMINO_COL_LAST_WIDE_MODE
+                lda #TETROMINO_COL_LAST
                 sta tetrominoDynamicLastCol
 
-                lda #TETROMINO_ROW_LENGTH_WIDE_MODE
+                lda #TETROMINO_ROW_LENGTH
                 sta tetrominoDynamicRowLength
 
-                WriteText(WIDE_MODE_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
+                WriteText(NORMAL_MODE_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
 
-        inMenuNoF5:
+                jmp inMenuNoF5
+                changeToWideMode:
 
-            cmp #KEY_F7
-            bne inMenuNoF7
+                    lda #TETROMINO_COL_LAST_WIDE_MODE
+                    sta tetrominoDynamicLastCol
 
-        increaseLevelMenu:
-            jsr LEVELS.increaseLevel
+                    lda #TETROMINO_ROW_LENGTH_WIDE_MODE
+                    sta tetrominoDynamicRowLength
 
-            lda currentLevel
-            cmp #CHANGE_MAX_LEVEL
-            bne drawCurrentLevel
-            lda #0
-            sta currentLevel
-            jmp increaseLevelMenu
+                    WriteText(WIDE_MODE_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
 
-        drawCurrentLevel:    
-            jsr HUD.startLevelCounter
+            inMenuNoF5:
 
-        inMenuNoF7:
+                cmp #KEY_F7
+                bne inMenuNoF7
 
-        PopFromStack()
-        rts
+            increaseLevelMenu:
+                jsr LEVELS.increaseLevel
+
+                lda currentLevel
+                cmp #CHANGE_MAX_LEVEL
+                bne drawCurrentLevel
+                lda #0
+                sta currentLevel
+                jmp increaseLevelMenu
+
+            drawCurrentLevel:    
+                jsr HUD.startLevelCounter
+
+            inMenuNoF7:
+
+            PopFromStack()
+            rts
 
     goToPlaying:
         PushToStack()
