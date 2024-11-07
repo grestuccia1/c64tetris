@@ -54,12 +54,13 @@ INTERRUPT:
 		ora #%00000001 							// Acknowledge raster interrupt
 		sta INTERRUPT_STATUS
 
+		DebugBorder(RED_COLOR)
+
 		jsr COORDINATOR.gamePlay
 
 		lda playMusic
 		beq skipMusic
 		jsr MUSIC_PLAY
-			
 		skipMusic:
 
 		jsr CLOCK.ticks
@@ -67,6 +68,8 @@ INTERRUPT:
 		jsr CLOCK.update
 
 		jsr CLOCK.draw
+
+		DebugBorder(BLACK_COLOR)
 
 		jmp INTERRUPT_RETURN					// KERNAL interrupt return routine
 

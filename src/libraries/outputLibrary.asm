@@ -326,5 +326,32 @@ OUTPUT:
 			PopFromStack()
 			rts
 
+	animateBlock:
+		PushToStack()
+
+		lda charsetAnimationIndex
+		cmp #CHARSET_ANIMATION_MAX
+		bne animateBlockContinue
+
+		lda #0
+		sta charsetAnimationIndex
+
+		animateBlockContinue:
+		jsr MATH.multiplyBy8
+
+		tay
+		ldx #0
+		animateBlockLoop:
+			lda CHARACTER_ORIGIN, y
+			sta CHARACTER_TARGET, x   
+			inx
+			iny 
+			cpx #8
+			bne animateBlockLoop
+
+		inc charsetAnimationIndex
+
+		PopFromStack()
+		rts
 
 }

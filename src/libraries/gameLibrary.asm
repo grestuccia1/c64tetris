@@ -235,15 +235,38 @@ GAME:
     inPlayingMode:
         PushToStack()
 
+        DebugBorder(GREY_COLOR)
+
         jsr TETROMINO.remove
+
+        DebugBorder(ORANGE_COLOR)
+
         jsr TETROMINO.handle
+
+        DebugBorder(YELLOW_COLOR)
+
         ClearTetrominoDirection(ALL_DIRECTIONS_NO_FIRE)
         lda gameMode
         cmp #GAME_MODE_PLAYING_READY
         bne justGameOver
 
+        DebugBorder(BLUE_COLOR)
+
         jsr TETROMINO.change
+        DebugBorder(GREEN_COLOR)
         jsr TETROMINO.draw
+
+        DebugBorder(PURPLE_COLOR)
+
+        ldx #RASTER_TICK_5
+        jsr CLOCK.tickStatus
+        bne justGameOver
+        
+        DebugBorder(CYAN_COLOR)
+
+        jsr OUTPUT.animateBlock
+
+        DebugBorder(WHITE_COLOR)
 
         justGameOver:
         

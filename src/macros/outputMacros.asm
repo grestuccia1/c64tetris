@@ -14,3 +14,11 @@
 
 	jsr OUTPUT.drawChar
 }
+
+
+.macro DebugBorder(color) {
+	.if (DEBUG) {
+    	lda #color         
+    	sta SCREEN_BORDER_COLOR
+	}
+}

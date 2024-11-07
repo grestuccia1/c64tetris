@@ -53,6 +53,12 @@ MATH:
         asl   
         rts   
 
+    multiplyBy8:
+        asl   
+        asl  
+        asl   
+        rts  
+
     multiplyBy5:
         sta temp
         asl        

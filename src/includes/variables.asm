@@ -12,3 +12,4 @@
 #import "../variables/levelsVariables.asm"
 #import "../variables/spriteVariables.asm"
 #import "../variables/clockVariables.asm"
+#import "../variables/charsetVariables.asm"
