@@ -19,17 +19,17 @@
 
 START_MESSAGE: 
 .encoding "screencode_upper"
-.text "F1 TO START" 
+.text "START" 
 .byte 0
 
 TETROMINO_MESSAGE: 
 .encoding "screencode_upper"
-.text "F3 TO CHANGE TETROMINO: 4X4" 
+.text "CHANGE TETROMINO: 4X4" 
 .byte 0
 
 CHANGE_MODE_MESSAGE: 
 .encoding "screencode_upper"
-.text "F5 TO CHANGE MODE: NORMAL" 
+.text "CHANGE MODE: NORMAL" 
 .byte 0
 
 WIDE_MODE_MESSAGE: 
@@ -54,7 +54,7 @@ TETROMINO_5X5_MESSAGE:
 
 CHANGE_LEVEL_MESSAGE: 
 .encoding "screencode_upper"
-.text "F7 TO CHANGE LEVEL: 01" 
+.text "CHANGE LEVEL: 01" 
 .byte 0
 
 
@@ -65,14 +65,14 @@ START_LEVEL_NUMBER:
 
 REX_MESSAGE: 
 .encoding "screencode_upper"
-.text "REX 2024 V0'8" 
+.text "REX 2024 V0'9" 
 .byte 0
 
 
 
 GAME_OVER_MESSAGE: 
 .encoding "screencode_upper"
-.text "PRESS F1 TO CONTINUE" 
+.text "FIRE TO CONTINUE" 
 .byte 0
 
 .const MAX_COLOR_TRANSITION = 29

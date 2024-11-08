@@ -83,6 +83,12 @@ LEVELS: {
         cmp #10
         beq preloadLevel10_Intermediate
 
+        cmp #11
+        beq preloadLevel11_Intermediate
+
+        cmp #12
+        beq preloadLevel12_Intermediate
+
         jmp preloadLevelEnd
 
         preloadLevel4_Intermediate:
@@ -105,6 +111,12 @@ LEVELS: {
 
         preloadLevel10_Intermediate:
             jmp preloadLevel10
+
+        preloadLevel11_Intermediate:
+            jmp preloadLevel11
+
+        preloadLevel12_Intermediate:
+            jmp preloadLevel12
 
         preloadLevelEnd:
             
@@ -139,5 +151,13 @@ LEVELS: {
 
         preloadLevel10:
             LoadLevel(level10Length, level10X, level10Y, level10Color)
+            jmp preloadLevelEnd
+
+        preloadLevel11:
+            LoadLevel(level11Length, level11X, level11Y, level11Color)
+            jmp preloadLevelEnd
+
+        preloadLevel12:
+            LoadLevel(level12Length, level12X, level12Y, level12Color)
             jmp preloadLevelEnd
 }

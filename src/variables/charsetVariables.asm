@@ -1,3 +1,4 @@
 // ----------------------------------- CHARSET VARIABLES -----------------------------------
 
-charsetAnimationIndex: .byte 0
+blockCharsetAnimationIndex: .byte 0
+arrowCharsetAnimationIndex: .byte 0

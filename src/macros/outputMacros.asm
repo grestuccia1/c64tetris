@@ -1,6 +1,5 @@
 
 // ----------------------------------- OUTPUT MACROS -----------------------------------
-
 .macro DrawChar(char,row,col,color)
 {
 	lda #char
@@ -14,7 +13,6 @@
 
 	jsr OUTPUT.drawChar
 }
-
 
 .macro DebugBorder(color) {
 	.if (DEBUG) {

@@ -26,6 +26,8 @@ GAME:
         WriteText(CHANGE_MODE_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, WHITE_COLOR)
         WriteText(CHANGE_LEVEL_MESSAGE, HUD_TETRIS_TITLE_OPTIONS_X_POS, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, WHITE_COLOR)
 
+        DrawChar(ARROW_RIGHT,HUD_TETRIS_TITLE_OPTIONS_Y_POS,HUD_TETRIS_TITLE_OPTIONS_X_POS-1,WHITE_COLOR)
+
         lda tetrominoWideMode
         cmp #1
         bne noWideModeStartUp
@@ -71,6 +73,8 @@ GAME:
     inMenuMode:
         PushToStack()
 
+        jsr OUTPUT.drawCursor
+
         ldx #RASTER_TICK_2
         jsr CLOCK.tickStatus
         bne animatesFolkRussianDancer
@@ -95,17 +99,37 @@ GAME:
             AnimatesFolkRussianDancer()
 
         noChangeColorInMenu: 
-            SetTextColorStored(28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1, 3)
-            SetTextColorStored(23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1, 6)
-            SetTextColorStored(24, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, 1, 2)
+            SetTextColorStored(23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1, 3)
+            SetTextColorStored(18, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1, 6)
+            SetTextColorStored(19, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 6, 1, 2)
             SetTextColorStored(25, 24, 1, 14)
 
             //Bottom right
 
-            jsr SCNKEY
-            jsr GETIN
-            cmp #KEY_F1
-            bne inMenuNoF1
+            ldx #RASTER_TICK_5
+            jsr CLOCK.tickStatus
+            beq inMenuActionFire
+            jmp inMenuNoLevel
+            
+
+            inMenuActionFire:
+
+            jsr OUTPUT.animateArrow
+
+
+            lda tetrominoDirection
+			and #FIRE_AND_RELEASE
+			cmp #FIRE_AND_RELEASE
+            beq inMenuAction
+
+            jmp inMenuNoLevel
+
+            inMenuAction:
+            ClearTetrominoDirection(FIRE_RELEASE)		
+
+            lda drawCursorRow
+			cmp #DRAW_CURSOR_ROW_START
+            bne inMenuNoStart
 
             jsr TETROMINO.resetTetromino
 
@@ -114,10 +138,11 @@ GAME:
             
             HideFolkRussianDancer()
 
-            inMenuNoF1:
+            inMenuNoStart:
 
-                cmp #KEY_F3
-                bne inMenuNoF3
+                lda drawCursorRow
+                cmp #DRAW_CURSOR_ROW_TETROMINO
+                bne inMenuNoTetromino
 
                 lda tetrominoHeight
                 cmp #TETROMINO_HEIGHT_4X4
@@ -129,9 +154,9 @@ GAME:
                 lda #TETROMINO_MAX_4X4
                 sta tetrominoMax
 
-                WriteText(TETROMINO_4X4_MESSAGE, 28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
+                WriteText(TETROMINO_4X4_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
 
-                jmp inMenuNoF3
+                jmp inMenuNoTetromino
                 changeTo5X5:
 
                     lda #TETROMINO_HEIGHT_5X5
@@ -140,12 +165,13 @@ GAME:
                     lda #TETROMINO_MAX_5X5
                     sta tetrominoMax
 
-                    WriteText(TETROMINO_5X5_MESSAGE, 28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
+                    WriteText(TETROMINO_5X5_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
 
-            inMenuNoF3:
+            inMenuNoTetromino:
 
-                cmp #KEY_F5
-                bne inMenuNoF5
+                lda drawCursorRow
+                cmp #DRAW_CURSOR_ROW_MODE
+                bne inMenuNoMode
 
                 lda tetrominoWideMode
                 eor #1
@@ -158,9 +184,9 @@ GAME:
                 lda #TETROMINO_ROW_LENGTH
                 sta tetrominoDynamicRowLength
 
-                WriteText(NORMAL_MODE_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
+                WriteText(NORMAL_MODE_MESSAGE, 18, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
 
-                jmp inMenuNoF5
+                jmp inMenuNoMode
                 changeToWideMode:
 
                     lda #TETROMINO_COL_LAST_WIDE_MODE
@@ -169,12 +195,13 @@ GAME:
                     lda #TETROMINO_ROW_LENGTH_WIDE_MODE
                     sta tetrominoDynamicRowLength
 
-                    WriteText(WIDE_MODE_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
+                    WriteText(WIDE_MODE_MESSAGE, 18, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
 
-            inMenuNoF5:
+            inMenuNoMode:
 
-                cmp #KEY_F7
-                bne inMenuNoF7
+                lda drawCursorRow
+                cmp #DRAW_CURSOR_ROW_LEVEL
+                bne inMenuNoLevel
 
             increaseLevelMenu:
                 jsr LEVELS.increaseLevel
@@ -189,7 +216,7 @@ GAME:
             drawCurrentLevel:    
                 jsr HUD.startLevelCounter
 
-            inMenuNoF7:
+            inMenuNoLevel:
 
             PopFromStack()
             rts
@@ -337,10 +364,12 @@ GAME:
     inGameOverMode:
         PushToStack()
 
-        jsr SCNKEY
-        jsr GETIN
-        cmp #KEY_F1
+        lda tetrominoDirection
+        and #FIRE_AND_RELEASE
+        cmp #FIRE_AND_RELEASE
         bne inGameOverNoF1
+
+        ClearTetrominoDirection(FIRE_RELEASE)		
 
         lda #GAME_MODE_MENU
         sta gameMode

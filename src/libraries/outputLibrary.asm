@@ -329,12 +329,12 @@ OUTPUT:
 	animateBlock:
 		PushToStack()
 
-		lda charsetAnimationIndex
-		cmp #CHARSET_ANIMATION_MAX
+		lda blockCharsetAnimationIndex
+		cmp #BLOCK_CHARSET_ANIMATION_MAX
 		bne animateBlockContinue
 
 		lda #0
-		sta charsetAnimationIndex
+		sta blockCharsetAnimationIndex
 
 		animateBlockContinue:
 		jsr MATH.multiplyBy8
@@ -342,16 +342,134 @@ OUTPUT:
 		tay
 		ldx #0
 		animateBlockLoop:
-			lda CHARACTER_ORIGIN, y
-			sta CHARACTER_TARGET, x   
+			lda BLOCK_CHARACTER_ORIGIN, y
+			sta BLOCK_CHARACTER_TARGET, x   
 			inx
 			iny 
 			cpx #8
 			bne animateBlockLoop
 
-		inc charsetAnimationIndex
+		inc blockCharsetAnimationIndex
 
 		PopFromStack()
 		rts
 
+	animateArrow:
+		PushToStack()
+
+		lda arrowCharsetAnimationIndex
+		cmp #ARROW_CHARSET_ANIMATION_MAX
+		bne animateArrowContinue
+
+		lda #0
+		sta arrowCharsetAnimationIndex
+
+		animateArrowContinue:
+		jsr MATH.multiplyBy8
+
+		tay
+		ldx #0
+		animateArrowLoop:
+			lda ARROW_CHARACTER_ORIGIN, y
+			sta ARROW_CHARACTER_TARGET, x   
+			inx
+			iny 
+			cpx #8
+			bne animateArrowLoop
+
+		inc arrowCharsetAnimationIndex
+
+		PopFromStack()
+		rts
+
+	drawCursor:
+		PushToStack()
+
+		lda drawCursorIdle
+		bne resetDrawCursorIdle
+
+		lda tetrominoDirection
+		and #DOWN
+		beq noDrawCursorDown
+
+			lda drawCursorRow
+			cmp #DRAW_CURSOR_ROW_LEVEL
+			beq noDrawCursorDown
+
+			jsr clearCursor
+			inc drawCursorRow
+			inc drawCursorRow
+			jmp drawCursorContinue
+
+		noDrawCursorDown:
+		lda tetrominoDirection
+		and #UP
+		beq noDrawCursorUp
+
+			lda drawCursorRow
+			cmp #DRAW_CURSOR_ROW_START
+			beq noDrawCursorUp
+
+			jsr clearCursor
+			dec drawCursorRow
+			dec drawCursorRow
+			jmp drawCursorContinue
+
+		noDrawCursorUp:
+			jmp noDrawCursor
+
+		drawCursorContinue:
+
+		lda #1
+		sta drawCursorIdle
+
+        lda drawCursorRow
+        sta charRow
+
+        lda #HUD_TETRIS_TITLE_OPTIONS_X_POS - 1
+        sta charCol
+
+        lda #ARROW_RIGHT  
+        sta charId
+
+        lda #WHITE_COLOR
+        sta charColor
+        jsr OUTPUT.drawChar 
+
+		resetDrawCursorIdle:
+			lda tetrominoDirection
+			and #DOWN
+			beq noDrawCursorDownIdle
+
+		jmp noDrawCursor
+		noDrawCursorDownIdle:
+
+			lda tetrominoDirection
+			and #UP
+			beq noDrawCursorUpIdle
+
+		jmp noDrawCursor
+
+		noDrawCursorUpIdle:
+			lda #0
+			sta drawCursorIdle
+
+		noDrawCursor:
+        	PopFromStack()
+        	rts  
+
+	clearCursor:
+        lda drawCursorRow
+        sta charRow
+
+        lda #HUD_TETRIS_TITLE_OPTIONS_X_POS - 1
+        sta charCol
+
+        lda #SPACE  
+        sta charId
+
+        lda #WHITE_COLOR
+        sta charColor
+        jsr OUTPUT.drawChar 
+		rts
 }

@@ -7,7 +7,8 @@ INPUT:
 		lda JOYSTICK_2
 		cmp #JOY_2_IDLE
 		bne joy2notIdle
-			ClearTetrominoDirection(FIRE)
+			//ClearTetrominoDirection(FIRE)
+			ClearTetrominoDirection(ALL_DIRECTIONS)
 			SetTetrominoDirection(FIRE_RELEASE)
 			jmp doneReadJoystick_2
 		joy2notIdle:

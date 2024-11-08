@@ -17,3 +17,6 @@ charCounterHigh: .byte 0
 charCounterLow: .byte 0
 
 colorCycle: .byte 0, 11, 15, 1, 15, 11, 1
+
+drawCursorRow: .byte HUD_TETRIS_TITLE_OPTIONS_Y_POS
+drawCursorIdle: .byte 0
