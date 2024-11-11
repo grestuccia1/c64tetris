@@ -559,11 +559,30 @@ TETROMINO:
 		rts	
 
 	resetTetromino:
-		lda #0
-		sta tetrominoNr
-		sta tetrominoRow
-		sta tetrominoCol
+
+		lda #RESET_ROTATION
 		sta tetrominoRot
+		
+		lda #HUD_CENTRAL_NEXT_POS_X
+		sta tetrominoCol
+
+		ldy #HUD_CENTRAL_NEXT_POS_Y
+		sty tetrominoRow
+
+		ldx tetrominoHeight
+		cpx #TETROMINO_HEIGHT_4X4
+		bne mustGenerateByX5
+		jsr MATH.generateRandomBelow7
+		jmp randomContinue
+		mustGenerateByX5:
+		jsr MATH.generateRandomBelow18
+		randomContinue:
+
+		lda ZP_RANDOM_NUMBER
+		sta tetrominoNr
+		sta tetrominoNext
+		jsr TETROMINO.change
+
 		rts
 	
 	moveLinesDown:

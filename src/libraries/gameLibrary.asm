@@ -31,13 +31,13 @@ GAME:
         lda tetrominoWideMode
         cmp #1
         bne noWideModeStartUp
-        WriteText(WIDE_MODE_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
+        WriteText(WIDE_MODE_MESSAGE, 18, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 4, 1)
         noWideModeStartUp:
         
         lda tetrominoHeight
         cmp #TETROMINO_HEIGHT_5X5
         bne no5X5ModeStartUp
-        WriteText(TETROMINO_5X5_MESSAGE, 28, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
+        WriteText(TETROMINO_5X5_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
         no5X5ModeStartUp:
 
         ShowFolkRussianDancer(77, 100)
@@ -116,7 +116,6 @@ GAME:
 
             jsr OUTPUT.animateArrow
 
-
             lda tetrominoDirection
 			and #FIRE_AND_RELEASE
 			cmp #FIRE_AND_RELEASE
@@ -168,7 +167,6 @@ GAME:
                     WriteText(TETROMINO_5X5_MESSAGE, 23, HUD_TETRIS_TITLE_OPTIONS_Y_POS + 2, 1)
 
             inMenuNoTetromino:
-
                 lda drawCursorRow
                 cmp #DRAW_CURSOR_ROW_MODE
                 bne inMenuNoMode
@@ -307,7 +305,7 @@ GAME:
 
         lda #GAME_MODE_GAME_OVER_READY
         sta gameMode
-        
+
         jsr SCREEN_CLEAR
         LoadCharColorMap(HUD_GAME_OVER_TITLE_ADDRESS, HUD_GAME_OVER_TITLE_COLORS_ADDRESS, 1, 3, 39, 5)
         WriteText(GAME_OVER_MESSAGE, 9, 20, 1)

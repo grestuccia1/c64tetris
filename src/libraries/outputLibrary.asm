@@ -472,4 +472,24 @@ OUTPUT:
         sta charColor
         jsr OUTPUT.drawChar 
 		rts
+
+	shakeHorizontal:
+		PushToStack()
+
+		lda SCREEN_CONTROL_2
+		
+		jsr MATH.generateRandomBelow7
+		sta SCREEN_CONTROL_2
+
+		PopFromStack()
+		rts
+
+	resetShakeHorizontal:
+		PushToStack()
+
+		lda screenControl2
+		sta SCREEN_CONTROL_2
+
+		PopFromStack()
+		rts
 }

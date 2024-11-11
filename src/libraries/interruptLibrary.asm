@@ -18,7 +18,11 @@ INTERRUPT:
 
 		lda SCREEN_CONTROL_1
 		and #%01111111							// Clear bit 7 since we are not using raster interrupts
+		ora #$0b
 		sta SCREEN_CONTROL_1					// past raster line 255
+
+		lda SCREEN_CONTROL_2
+		sta screenControl2
 
 		lda #250								// Raster line to trigger a raster interrupt
 		sta CURRENT_RASTER_LINE
