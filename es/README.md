@@ -8,7 +8,6 @@
 </a>
 </div>
 
-
 # Tetris para Commodore 64 (C64) en Kick Assembler
 
 ## Introducción
@@ -18,6 +17,10 @@ Este proyecto es un clona del clásico juego **Tetris**, desarrollado para Commo
 ## Inspiración: Mi primer computadora y el comienzo de una pasión
 
 Mi primera computadora no fue solo una herramienta; fue la chispa que encendió mi pasión por la programación. Aunque en ese momento carecía de conocimientos y documentación (y mucho estaba en inglés), siempre soñé con desarrollar un juego en ensamblador. Ese sueño me acompañó toda la vida, y aunque empecé tarde, a los 50 años, decidí que nunca es tarde para aprender y perseguir lo que amas. Mi primera computadora me dio mi vocación, pero fue la determinación lo que me llevó a seguir ese sueño.
+
+## YouTube
+
+[![C64 Tetris en YouTube](https://i9.ytimg.com/vi/TbMEL27yrbg/mqdefault.jpg?v=6736ba52&sqp=CIj32rkG&rs=AOn4CLD6R9-NKqzJZVjvqRHo1ogMe_bpSg)](http://www.youtube.com/watch?v=TbMEL27yrbg "Tetris C64 Gameplay")
 
 **Inspirado e incorpora mecánicas del juego arcade Tetris de Atari de 1989.**
 

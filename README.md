@@ -18,6 +18,11 @@ This project is a clone of the classic **Tetris** game, developed for the Commod
 
 My first computer was not just a tool; it was the spark that ignited my passion for programming. Even though at the time I lacked the knowledge and documentation (and much of it was in English), I always dreamed of developing a game in assembler. That dream stayed with me throughout my life, and although I started late, at 50 years old, I decided that it’s never too late to learn and pursue what you love. My first computer gave me my vocation, but it was determination that led me to follow that dream.
 
+## YouTube Overview
+
+[![C64 Tetris on YouTube](https://i9.ytimg.com/vi/TbMEL27yrbg/mqdefault.jpg?v=6736ba52&sqp=CIj32rkG&rs=AOn4CLD6R9-NKqzJZVjvqRHo1ogMe_bpSg)](http://www.youtube.com/watch?v=TbMEL27yrbg "Tetris C64 Gameplay")
+
+
 **Inspired by and incorporates mechanics from the 1989 [Atari](https://atari.com/) arcade game Tetris.**
 
 ## Features
