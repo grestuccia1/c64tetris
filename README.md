@@ -20,7 +20,7 @@ My first computer was not just a tool; it was the spark that ignited my passion 
 
 ## YouTube Overview
 
-[![C64 Tetris on YouTube](https://i9.ytimg.com/vi/TbMEL27yrbg/mqdefault.jpg?v=6736ba52&sqp=CIj32rkG&rs=AOn4CLD6R9-NKqzJZVjvqRHo1ogMe_bpSg)](http://www.youtube.com/watch?v=TbMEL27yrbg "Tetris C64 Gameplay")
+[![C64 Tetris on YouTube](images/tetris-logo-play.png)](http://www.youtube.com/watch?v=TbMEL27yrbg "Tetris C64 Gameplay")
 
 
 **Inspired by and incorporates mechanics from the 1989 [Atari](https://atari.com/) arcade game Tetris.**

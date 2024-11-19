@@ -71,6 +71,8 @@ COORDINATOR: {
 			lda #GAME_MODE_CHANGE_LEVEL_DELAY
 			sta gameMode
 				
+			jsr CLOCK.resetTicks
+
 			changeLevelTransition:
 				lda transitionRow
 				sta charRow
@@ -139,6 +141,8 @@ COORDINATOR: {
 			lda tetrominoCompletedLinesIndex
 			cmp #0
 			beq noGameModeToDeleteLines
+
+			jsr CLOCK.resetTicks
 
 			lda #GAME_MODE_DELELE_LINE_ANIMATED
 			sta gameMode
