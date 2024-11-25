@@ -1,6 +1,20 @@
-.label MUSIC_LOAD = $9500
-.label MUSIC_INIT = $9500
-.label MUSIC_PLAY = $9506
+.label INIT_MUSIC_MENU = $8400
+.label PLAY_MUSIC_MENU = $844a
+
+.label INIT_MUSIC_ONE = $ac00
+.label PLAY_MUSIC_ONE = $ac06
+
+.label INIT_MUSIC_TWO = $8000
+.label PLAY_MUSIC_TWO = $8048
+
+.label INIT_MUSIC_THREE = $a100
+.label PLAY_MUSIC_THREE = $a106
+
+.label INIT_MUSIC_FOUR = $9500
+.label PLAY_MUSIC_FOUR = $9506
+
 .label MUSIC_VOLUME = $D418 
 .label IS_VOLUME_ON = $0F
 .label IS_VOLUME_OFF = $00
+
+.label MENU_MUSIC = 5

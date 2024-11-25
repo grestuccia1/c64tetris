@@ -1,0 +1,35 @@
+Output dir: /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin
+parsing
+flex pass 1
+flex pass 2
+flex pass 3
+Output pass
+Writing prg file: /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.prg
+
+Memory Map
+----------
+Default-segment:
+  $0801-$080c Basic
+  $080e-$080d Basic End
+  $0810-$082b Game Code
+  $2000-$2080 Default
+  $2400-$2b3f Sprites
+  $3000-$3059 HUD rex
+  $3800-$3ec7 Charset
+  $4000-$4901 Tables
+  $5000-$6b61 Libraries
+  $7000-$73e7 HUD gameplay
+  $7500-$75f4 HUD Tetris Title
+  $7800-$7811 HUD 5x5 Stats
+  $7900-$79f4 HUD Tetris Title Colors
+  $8000-$8301 Music Menu
+  $8400-$8501 Music Game Over
+  $8900-$89c2 HUD Game Over
+  $9000-$90c2 HUD Game Over Title Colors
+  $9200-$9278 Variables
+  $9500-$a0bf Music
+  $a100-$abb4 Music in game 6
+  $ac00-$b7ec Music in game 23
+
+Writing Vice symbol file: /Users/gabriel.restuccia/Documents/trabajo/c64/raster/src/bin/main.vs
+Writing Symbol file: main.sym

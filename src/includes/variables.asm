@@ -13,3 +13,4 @@
 #import "../variables/spriteVariables.asm"
 #import "../variables/clockVariables.asm"
 #import "../variables/charsetVariables.asm"
+#import "../variables/soundVariables.asm"

@@ -1,0 +1,985 @@
+.label SCREEN_EXTRA_COLOR_1=$d022
+.label tetrominoHSpeed=$922b
+.label INTERRUPT_RETURN=$ea81
+.label JOY_1_IDLE=$ff
+.label SCREEN_EXTRA_COLOR_2=$d023
+.label changeSong=$9277
+.label HUD_CENTRAL_NEXT_POS_Y=$4
+.label WIDE_MODE_MESSAGE=$2030
+.label SPRITE_MULTICOLOR=$d01c
+.label RASTER_TICKS_TOTAL=$c
+.label ZP_TARGET_HI=$32
+.label HUD_CENTRAL_NEXT_POS_X=$12
+.label level9Color=$4403
+.label score010000=$9249
+.label tetrominoFallDelayPerLevel=$41c4
+.label colorCycle=$920c
+.label screenControl2=$9215
+.label level7Length=$42cf
+.label RASTER_TICK_90=$b
+.label tempYpos=$921e
+.label ARROW_CHARACTER_ORIGIN=$3ea0
+.label LEFT=$4
+.label HUD_CENTRAL_NEXT_POS_X_END=$17
+.label JOYSTICK_1=$dc01
+.label JOYSTICK_2=$dc00
+.label JOY_FIRE_RELEASE=$20
+.label TETROMINO_0_5_X=$45ae
+.label RASTER_TICK_80=$a
+.label TETROMINO_0_5_Y=$45c2
+.label TETROMINO_7_5_X=$46c6
+.label TETROMINO_7_5_Y=$46da
+.label GAME_MODE_MENU_READY=$1
+.label charCounterLow=$920b
+.label transitionRowMax=$9263
+.label HUD_STATS_POS_X_X5=$16
+.label HUD_STATS_POS_X_X4=$1b
+.label drawCursorRow=$9213
+.label CLOCK=$698f {
+  .label waitline=$6993
+  .label doneConvertToTensAndUnits=$6aa9
+  .label ld_DEY=$6991
+  .label update=$6a0d {
+  }
+  .label drawColon=$6a7c
+  .label doneSetupPalOrNtsc=$69b4
+  .label tickLoop=$69e0
+  .label endDraw=$6a85 {
+  }
+  .label resetTicks=$69f9 {
+  }
+  .label drawChar=$6ab7
+  .label loop=$699b
+  .label nextTick=$69f1
+  .label printTwoDigits=$6a8a
+  .label setupTicketToNtscLoop=$69cc
+  .label setupPalOrNtsc=$698f
+  .label resetTickLoop=$69ff
+  .label divideBy60=$6acf
+  .label ticks=$69da {
+  }
+  .label setupTicketToNtsc=$69ca
+  .label start=$6a51
+  .label draw=$6a5a {
+  }
+  .label isPal=$69af
+  .label resetTick=$69eb
+  .label convertToAscii=$6ab3
+  .label doneDivideBy60=$6adb
+  .label convertToTensAndUnits=$6aa1
+  .label stop=$6a4b
+  .label tickStatus=$69d6
+  .label endUpdateClock=$6a3d {
+  }
+  .label setupTicketToPalLoop=$69bd
+  .label loopDivideBy60=$6ad1
+  .label reset=$6a42
+  .label endShowColon=$6a7a
+  .label setupTicketToPal=$69bb
+}
+.label HUD_LINES_X_POS=$10
+.label TETROMINO_COMPLETE_1_LINE=$1
+.label INTERRUPT_STATUS=$d019
+.label clockOffset=$926d
+.label ZP_ROW_COLOR_PREVIOUS_HI=$2e
+.label TETROMINO_4X4_MESSAGE=$203f
+.label CHANGE_LEVEL_MESSAGE=$2047
+.label WHITE_COLOR=$1
+.label TETROMINO_L_Y=$40b4
+.label playMusic=$923f
+.label TETROMINO_L_X=$40a4
+.label temp2=$9218
+.label temp3=$9219
+.label tetrominoWideMode=$9234
+.label temp1=$9217
+.label SPACE=$20
+.label charCollision=$9245
+.label tetrominoRotateCooldownTimer=$922c
+.label DEFAULT_SCREEN_BORDER_COLOR=$0
+.label RESET_SPEED=$0
+.label score000100=$924b
+.label CYAN_COLOR=$3
+.label TETROMINO_I=$0
+.label HUD_TETRIS_TITLE_COLORS_ADDRESS=$7900
+.label TETROMINO_COMPLETE_4_LINES=$4
+.label TETROMINO_O=$3
+.label Row_LO=$4000
+.label HUD_GAME_OVER_TITLE_ADDRESS=$8900
+.label DISABLED_BASIC=$36
+.label TETROMINO_J=$1
+.label TETROMINO_L=$2
+.label SCREEN_SIZE=$3e8
+.label temp4=$921a
+.label TETROMINO_S=$4
+.label TETROMINO_T=$5
+.label TETROMINO_13_5_X=$47b6
+.label INTERRUPT_SERVICE_LO=$314
+.label TETROMINO_Z=$6
+.label ZP_RANDOM_NUMBER_SCORE=$39
+.label TETROMINO_13_5_Y=$47ca
+.label SYSTEM=$5673 {
+  .label delayLoop1=$56ba
+  .label delay=$56b4 {
+  }
+  .label delayLoop2=$56bc
+  .label setup=$5673
+}
+.label DOWN=$2
+.label SCREEN_0400_CHARSET_3800=$1e
+.label GAME_OVER_MESSAGE=$2070
+.label BLOCK_RANDOM=$4d
+.label TETROMINO_O_Y=$40d4
+.label YELLOW_COLOR=$7
+.label TETROMINO_O_X=$40c4
+.label SCREEN_BORDER_COLOR=$d020
+.label tetrominoPositionsY_5_HI=$48c9
+.label ZP_HUD_LO=$29
+.label charMapHeight=$9207
+.label JOY_RIGHT=$8
+.label level12X=$4527
+.label tetrominoMustFall=$9230
+.label level12Y=$4554
+.label HUD_CENTRAL_NEXT_POS_Y_END=$8
+.label rasterTicksReset=$48e8
+.label SCREEN_CLEAR=$e544
+.label TETROMINO_ROW_OOR=$19
+.label ARROW_DOWN=$48
+.label TETROMINO_8_5_Y=$4702
+.label TETROMINO_8_5_X=$46ee
+.label clockStart=$926f
+.label HUD_5X5_STATS_ADDRESS=$7800
+.label JOY_FIRE=$10
+.label FIRE_RELEASE=$20
+.label level11Y=$44d4
+.label level11X=$44ab
+.label STATS=$5a51 {
+  .label applyColors=$5ac6 {
+  }
+  .label init=$5a51 {
+  }
+  .label calculatePositionCol=$5aa5 {
+  }
+  .label initStatsLoop=$5a57
+  .label increaseTetrominoReachMaxLine=$5a92
+  .label applyColorsRow=$5acc
+  .label applyColorsColumn=$5ad4
+  .label increaseTetrominoEnd=$5aa0 {
+  }
+  .label positionColEnd=$5aba
+  .label positionColContinue=$5abe
+  .label draw=$5af0 {
+  }
+  .label increaseTetromino=$5a6f {
+  }
+}
+.label TETROMINO_O_COLOR=$6
+.label LEVELS=$6704 {
+  .label preloadLevelEnd=$67ad
+  .label increaseLevel=$6713
+  .label LevelNotComplete=$675f {
+  }
+  .label preloadLevel4=$67b5 {
+  }
+  .label preloadLevel5=$67e5 {
+  }
+  .label preloadLevel6=$6815 {
+  }
+  .label preloadLevel12=$6935 {
+  }
+  .label preloadLevel7=$6845 {
+  }
+  .label preloadLevel11=$6905 {
+  }
+  .label preloadLevel8=$6875 {
+  }
+  .label preloadLevel10=$68d5 {
+  }
+  .label preloadLevel9=$68a5 {
+  }
+  .label setLinesNeededForNextLevel=$6720 {
+  }
+  .label init=$6704
+  .label preloadLevel10_Intermediate=$67a4
+  .label LevelIsComplete=$6754
+  .label preloadLevel11_Intermediate=$67a7
+  .label preloadLevel4_Intermediate=$6792
+  .label preloadLevel=$6764 {
+  }
+  .label preloadLevel5_Intermediate=$6795
+  .label preloadLevel12_Intermediate=$67aa
+  .label preloadLevel7_Intermediate=$679b
+  .label preloadLevel6_Intermediate=$6798
+  .label checkCompleteLevel=$6740 {
+  }
+  .label preloadLevel8_Intermediate=$679e
+  .label preloadLevel9_Intermediate=$67a1
+}
+.label MUSIC_ADDRESS=$9500
+.label NO_DIRECTION=$0
+.label HUD=$57bf {
+  .label resetScore=$5896 {
+  }
+  .label loadCharMapColColor=$5840
+  .label resetLinesCounterLoop=$58d8
+  .label updateScore=$586f {
+  }
+  .label showLinesLeft=$5960
+  .label updateLevelCounter=$58e5 {
+  }
+  .label loadCharMapRow=$57e2
+  .label needShowLinesLeft=$595d
+  .label loadCharMapRowColor=$583a
+  .label loadCharMapColor=$5817 {
+  }
+  .label updateScoreLoop=$5883
+  .label updateLinesCounterLoop=$58be
+  .label loadCharMapCol=$57e8
+  .label startLevelCounter=$590f {
+  }
+  .label updateLinesCounter=$58aa {
+  }
+  .label loadCharMap=$57bf {
+  }
+  .label resetLinesCounter=$58d1 {
+  }
+  .label updateLinesLeftCounter=$5939 {
+  }
+  .label resetScoreLoop=$589d
+}
+.label HUD_START_LEVEL_X_POS=$13
+.label RESET_ROTATION=$0
+.label DRAW_CURSOR_ROW_START=$f
+.label TEXT_COLOR=$286
+.label INTERRUPT_CONTROL_AND_STATUS_CIA_2=$dd0d
+.label INTERRUPT_CONTROL_AND_STATUS_CIA_1=$dc0d
+.label level10X=$4426
+.label level10Y=$4452
+.label GAME_START_UP=$b
+.label ARROW_UP=$47
+.label TETROMINO_14_5_X=$47de
+.label TETROMINO_14_5_Y=$47f2
+.label GAME_MODE_PLAYING_READY=$5
+.label INTERRUPT_SERVICE_HI=$315
+.label COORDINATOR=$627e {
+  .label noGameModeChangeLevelDelay=$635e
+  .label noGameModeMenu=$62ac
+  .label noGameModeGameOver=$6378
+  .label noGameModeDeleteLineAnimated=$63bf
+  .label noGameModeDeleteLineMove=$63d8
+  .label gamePlayEnd=$6291
+  .label noGameModeChangeLevel=$634a
+  .label gamePlay=$627e
+  .label noGameModeGameOverReady=$6385
+  .label noGameModeDeleteLineReady=$63e7
+  .label noGameModeEnd=$63e7
+  .label noGameModeChangeLevelReady=$636b
+  .label noGameModeToDeleteLines=$63a1
+  .label noGameModeMenuReady=$62b6
+  .label noGameModePlayingReady=$62d0
+  .label noGameStartUp=$6297
+  .label changeLevelTransition=$631d
+  .label noGameModePlaying=$62c3
+  .label noGameModeDeleteLine=$63a9
+}
+.label SCNKEY=$ff9f
+.label LIBRARIES_ADDRESS=$5000
+.label level5Color=$427c
+.label level4X=$4237
+.label level4Y=$4247
+.label HUD_STATS_POS_Y=$18
+.label NORMAL_MODE_MESSAGE=$2038
+.label INIT_MUSIC_TWO=$8000
+.label TETROMINO_9_5_X=$4716
+.label TETROMINO_9_5_Y=$472a
+.label ARROW_LEFT=$45
+.label tetrominoEnd=$9226
+.label HUD_WIDTH=$6
+.label JOY_DOWN=$2
+.label TETROMINO_COL_LAST_WIDE_MODE=$f
+.label TETROMINO_15_5_Y=$481a
+.label TETROMINO_MUST_FALL=$1
+.label TETROMINO_15_5_X=$4806
+.label tetrominoNr=$9221
+.label tetrominoInit=$9225
+.label START_LEVEL_NUMBER=$2058
+.label INIT_MUSIC_ONE=$9500
+.label transitionRowDelay=$9262
+.label ZP_HUD_HI=$2a
+.label SCREEN_BACKGROUND_COLOR=$d021
+.label DEFAULT_SPRITE_EXTRA_COLOR_1=$1
+.label DEFAULT_SPRITE_EXTRA_COLOR_2=$2
+.label ARROW_RIGHT=$46
+.label tetrominoPositionsY_5_LO=$48b7
+.label HUD_BLANK_CHAR=$20
+.label drawCursorIdle=$9214
+.label DARK_GREY_COLOR=$b
+.label HUD_CLOCK_Y_POS=$8
+.label level10Length=$4425
+.label blockCharsetAnimationIndex=$9273
+.label KEY_F7=$88
+.label BUTTON_PRESS=$4a
+.label RED_COLOR=$2
+.label MAX_STATS_BY_LINE=$a
+.label TETROMINO_COL_FIRST=$1
+.label delayTimer1=$923d
+.label BLOCK_CHARACTER_ORIGIN=$3a38
+.label PINK_COLOR=$a
+.label level6X=$4287
+.label level6Y=$429f
+.label delayTimer2=$923e
+.label colorCollision=$9246
+.label SCREEN_WIDTH=$28
+.label INIT_MUSIC_THREE=$8400
+.label RIGHT=$8
+.label KEY_F1=$85
+.label KEY_F3=$86
+.label KEY_F2=$89
+.label TETROMINO_5X5_MESSAGE=$2043
+.label KEY_F5=$87
+.label level5Y=$4272
+.label FIRE_AND_RELEASE=$30
+.label ZP_RANDOM_NUMBER=$28
+.label linesGoalPerLevel=$41af
+.label GAME_CODE=$810
+.label HUD_START_LEVEL_Y_POS=$15
+.label TETROMINO_HEIGHT_4X4=$3
+.label collitionRot=$9242
+.label collitionRow=$9240
+.label JOY_2_IDLE=$7f
+.label tetrominoFallDelayTimer=$922e
+.label HUD_START_POS_Y=$0
+.label level5X=$4268
+.label transitionCol=$9264
+.label TETROMINO_ROW_START=$0
+.label rasterTicksResetPAL=$48db
+.label tetrominoPY=$9228
+.label tetrominoPX=$9227
+.label HUD_SCORE_DIGITS=$6
+.label MAX_ROTATION=$4
+.label ZP_TARGET_LO=$31
+.label TETROMINO_T_COLOR=$d
+.label TETROMINO_16_5_X=$482e
+.label TETROMINO_16_5_Y=$4842
+.label firstSpriteAnimGraphic=$9265
+.label PAL_RASTER=$32
+.label TETROMINO_S_Y=$40f4
+.label TETROMINO_S_X=$40e4
+.label HUD_SCORE_X_POS=$10
+.label level11Color=$44fd
+.label HUD_CLOCK_X_POS=$11
+.label main=$810
+.label level8X=$434f
+.label GAME_MODE_GAME_OVER=$6
+.label level8Y=$4374
+.label CURRENT_RASTER_LINE=$d012
+.label BLACK_COLOR=$0
+.label tempX=$921b
+.label linesNeededForNextLevel=$925d
+.label level11Length=$44aa
+.label tempY=$921c
+.label SPRITE_EXTRA_COLOR_1=$d025
+.label SPRITE_EXTRA_COLOR_2=$d026
+.label TETROMINO_MAX_5X5=$12
+.label score000001=$924d
+.label TETROMINO_HEIGHT_5X5=$4
+.label CHARSET_ATTRIB_ADDRESS=$d00
+.label TETROMINO_1_5_X=$45d6
+.label SPRITE_POINTER_INDEX=$90
+.label TETROMINO_1_5_Y=$45ea
+.label HUD_CENTRAL_HEIGHT=$19
+.label GAME_MODE_SELECT_LEVEL=$2
+.label tetrominoPositionsX_5_HI=$48a5
+.label level7X=$42d0
+.label level7Y=$42fa
+.label SCREEN_RAM=$400
+.label ZP_ROW_COLOR_PREVIOUS_LO=$2d
+.label charMapWidth=$9206
+.label PLAY_MUSIC_ONE=$9506
+.label score000010=$924c
+.label changeVolume=$9278
+.label tetrominoDynamicRowLength=$9233
+.label MOVE_NEXT_LEVEL_FACTOR=$1
+.label charId=$9201
+.label SPRITES_ADDRESS=$2400
+.label RASTER_TICK_100=$c
+.label units=$926c
+.label SCREEN_COLOR_RAM=$d800
+.label collitionCol=$9241
+.label JOY_UP=$1
+.label TETROMINO_NOT_FALL=$0
+.label HUD_LINES_Y_POS=$10
+.label level12Length=$4526
+.label statsTetrominoColX5=$419d
+.label ZP_SOURCE_HI=$30
+.label statsTetrominoColX4=$4196
+.label TETROMINO_2_5_X=$45fe
+.label PLAY_MUSIC_TWO=$8048
+.label DRAW_CURSOR_ROW_LEVEL=$15
+.label DRAW_CURSOR_ROW_TETROMINO=$11
+.label tempXpos=$921d
+.label WALL=$4b
+.label HUD_TETRIS_TITLE_ADDRESS=$7500
+.label HUD_TETRIS_TITLE_OPTIONS_X_POS=$5
+.label GAME_MODE_DELELE_LINE_ANIMATED=$d
+.label GAME_MODE_CHANGE_LEVEL_READY=$a
+.label TETROMINO_2_5_Y=$4612
+.label COLLITION=$5972 {
+  .label init=$5972
+  .label mustMultiplyBy5Init=$59b1
+  .label greaterThan23=$5a47
+  .label checkPiece=$59d3
+  .label nextCharInLine=$5a0d
+  .label pass=$5985
+  .label lineColition=$59fa {
+  }
+  .label check=$5998 {
+  }
+  .label collitionEndContinue=$59cd
+  .label checkDone=$59f5 {
+  }
+  .label mustMultiplyBy5End=$59ca
+  .label lineColitionDone=$5a31
+  .label collitionInitContinue=$59b4
+  .label endLineColitionDone=$5a4c {
+  }
+}
+.label level9X=$43bf
+.label level9Y=$43e1
+.label LEVEL_RESET=$0
+.label tetrominoDirection=$9229
+.label ORANGE_COLOR=$8
+.label lines001000=$9250
+.label currentSong=$9276
+.label remainder=$926a
+.label tetrominoHSpeedTimer=$922a
+.label score001000=$924a
+.label IS_VOLUME_ON=$f
+.label textChar=$925a
+.label tetrominoCountPerLevelToNewRandomTopBlock=$4203
+.label tetrominoRot=$9224
+.label PLAY_MUSIC_THREE=$844a
+.label collitionInit=$9244
+.label tetrominoRow=$9222
+.label textRow=$9255
+.label GREY_COLOR=$c
+.label tetrominoCountPerLevelToSpeedUp=$41d9
+.label SCREEN_HEIGHT=$19
+.label FIRE=$10
+.label FONT_COLOR=$c
+.label GAME_MODE_MENU=$0
+.label BLUE_COLOR=$6
+.label TETROMINO_COL_LAST=$b
+.label TETROMINO_S_COLOR=$3
+.label HUD_LEVEL_X_POS=$12
+.label lines000001=$9253
+.label HUD_STATS_HEIGHT=$1
+.label PURPLE_COLOR=$4
+.label TETROMINO_17_5_X=$4856
+.label ZP_ROW_PREVIOUS_HI=$2c
+.label HUD_SCORE_Y_POS=$c
+.label charColor=$9204
+.label lines000010=$9252
+.label TETROMINO_17_5_Y=$486a
+.label gameMode=$9247
+.label statsTetrominoTotal=$4160
+.label BUTTON_RELEASE=$49
+.label TETROMINO_T_Y=$4114
+.label TETROMINO_T_X=$4104
+.label level7Color=$4324
+.label charCol=$9203
+.label HUD_LINES_LEFT_DIGITS=$2
+.label TETROMINO_COMPLETE_5_LINES=$5
+.label ALL_DIRECTIONS=$ff
+.label INTERRUPT=$5000 {
+  .label irq=$504d
+  .label enableRasterInterrupt=$503b
+  .label skipMusic=$5060
+  .label setupRasterInterrupt=$5000
+  .label disableRasterInterrupt=$5044
+}
+.label tetrominoCompletedLines=$9235
+.label SPRITE_X_EXTENDED=$d010
+.label ZP_SOURCE_LO=$2f
+.label TETROMINO_MAX_4X4=$7
+.label ALL_DIRECTIONS_NO_FIRE=$cf
+.label MUSIC=$6ae2 {
+  .label play=$6af0
+  .label init=$6ae2
+  .label fadeOutVolume=$6b11
+  .label playMusicThree=$6b43
+  .label change=$6b47
+  .label fadeInVolume=$6aff
+  .label continuePlay=$6b2c
+  .label playMusicEnd=$6b46
+  .label playMusicTwo=$6b39
+  .label initMusicTwo=$6b54
+  .label initMusicThree=$6b5e
+  .label initMusicEnd=$6b61
+}
+.label level10Color=$447e
+.label HUD_TETRIS_TITLE_OPTIONS_Y_POS=$f
+.label lines000100=$9251
+.label collitionEnd=$9243
+.label irq_counter_setup=$9266
+.label textCol=$9256
+.label LIGHT_BLUE_COLOR=$e
+.label textHeight=$9259
+.label HUD_LINES_LEFT_Y_POS=$18
+.label TETROMINO_3_5_X=$4626
+.label TETROMINO_3_5_Y=$463a
+.label HUD_LINES_DIGITS=$6
+.label tetrominoCompletedLinesIndex=$923a
+.label ZP_ROW_HI=$21
+.label level4Color=$4257
+.label tetrominoPositionsX_HI=$414b
+.label noGameStartUpInLoop=$826
+.label GAME_MODE_CHANGE_LEVEL=$8
+.label BLOCK_CHARACTER_TARGET=$3a68
+.label UP=$1
+.label statsTetrominoRow=$4172
+.label TETROMINO_Z_COLOR=$8
+.label OUTPUT=$63e8 {
+  .label rowIsComplete=$643b {
+  }
+  .label changeColorOOR=$64e1 {
+  }
+  .label writeText=$64e6 {
+  }
+  .label drawCharNoColor=$6419 {
+  }
+  .label clearCursor=$66ca
+  .label changeColor=$64c4 {
+  }
+  .label animateBlock=$65fb {
+  }
+  .label drawCursor=$664f {
+  }
+  .label drawCursorContinue=$668f
+  .label resetDrawCursorIdle=$66ac
+  .label getCharOORNoColor=$648e {
+  }
+  .label textFillColLoop=$6598
+  .label drawCharOOR=$6414 {
+  }
+  .label drawChar=$63e8 {
+  }
+  .label noDrawCursorUp=$668c
+  .label drawCharNoColorOOR=$6436 {
+  }
+  .label animateBlockLoop=$6611
+  .label noDrawCursor=$66c5 {
+  }
+  .label drawTextOOR=$652a {
+  }
+  .label textFillRowLoop=$6588
+  .label shakeHorizontal=$66e3 {
+  }
+  .label fillText=$656d {
+  }
+  .label noDrawCursorDownIdle=$66b6
+  .label animateBlockContinue=$660b
+  .label animateArrowContinue=$6635
+  .label textColorRowLoop=$654a
+  .label fillTextColor=$65ab {
+  }
+  .label setTextColor=$652f {
+  }
+  .label noDrawCursorDown=$6672
+  .label animateArrowLoop=$663b
+  .label fillTextColorRowLoop=$65c6
+  .label resetShakeHorizontal=$66f5 {
+  }
+  .label setPositionInRowOOR=$6469
+  .label getChar=$6493 {
+  }
+  .label getCharNoColor=$6471 {
+  }
+  .label moveNextPositionInRow=$645d
+  .label animateArrow=$6625 {
+  }
+  .label textColorColLoop=$655a
+  .label getCharOOR=$64bf {
+  }
+  .label textWriteLoop=$650a
+  .label fillTextColorColLoop=$65e0
+  .label noDrawCursorUpIdle=$66c0
+}
+.label charRow=$9202
+.label TETROMINO_L_COLOR=$4
+.label textColor=$9257
+.label HUD_LEVEL_Y_POS=$14
+.label INTERRUPT_CONTROL=$d01a
+.label ZP_ROW_PREVIOUS_LO=$2b
+.label tetrominoMax=$923c
+.label lines010000=$924f
+.label BLOCK_CHARSET_ANIMATION_MAX=$4
+.label TETROMINO_4_5_Y=$4662
+.label TETROMINO_4_5_X=$464e
+.label GAME_MODE_GAME_OVER_READY=$7
+.label GAME_MODE_SELECT_LEVEL_READY=$3
+.label TETROMINO_10_5_X=$473e
+.label TETROMINO_10_5_Y=$4752
+.label tetrominoCol=$9223
+.label JOY_LEFT=$4
+.label GETIN=$ffe4
+.label tetrominoPositionsX_5_LO=$4893
+.label HUD_START_POS_X_LEFT=$0
+.label ZP_ROW_COLOR_HI=$23
+.label MUSIC_VOLUME=$d418
+.label RASTER_TICK_5=$2
+.label dc0e=$9272
+.label transitionRow=$9261
+.label RASTER_TICK_2=$1
+.label printX=$9200
+.label HUD_CENTRAL_POS_X=$f
+.label HUD_HEIGHT=$19
+.label HUD_CENTRAL_POS_Y=$0
+.label HUD_LEVEL_DIGITS=$2
+.label tetrominoDynamicLastCol=$9232
+.label dc05=$9271
+.label GAME_MODE_DELELE_LINE_READY=$f
+.label HUD_START_POS_X_RIGHT=$6
+.label dc04=$9270
+.label GAME_MODE_PLAYING=$4
+.label SCREEN_CONTROL_2=$d016
+.label SCREEN_CONTROL_1=$d011
+.label GAME_MODE_CHANGE_LEVEL_DELAY=$9
+.label REX_MESSAGE=$2062
+.label TETROMINO_CONTAINER_HEIGHT=$18
+.label tetrominoCountPerLevelToMoveLinesUp=$41ee
+.label ZP_PY_LO=$26
+.label arrowCharsetAnimationIndex=$9274
+.label level4Length=$4236
+.label charCounter=$9205
+.label charCounterHigh=$920a
+.label TETROMINO_I_Y=$4074
+.label tetrominoPositionsX_LO=$4144
+.label TETROMINO_I_X=$4064
+.label TETROMINO_ROW_LAST=$17
+.label seconds=$9269
+.label TETROMINO_J_COLOR=$7
+.label tempColorTransition=$921f
+.label RASTER_TICK_10=$3
+.label ZP_PX_LO=$24
+.label HUD_RESET_COUNTER=$0
+.label rowTransitionColor=$4218
+.label Row_Color_LO=$4032
+.label ZP_ROW_LO=$20
+.label RESET_LINES_FOR_LEVEL=$0
+.label TETROMINO_COMPLETE_2_LINES=$2
+.label tetrominoPerLevelMoveLinesUpClean=$925f
+.label HUD_REX_ADDRESS=$3000
+.label tetrominoNext=$9231
+.label MATH=$56cd {
+  .label divideBy10=$570a
+  .label generateRandomBelow18=$56e8 {
+  }
+  .label multiplyBy8=$56fc
+  .label divideLoopBy10=$570c
+  .label doneDivideBy10=$5716
+  .label multiplyBy5=$5700
+  .label multiplyBy4=$56f9
+  .label generateRandomBelow7=$56cd {
+  }
+  .label multiplyBy2=$56f7
+  .label generateRandomBelow10=$56d9
+  .label randomInRange18=$56f4
+}
+.label SCREEN_MEMORY_SETUP=$d018
+.label tetrominoPositionsY_HI=$4159
+.label HUD_GAME_OVER_TITLE_COLORS_ADDRESS=$9000
+.label HUD_START_LEVEL_DIGITS=$2
+.label linesForLevel=$925c
+.label GAME_MODE_DELELE_LINE_MOVE=$e
+.label HUD_STATS_WIDTH=$d
+.label gameLoop=$819
+.label SCREEN_RAM_HIGH_BYTE=$288
+.label CHANGE_MAX_LEVEL=$15
+.label DRAW_CURSOR_ROW_MODE=$13
+.label ZP_HUD_COLOR_HI=$38
+.label LIGHT_GREEN_COLOR=$d
+.label ZP_TEXT_HI=$36
+.label TABLES_ADDRESS=$4000
+.label level6Color=$42b7
+.label SPRITE_Y=$d001
+.label HUD_CHAR_ZERO=$30
+.label SPRITE_X=$d000
+.label ARROW_CHARACTER_TARGET=$3a30
+.label level5Length=$4267
+.label TETROMINO_5_5_X=$4676
+.label RASTER_TICK_30=$5
+.label TETROMINO_5_5_Y=$468a
+.label ZP_ROW_COLOR_LO=$22
+.label TETROMINO_11_5_Y=$477a
+.label SPRITE_POINTER=$7f8
+.label TETROMINO_11_5_X=$4766
+.label showColon=$926e
+.label PROCESSOR_PORT=$1
+.label ZP_PY_HI=$27
+.label SOUNDS=$6965 {
+  .label maxVolumeReached=$6979
+  .label FadeOutVolume=$697a
+  .label minVolumeReached=$698e
+  .label FadeInVolume=$6965
+}
+.label VARIABLES_ADDRESS=$9200
+.label rasterTicksCounter=$48f5
+.label RASTER_TICK_20=$4
+.label TETROMINO_MESSAGE=$2006
+.label tetrominoFallDelay=$922f
+.label irq_counter=$9267
+.label currentVolume=$9275
+.label ZP_COLOR_TARGET_HI=$34
+.label INPUT=$5717 {
+  .label readJoystick_2=$5717
+  .label checkJoy2left=$574b
+  .label checkJoy2right=$5765
+  .label joy2right=$5777 {
+  }
+  .label doneReadJoystick_2=$57be
+  .label joy2up=$5791 {
+  }
+  .label checkJoy2down=$5731
+  .label joy2fire=$57b3 {
+  }
+  .label checkJoy2up=$577f
+  .label joy2notIdle=$5731
+  .label joy2left=$575d {
+  }
+  .label joy2down=$5743 {
+  }
+  .label checkJoy2fire=$5799
+}
+.label ZP_PX_HI=$25
+.label SPRITE_BACKGROUND=$d021
+.label MUSIC_ADDRESS_MENU=$8000
+.label statsTetrominoSubTotal=$4184
+.label tetrominoPerLevelNewRandomTopBlock=$9260
+.label CHARSET_ADDRESS=$3800
+.label RASTER_TICK_50=$7
+.label TETROMINO_ROW_LENGTH_WIDE_MODE=$e
+.label LIGHT_GREY_COLOR=$f
+.label IS_VOLUME_OFF=$0
+.label Row_Color_HI=$404b
+.label tetrominoHeight=$923b
+.label tetrominoPerLevelSpeedUp=$925e
+.label TETROMINO_COMPLETE_3_LINES=$3
+.label TETROMINO_6_5_X=$469e
+.label tempScore=$9254
+.label TETROMINO_6_5_Y=$46b2
+.label minutes=$9268
+.label BLOCK=$4c
+.label tetrominoPositionsY_LO=$4152
+.label level6Length=$4286
+.label SPRITE_COLOR=$d027
+.label RASTER_TICK_40=$6
+.label NTSC_RASTER=$3c
+.label TETROMINO_I_COLOR=$2
+.label TETROMINO_COL_START=$4
+.label level9Length=$43be
+.label lines100000=$924e
+.label tens=$926b
+.label ZP_TEXT_LO=$35
+.label TETROMINO_Z_X=$4124
+.label TETROMINO_Z_Y=$4134
+.label TETROMINO_ROW_FIRST=$0
+.label HUD_LINES_LEFT_X_POS=$12
+.label TETROMINO=$506c {
+  .label mustMultiplyBy5Init=$5080
+  .label checkCompleteLines=$53c5 {
+  }
+  .label endChange=$5231 {
+  }
+  .label speedUp=$543d {
+  }
+  .label paint=$506c {
+  }
+  .label endCheckCompleteLines=$5432
+  .label randomContinue=$555d
+  .label endDraw=$50bd {
+  }
+  .label handleRotate=$51ab
+  .label changeColorLineToDeleteLoop=$54ca
+  .label tetrominoHSpeedTimerReached=$515f
+  .label checktetrominoFallDelayTimer=$50e0
+  .label checkDownDirection=$50ee
+  .label checkRightDirection=$5181
+  .label movePreviousLine=$53d6
+  .label movePreviousLineCompletedLines=$5254
+  .label mustGenerateByX5=$555a
+  .label keepInSameLineCompletedLines=$5278
+  .label addLineCounter=$53ff {
+  }
+  .label moveNextCharChangeColorBlockRandom=$551a
+  .label handle=$50d4 {
+  }
+  .label postConditionsMoveLinesUpCleanTetrominoDone=$548d {
+  }
+  .label moveLineNext=$55b8
+  .label continueMoveSpriteDown=$512c
+  .label resetRotateTetromino=$51d2
+  .label changeColorLineToDelete=$54c2 {
+  }
+  .label piece=$50a2
+  .label continueCheckCompleteLinesCompletedLines=$5249
+  .label createNewTetrominoDone=$566e {
+  }
+  .label moveLinesUp=$55b2 {
+  }
+  .label moveNextChar=$559b
+  .label no5CompletedLines=$52bc
+  .label createNewTetromino=$5655 {
+  }
+  .label moveLinesUpClean=$561c {
+  }
+  .label tetrominoInitContinue=$5083
+  .label previewsLineCompletedLines=$5277
+  .label postConditionsMoveLinesUpClean=$546e {
+  }
+  .label moveLineChangeColorBlockRandom=$5503
+  .label moveNextCharUp=$55e3
+  .label moveLineToClean=$5601
+  .label postConditionsNewRandomTopBlock=$5492 {
+  }
+  .label moveSpriteDown=$50f8
+  .label moveSpriteRight=$518b
+  .label moveLinePrevious=$5570
+  .label remove=$50cb
+  .label completedLines=$5236 {
+  }
+  .label removeLineCompletedLines=$526b
+  .label endCheckCompleteLinesCompletedLines=$5283
+  .label newRandomTopBlock=$5630 {
+  }
+  .label resetTetromino=$553e
+  .label cancelDownDirection=$514b
+  .label checkRotate=$519e
+  .label completedLinesDone=$53c0 {
+  }
+  .label changeColorBlockRandom=$54fd {
+  }
+  .label tetrominoEndContinue=$509c
+  .label postConditionsNewRandomTopBlockTetromino=$54a9
+  .label noGameOver=$5666
+  .label no4CompletedLines=$52f2
+  .label cleanLine=$55fa {
+  }
+  .label continueCheckCompleteLines=$53cb
+  .label change=$51f2 {
+  }
+  .label no2CompletedLines=$538d
+  .label moveSpriteLeft=$516e
+  .label checkTetrominoRotateCooldownTimer=$519e
+  .label changeColorLineToDeleteDone=$54f8 {
+  }
+  .label draw=$50c2
+  .label checkLeftDirection=$5151
+  .label endCheckDirection=$51da
+  .label mustTetrominoBy5=$521d
+  .label moveLinesDown=$5569 {
+  }
+  .label tetrominoFallDelayTimerReached=$50eb
+  .label endCheckFinal=$51ea
+  .label removeLine=$53ed
+  .label resetFall=$54b6
+  .label previewsLine=$53f3
+  .label moveNextCharChangeColorBlockRandomDone=$552f
+  .label moveNextCharToClean=$560d
+  .label mustMultiplyBy5End=$5099
+  .label checkTetrominoHSpeedTimer=$5151
+  .label keepInSameLine=$53f4
+  .label clearCompletedLines=$5241
+  .label no3CompletedLines=$5328
+  .label speedUpTetromino=$5452
+  .label speedUpTetrominoDone=$5469 {
+  }
+  .label postConditionsNewRandomTopBlockTetrominoDone=$54b1 {
+  }
+  .label rotateTetromino=$51b7 {
+  }
+  .label postConditionsMoveLinesUpCleanTetromino=$5485
+}
+.label GREEN_COLOR=$5
+.label TETROMINO_ROW_LENGTH=$a
+.label GAME_MODE_DELELE_LINE=$c
+.label TETROMINO_J_Y=$4094
+.label TETROMINO_J_X=$4084
+.label TETROMINO_12_5_X=$478e
+.label TETROMINO_12_5_Y=$47a2
+.label SPRITE_ENABLE=$d015
+.label RASTER_TICK_70=$9
+.label GAME=$5b11 {
+  .label endLoad5X5HudStats=$6029
+  .label increaseLevelMenu=$5ebe
+  .label goToGameOver=$60ed {
+  }
+  .label inMenuNoMode=$5eb7
+  .label clearContainer=$6177 {
+  }
+  .label goToMenu=$5b1d {
+  }
+  .label inMenuMode=$5d2a {
+  }
+  .label noWideModeStartUp=$5bf0
+  .label drawCurrentLevel=$5ed0
+  .label nextColorTransitionInMenu=$5d47
+  .label justGameOver=$60e8 {
+  }
+  .label animatesFolkRussianDancer=$5d4d
+  .label nextTetromino=$61bc
+  .label inMenuActionFire=$5dd7
+  .label inPlayingMode=$60bf {
+  }
+  .label inChangeLevelMode=$6163 {
+  }
+  .label inGameOverNoF1=$61b7 {
+  }
+  .label init=$5b11
+  .label inMenuNoStart=$5e02
+  .label changeTo5X5=$5e37
+  .label changeLevel=$614c {
+  }
+  .label changeToWideMode=$5e93
+  .label inMenuNoTetromino=$5e5b
+  .label inMenuNoLevel=$5ed3 {
+  }
+  .label goToPlaying=$5ed8 {
+  }
+  .label no5X5ModeStartUp=$5c11 {
+  }
+  .label startGameMenu=$5b17
+  .label noWideMode=$6003
+  .label continueColorTransition=$5d38
+  .label inGameOverMode=$619d {
+  }
+  .label noChangeColorInMenu=$5d71 {
+  }
+  .label inMenuAction=$5de6 {
+  }
+}
+.label CHANGE_MODE_MESSAGE=$201c
+.label DEFAULT_SCREEN_BACKGROUND_COLOR=$0
+.label ZP_HUD_COLOR_LO=$37
+.label ZERO_PAGE_ADDRESS=$20
+.label BROWN_COLOR=$9
+.label temp=$9216
+.label STATS_CHARSET=$50
+.label level8Color=$4399
+.label Row_HI=$4019
+.label textLength=$9258
+.label HUD_CENTRAL_WIDTH=$a
+.label tetrominoColors=$487e
+.label level8Length=$434e
+.label tetrominoRotateCooldown=$922d
+.label RASTER_TICK_60=$8
+.label currentLevel=$925b
+.label level12Color=$4581
+.label score100000=$9248
+.label IDLE=$4d
+.label tempTransitionColorDelayTimer=$9220
+.label ZP_COLOR_TARGET_LO=$33
+.label charMapStartX=$9208
+.label charMapStartY=$9209
+.label START_MESSAGE=$2000
+.label ARROW_CHARSET_ANIMATION_MAX=$5
+.label HUD_GAMEPLAY_ADDRESS=$7000

@@ -64,7 +64,8 @@ INTERRUPT:
 
 		lda playMusic
 		beq skipMusic
-		jsr MUSIC_PLAY
+   		jsr MUSIC.play
+
 		skipMusic:
 
 		jsr CLOCK.ticks
