@@ -5,11 +5,7 @@
 #import "includes/constants.asm"
 #import "includes/macros.asm"
 
-.var music_game_over = LoadSid("assets/music/muse_menu.sid")
-.var music_in_game_one = LoadSid("assets/music/racer_x_one.sid")
-.var music_in_game_two = LoadSid("assets/music/racer_x_two.sid")
-.var music_in_game_three = LoadSid("assets/music/racer_x_three.sid")
-.var music_in_game_four = LoadSid("assets/music/racer_x_four.sid")
+.var music = LoadSid("assets/music/racer_x.sid")
 
 BasicUpstart2(main)
 
@@ -25,20 +21,8 @@ BasicUpstart2(main)
 *=GAME_CODE "Game Code"
 #import "includes/gameCode.asm"
 
-*=music_game_over.location "Music menu and game over"
-.fill music_game_over.size, music_game_over.getData(i)
-
-*=music_in_game_one.location "Music in game one"
-.fill music_in_game_one.size, music_in_game_one.getData(i)
-
-*=music_in_game_two.location "Music in game two"
-.fill music_in_game_two.size, music_in_game_two.getData(i)
-
-*=music_in_game_three.location "Music in game three"
-.fill music_in_game_three.size, music_in_game_three.getData(i)
-
-*=music_in_game_four.location "Music in game four"
-.fill music_in_game_four.size, music_in_game_four.getData(i)
+*=music.location "Music"
+.fill music.size, music.getData(i)
 
 *=CHARSET_ADDRESS "Charset"
 .import binary "assets/charset/charset.bin"

@@ -36,7 +36,10 @@ SYSTEM:
 
 		jsr SCREEN_CLEAR
 
-		changeSong(MENU_MUSIC)
+		lda #0
+		tay
+		tax
+		jsr MUSIC_INIT
 
 		jsr INTERRUPT.setupRasterInterrupt
 		rts

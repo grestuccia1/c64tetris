@@ -224,9 +224,6 @@ GAME:
 
         lda #GAME_MODE_PLAYING_READY
         sta gameMode
-
-        playRandomSong()
-
         LoadFullScreen(HUD_GAMEPLAY_ADDRESS)
         SetTextColor(HUD_CLOCK_X_POS,HUD_CLOCK_Y_POS,1,6,WHITE_COLOR)
 
@@ -309,8 +306,6 @@ GAME:
         lda #GAME_MODE_GAME_OVER_READY
         sta gameMode
 
-        changeSong(MENU_MUSIC)
-        
         jsr SCREEN_CLEAR
         LoadCharColorMap(HUD_GAME_OVER_TITLE_ADDRESS, HUD_GAME_OVER_TITLE_COLORS_ADDRESS, 1, 3, 39, 5)
         WriteText(GAME_OVER_MESSAGE, 9, 20, 1)
@@ -320,8 +315,6 @@ GAME:
 
     changeLevel:
         PushToStack() 
-
-        playRandomSong()
 
         jsr LEVELS.increaseLevel
         jsr HUD.updateLevelCounter

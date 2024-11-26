@@ -2,14 +2,6 @@
 
 MATH:
 {
-    generateRandomBelow4:
-        lda $DC04                 
-        and #$04
-        cmp #4
-        beq generateRandomBelow4
-        sta ZP_RANDOM_NUMBER
-        rts
-
     generateRandomBelow7:
 
         .if (DEBUG) {
