@@ -210,6 +210,9 @@ HUD:
 		ldy #HUD_LEVEL_X_POS
 
 		lda currentLevel
+		cmp #0
+		beq infiniteLevelCounter
+
 		jsr MATH.divideBy10
 		iny
 
@@ -223,6 +226,12 @@ HUD:
 		clc
 		adc #HUD_CHAR_ZERO
 		sta (ZP_ROW_LO),y
+		jmp endUpdateLevelCounter
+
+		infiniteLevelCounter:
+		jsr drawInfinity
+
+		endUpdateLevelCounter:
 
 		PopFromStack()	
 		rts
@@ -239,6 +248,8 @@ HUD:
 		ldy #HUD_START_LEVEL_X_POS
 
 		lda currentLevel
+		cmp #0
+		beq infiniteLevel
 		jsr MATH.divideBy10
 		iny
 
@@ -253,6 +264,11 @@ HUD:
 		adc #HUD_CHAR_ZERO
 		sta (ZP_ROW_LO),y
 
+		jmp endstartLevelCounter
+		infiniteLevel:
+		jsr drawInfinity
+
+		endstartLevelCounter:
 		PopFromStack()	
 		rts	
 
@@ -266,6 +282,10 @@ HUD:
 		sta ZP_ROW_HI
 
 		ldy #HUD_LINES_LEFT_X_POS
+
+		lda currentLevel
+		cmp #0
+		beq infiniteLevelLeftCounter
 
 		lda linesNeededForNextLevel
 		sec
@@ -291,7 +311,21 @@ HUD:
 		clc
 		adc #HUD_CHAR_ZERO
 		sta (ZP_ROW_LO),y
+		jmp endUpdateLinesLeftCounter
+
+		infiniteLevelLeftCounter:
+		jsr drawInfinity
+		
+		endUpdateLinesLeftCounter:
 
 		PopFromStack()	
+		rts
+
+	drawInfinity:
+		lda #217
+		sta (ZP_ROW_LO),y
+		iny
+		lda #218
+		sta (ZP_ROW_LO),y
 		rts
 }

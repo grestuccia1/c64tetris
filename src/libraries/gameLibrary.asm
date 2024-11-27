@@ -209,7 +209,7 @@ GAME:
                 bne drawCurrentLevel
                 lda #0
                 sta currentLevel
-                jmp increaseLevelMenu
+                jsr LEVELS.setLinesNeededForNextLevel
 
             drawCurrentLevel:    
                 jsr HUD.startLevelCounter

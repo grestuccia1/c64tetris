@@ -5,7 +5,7 @@ LEVELS: {
         lda #LEVEL_RESET
         sta currentLevel
 
-        jsr LEVELS.increaseLevel
+        jsr setLinesNeededForNextLevel
         jsr HUD.resetScore
         jsr HUD.resetLinesCounter
         rts
@@ -38,9 +38,9 @@ LEVELS: {
 
     checkCompleteLevel:
         PushToStack()
-            lda linesForLevel
-
             lda linesNeededForNextLevel
+            cmp #0
+            beq LevelNotComplete
             cmp linesForLevel
             beq LevelIsComplete
             bcc LevelIsComplete 

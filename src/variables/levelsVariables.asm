@@ -1,6 +1,6 @@
 // ----------------------------------- GAME VARIABLES -----------------------------------
 
-currentLevel: .byte 0
+currentLevel: .byte LEVEL_RESET
 
 linesForLevel: .byte 0
 linesNeededForNextLevel: .byte 0
