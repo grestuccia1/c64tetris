@@ -1,10 +1,11 @@
 // ----------------------------------- SOUNDS MACROS -----------------------------------
 
-.macro playSFX(label) {
+.macro randomSong() {
 	
-	lda #<label   
-    ldy #>label 
-    ldx #14       
-   	jsr $9503
+	jsr MATH.generateRandomSong
+    lda ZP_RANDOM_NUMBER
+    tay
+    tax
+    jsr MUSIC_INIT
 
 }

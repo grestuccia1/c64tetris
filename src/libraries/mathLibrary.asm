@@ -2,6 +2,14 @@
 
 MATH:
 {
+    generateRandomSong:
+        lda $DC04 
+        and #$03            
+        cmp #3              
+        beq generateRandomSong  
+        sta ZP_RANDOM_NUMBER  
+        rts
+
     generateRandomBelow7:
 
         .if (DEBUG) {

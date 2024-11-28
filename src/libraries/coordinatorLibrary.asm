@@ -113,6 +113,9 @@ COORDINATOR: {
             bne noGameModeChangeLevelReady
 
             jsr GAME.inChangeLevelMode
+			
+			randomSong()
+
 			jmp noGameModeEnd
 
 		noGameModeChangeLevelReady:

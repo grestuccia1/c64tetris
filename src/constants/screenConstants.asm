@@ -65,7 +65,7 @@ START_LEVEL_NUMBER:
 
 REX_MESSAGE: 
 .encoding "screencode_upper"
-.text "REX 2024 V0'9" 
+.text "REX 2024 V1'0" 
 .byte 0
 
 

@@ -128,4 +128,4 @@ This project is released under the MIT License. You are free to use, modify, and
 ## Important
 **All rights to Tetris belong to their respective owners. This project is inspired by Tetris and is for educational purposes only, with no commercial intent.**
 
-**Music**: New Song - Author [Leigh White (Racer X)](https://csdb.dk/release/?id=17674) ❤️❤️❤️
+**Music**: Hercules, Slayer of the Damned - Author [Andy Morton](https://csdb.dk/sid/?id=1483) ❤️❤️❤️

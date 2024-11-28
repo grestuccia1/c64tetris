@@ -2,9 +2,9 @@
 
 linesGoalPerLevel:
     .byte 0
-    .byte 1     // Level: 1
-    .byte 2    
-    .byte 5    
+    .byte 4     // Level: 1
+    .byte 6    
+    .byte 8    
     .byte 10    
     .byte 12    // Level: 5
     .byte 10    
@@ -40,12 +40,12 @@ tetrominoFallDelayPerLevel:
     .byte 20
     .byte 15
     .byte 15
-    .byte 10    // Level: 10  
-    .byte 10    
+    .byte 18    // Level: 10  
+    .byte 18    
     .byte 30    
     .byte 25    
     .byte 20
-    .byte 10    // Level: 20       
+    .byte 18    // Level: 20       
 
 tetrominoCountPerLevelToSpeedUp:
     .byte 30    
@@ -61,14 +61,14 @@ tetrominoCountPerLevelToSpeedUp:
     .byte 10    // Level: 10    
     .byte 10    
     .byte 10
-    .byte 5
-    .byte 5
-    .byte 5     // Level: 15   
-    .byte 4  
-    .byte 3  
-    .byte 2 
-    .byte 2  
-    .byte 2     // Level: 20   
+    .byte 9
+    .byte 9
+    .byte 9     // Level: 15   
+    .byte 9  
+    .byte 9  
+    .byte 8 
+    .byte 8  
+    .byte 8     // Level: 20   
 
 
 tetrominoCountPerLevelToMoveLinesUp:
@@ -87,12 +87,12 @@ tetrominoCountPerLevelToMoveLinesUp:
     .byte 0
     .byte 0
     .byte 0
-    .byte 7     // Level: 15   
-    .byte 5  
-    .byte 5  
-    .byte 3 
-    .byte 7  
-    .byte 3     // Level: 20   
+    .byte 17     // Level: 15   
+    .byte 15  
+    .byte 15  
+    .byte 13 
+    .byte 17  
+    .byte 13     // Level: 20   
 
 tetrominoCountPerLevelToNewRandomTopBlock:
     .byte 200    
@@ -107,15 +107,15 @@ tetrominoCountPerLevelToNewRandomTopBlock:
     .byte 0    
     .byte 0    // Level: 10    
     .byte 0    
-    .byte 7
-    .byte 5
-    .byte 3
+    .byte 15
+    .byte 12
+    .byte 10
     .byte 0     // Level: 15   
     .byte 0  
     .byte 0  
     .byte 0 
-    .byte 8  
-    .byte 5     // Level: 20   
+    .byte 12  
+    .byte 8     // Level: 20   
 
 rowTransitionColor:
     .byte 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12, 11, 12, 15, 1, 15, 12

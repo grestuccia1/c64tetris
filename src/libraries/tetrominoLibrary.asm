@@ -675,6 +675,45 @@ TETROMINO:
 		PopFromStack()
   		rts		 
 
+	oneEmptySpaceLine:
+		PushToStack()
+
+		ldx charRow
+
+		moveLineToCleanEmptySpace:
+			lda Row_LO,x
+			sta ZP_ROW_LO
+			lda Row_HI,x
+			sta ZP_ROW_HI
+
+			lda Row_Color_LO,x
+			sta ZP_ROW_COLOR_LO
+			lda Row_Color_HI,x
+			sta ZP_ROW_COLOR_HI
+
+			ldy #TETROMINO_COL_FIRST
+
+			moveNextCharToCleanEmptySpace:
+				lda #BLOCK
+				sta (ZP_ROW_LO),y
+
+				jsr MATH.generateRandomBelow10
+				lda ZP_RANDOM_NUMBER_SCORE
+				sta (ZP_ROW_COLOR_LO), y
+
+				iny
+				cpy tetrominoDynamicLastCol
+				bne moveNextCharToCleanEmptySpace
+
+			jsr MATH.generateRandomBelow10
+			lda ZP_RANDOM_NUMBER_SCORE
+			tay
+			lda #SPACE
+			sta (ZP_ROW_LO),y
+
+		PopFromStack()
+		rts
+
 	cleanLine:
 		PushToStack()
 
@@ -707,7 +746,7 @@ TETROMINO:
 
 		lda #TETROMINO_ROW_LAST
 		sta charRow
-		jsr cleanLine
+		jsr oneEmptySpaceLine
 
 		PopFromStack()
 		rts

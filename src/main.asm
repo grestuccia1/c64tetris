@@ -5,7 +5,7 @@
 #import "includes/constants.asm"
 #import "includes/macros.asm"
 
-.var music = LoadSid("assets/music/racer_x.sid")
+.var music = LoadSid("assets/music/hercules.sid")
 
 BasicUpstart2(main)
 
